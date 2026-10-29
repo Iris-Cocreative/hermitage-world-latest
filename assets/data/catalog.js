@@ -197,7 +197,7 @@
       blurb: 'Friar Justin introduces the Hermitage. One of the first three videos being cleaned and titled for the library.' },
     { id: 'v-goals', kind: 'video', title: 'Justin’s goals, for him and for us', by: ['justin'], voice: 'justin', occasion: ['life'], access: 'soon', rel: { partOf: ['teaching-series'] },
       blurb: 'Friar Justin on what he hoped for, for himself and for the people who practice with the Hermitage.' },
-    { id: 'v-prayer', kind: 'video', title: 'A spiritual progression through prayer', by: ['justin'], voice: 'justin', occasion: ['text'], access: 'soon', rel: { partOf: ['teaching-series'], form: ['prayer-of-quiet'] },
+    { id: 'v-prayer', kind: 'video', title: 'A spiritual progression through prayer', by: ['justin'], voice: 'justin', occasion: ['text'], access: 'soon', rel: { partOf: ['teaching-series'], form: ['deep-peace'] },
       blurb: 'The path Justin taught from spoken prayer, to mental prayer, to the prayer of silence.' },
     { id: 'homilies', kind: 'series', title: 'Sunday homilies', sub: 'About 17 hours', hours: 17, by: ['justin'], voice: 'justin', occasion: ['text'], access: 'soon',
       blurb: 'Friar Justin’s Sunday homilies, being cleaned, titled and chaptered. Transcripts will make every one of them searchable.' },
@@ -211,9 +211,7 @@
       blurb: 'A rotating class that explores meditation through modern science and ancient contemplative wisdom, in two phases of four classes. No experience needed, and no tradition required.' },
     { id: 'sfl-program', kind: 'program', title: 'Success: Full Living', sub: 'The flagship program', by: ['justin'], voice: 'justin', occasion: ['life', 'together'], access: 'soon', lessons: 3, href: 'programs/success-full-living/', rel: { form: ['sfl-book', 'sfl-album', 'sfl-series'] },
       blurb: 'Practical tools for managing a life, joined to meditation and direct spirituality, and named for the promise of life “to the full.”' },
-    { id: 'prayer-of-quiet', kind: 'program', title: 'Living the Prayer of Quiet', sub: 'The capstone retreat', by: ['justin'], voice: 'justin', occasion: ['text'], access: 'soon', lessons: 3, href: 'programs/prayer-of-quiet/',
-      blurb: 'The retreat that carries Justin’s teaching to its quietest point: from spoken prayer, to mental prayer, to the prayer of silence.' },
-    { id: 'deep-peace', kind: 'program', title: 'The Day of Deep Peace', sub: 'A day of silence, twice a year', by: ['samuel'], voice: 'community', occasion: ['together', 'beginning'], access: 'soon', lessons: 1,
+    { id: 'deep-peace', kind: 'program', title: 'A Day of Deep Peace', sub: 'A day of silence, twice a year', by: ['samuel'], voice: 'community', occasion: ['together', 'beginning'], access: 'soon', lessons: 1, href: 'programs/day-of-deep-peace/',
       blurb: 'A full day of noble silence, meditation guidance for beginners and experienced practitioners, mindful walking, a contemplative parable and shared meals. “This is not a lecture. It is a return.”' },
     { id: 'universal-christ-circle', kind: 'circle', title: 'The Universal Christ, read together', sub: 'Eight sessions · spring 2026', sessions: 8, by: ['peggy', 'samuel'], voice: 'together', occasion: ['together', 'text'], access: 'free', year: 2026, rel: { reads: ['rohr-book'] },
       blurb: 'Eight Thursday evenings, March 19 to May 21, in person at the Hermitage, with the book’s companion guide for group reflection. Facilitated by Peggy Alderman and Samuel.' }
@@ -250,7 +248,7 @@
         ['t-canticle', 'And with St. Francis’s praise of creation.'],
         ['t-creation', 'The heart of Franciscan spirituality: the Creation Model.'],
         ['t-serenity', 'Creation Spirituality brought to a prayer for everyday life.'],
-        ['prayer-of-quiet', 'Where the path ends: the prayer of silence.']
+        ['deep-peace', 'Where the path leads: a whole day of silence.']
       ] },
     { id: 'sfl-four-ways', title: 'Success: Full Living, four ways', by: 'Suggested by the Hermitage', time: 'A book, an album, a series, a program',
       desc: 'Justin’s flagship teaching comes in four forms. Take the one that fits how you learn, or all four in turn.',

@@ -17,65 +17,102 @@
 
   var INDY = 'America/Indiana/Indianapolis';
 
+  var IIC = 'Indiana Interchurch Center, 1100 W. 42nd Street, Suite 350, Indianapolis';
+
+  // From the Hermitage Weekly (Oct 26 – Nov 1, 2026), as Samuel asked on Oct 26.
+  // Every gathering is weekly; there are no monthly events right now. Tai Chi
+  // is held back until its details are worked out. `mode` is online,
+  // in-person or hybrid (online and in person at once).
   var GATHERINGS = [
     {
-      id: 'energy-circle',
-      title: 'Worldwide Energy Circle',
-      summary: 'Every Tuesday since 2020, Indianapolis to Australia, the community holds silence together on Zoom.',
+      id: 'office-hours',
+      title: 'Office Hours with Samuel',
+      summary: 'Samuel’s open online office: questions about the Hermitage, and conversation about meditation and spirituality.',
       body: [
-        'The circle Friar Justin began meeting online in 2020 still gathers every week. People join from the United States, Australia and Europe to sit together, send light where it is needed, and remember that none of us practices alone.',
-        'Come a few minutes early. Cameras are welcome and optional; you can simply sit.'
+        'Want to know more about the Hermitage? Samuel Robinson, the Hermitage’s Program Director, keeps an open online office every week for questions and for conversation about meditation and spirituality.',
+        'All are welcome. You can also write to Samuel@HermitageIndy.org or call 317-545-0742.'
       ],
       repeat: { every: 'week', day: 2 },          // 0 Sunday … 6 Saturday
-      time: '19:00', minutes: 60, tz: INDY, confirmed: false,
+      time: '18:00', minutes: 60, tz: INDY, confirmed: true,
       mode: 'online', place: 'Zoom',
-      host: 'The Hermitage community',
+      host: 'Samuel Robinson',
       kind: 'gathering',
       action: 'Join on Zoom'
     },
     {
-      id: 'contemplative-unity',
-      title: 'Contemplative Unity',
-      summary: 'The Sunday hour of silence, held together in the Hermitage’s new home at the Indiana Interchurch Center.',
+      id: 'wisdom-circle',
+      title: 'Wisdom Circle',
+      summary: 'Inspired by Friar Justin’s Energy Circle: sacred texts read together in presence, compassion and deep listening.',
       body: [
-        'An hour of shared silent meditation, opened and closed with a few words. No experience is needed and nothing is asked of you but quiet.',
-        'Since September 2026 the Sunday hour meets at the Indiana Interchurch Center in Indianapolis.'
+        'Wisdom Circle is an online gathering inspired by Fr. Justin’s Energy Circle, where participants enter a shared field of presence, compassion and deep listening as they engage sacred texts from Christian as well as other traditions: not to analyze them, but to be inwardly transformed by them.',
+        'Through reflection, silence and heartfelt conversation, the group cultivates clarity, courage and love that naturally extend into the world. The current book is Success: Full Thinking by Fr. Justin Belitz.'
+      ],
+      repeat: { every: 'week', day: 2 },
+      time: '20:15', minutes: 60, tz: INDY, confirmed: true,
+      mode: 'online', place: 'Zoom',
+      host: 'The Hermitage',
+      kind: 'gathering',
+      action: 'Join on Zoom'
+    },
+    {
+      id: 'energy-circle',
+      title: 'Energy Circle',
+      summary: 'Share your success stories and take part in a guided meditation, in person at the Hermitage’s new home.',
+      body: [
+        'Come share your success stories and take part in a guided meditation. All are welcome, and no reservations are needed.',
+        'The Energy Circle now meets at the Hermitage’s new home on 42nd Street.'
+      ],
+      repeat: { every: 'week', day: 3 },
+      time: '19:00', minutes: 60, tz: INDY, confirmed: true,
+      mode: 'in-person', place: IIC,
+      host: 'The Hermitage',
+      kind: 'gathering',
+      action: 'Come in person'
+    },
+    {
+      id: 'oneness-celebration',
+      title: 'Oneness Celebration',
+      summary: 'A welcoming gathering in the Christian tradition, celebrating our connection with God, one another and all creation. A potluck lunch follows.',
+      body: [
+        'Join us for our Oneness Celebration, a welcoming gathering inspired by the Christian tradition, where we celebrate our connection with God, one another and all creation. Through the remembrance of Jesus’ Last Supper, we come together in a spirit of love and unity, recognizing the Divine presence that connects us all.',
+        'Followed by a potluck lunch.'
       ],
       repeat: { every: 'week', day: 0 },
-      time: '10:00', minutes: 60, tz: INDY, confirmed: false,
-      mode: 'in-person', place: 'Indiana Interchurch Center, Indianapolis',
-      host: 'The Hermitage community',
+      time: '10:00', minutes: 60, tz: INDY, confirmed: false,   // the Weekly says "10:00 am – 11:00 pm"
+      mode: 'in-person', place: IIC,
+      host: 'The Hermitage',
+      kind: 'gathering',
+      action: 'Come in person'
+    },
+    {
+      id: 'contemplative-unity',
+      title: 'Contemplative Unity',
+      summary: 'Silent meditation, lightly guided: step out of the noise of the world into sacred stillness. In Indianapolis and on Zoom.',
+      body: [
+        'You are invited to step out of the noise of the world and enter into the sacred stillness of silent meditation, and connect deeply to the Divine Presence within.',
+        'Contemplative Unity is a lightly guided meditation. Join us in the room in Indianapolis or on Zoom.'
+      ],
+      repeat: { every: 'week', day: 0 },
+      time: '12:30', minutes: 60, tz: INDY, confirmed: true,
+      mode: 'hybrid', place: IIC + ', and on Zoom',
+      host: 'The Hermitage',
       kind: 'gathering',
       action: 'Sit with us'
     },
     {
       id: 'way-between',
       title: 'The Way Between',
-      summary: 'A monthly conversation for those walking between traditions, or beyond them.',
+      summary: 'For those walking the path of spirituality and shared discovery. It begins after the Sunday silent meditation.',
       body: [
-        'A spiritual discussion group for people whose questions have outgrown their old container. Bring what you are carrying; leave with companions.',
-        'Dates are shared with the group each month.'
+        'A weekly gathering for those walking the path of spirituality and shared discovery. Rooted in contemplative practice and open-hearted dialogue, we explore the sacred space between tradition and emergence.',
+        'We begin after Sunday’s silent meditation. All are welcome to rest, reflect and awaken together in the Presence that unites us. Join us in the room in Indianapolis or on Zoom.'
       ],
-      repeat: { every: 'month' },
-      note: 'Monthly · date shared with the group',
-      tz: INDY, confirmed: false,
-      mode: 'online', place: 'Online',
-      host: 'Hermitage teachers',
+      repeat: { every: 'week', day: 0 },
+      time: '13:30', minutes: 60, tz: INDY, confirmed: true,
+      mode: 'hybrid', place: IIC + ', and on Zoom',
+      host: 'The Hermitage',
       kind: 'gathering',
-      action: 'Ask to join'
-    },
-    {
-      id: 'yvonne-classes',
-      title: 'Classes with Yvonne',
-      summary: 'Yvonne’s classes, carried from Australia to the United States.',
-      body: ['Day, time and series to be announced.'],
-      repeat: { every: 'tbd' },
-      note: 'Schedule to come',
-      tz: INDY, confirmed: false,
-      mode: 'online', place: 'Online',
-      host: 'Yvonne',
-      kind: 'gathering',
-      action: 'Hear when it opens'
+      action: 'Join us'
     },
     {
       id: 'train-your-mind',
@@ -192,8 +229,14 @@
   function eventHref(g) { return H.url(g.href || ('gatherings/event/?id=' + g.id)); }
   function draft(g) { return g.confirmed ? '' : ' <span class="draft-mark">time to confirm</span>'; }
   function modeTag(g) {
+    if (g.mode === 'hybrid') return '<span class="tag">' + H.icon('online') + H.icon('location') + 'Online and in person</span>';
     var online = g.mode === 'online';
     return '<span class="tag">' + H.icon(online ? 'online' : 'location') + (online ? 'Online' : 'In person') + '</span>';
+  }
+  // a hybrid gathering belongs under both the Online and the In person filters
+  function matches(g, filter) {
+    if (filter === 'all' || g.kind === filter || g.mode === filter) return true;
+    return g.mode === 'hybrid' && (filter === 'online' || filter === 'in-person');
   }
 
   function sorted(list) {
@@ -223,7 +266,7 @@
   function renderCards(el) {
     var filter = el.getAttribute('data-filter') || 'all';
     var items = sorted(GATHERINGS.filter(function (g) {
-      return filter === 'all' || g.mode === filter || g.kind === filter;
+      return matches(g, filter);
     }));
     el.innerHTML = items.map(function (x) {
       var g = x.g, o = x.o;
@@ -246,7 +289,7 @@
     var from = new Date(), to = new Date(Date.now() + weeks * 7 * 86400000);
     var rows = [];
     GATHERINGS.forEach(function (g) {
-      if (filter !== 'all' && g.mode !== filter && g.kind !== filter) return;
+      if (!matches(g, filter)) return;
       occurrences(g, from, to).forEach(function (o) { rows.push({ g: g, o: o }); });
     });
     rows.sort(function (a, b) { return a.o.start - b.o.start; });

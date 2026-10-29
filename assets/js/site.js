@@ -36,13 +36,12 @@
       { label: 'Gatherings', href: 'gatherings/', children: [
         { label: 'Calendar', href: 'calendar/' },
         { label: 'In Person · Indianapolis', href: 'in-person/' },
-        { label: 'A gathering', href: 'gatherings/event/?id=energy-circle' }
+        { label: 'A gathering', href: 'gatherings/event/?id=contemplative-unity' }
       ]},
       { label: 'Programs', href: 'programs/', children: [
         { label: 'Train Your Mind', href: 'programs/train-your-mind/' },
         { label: 'Success: Full Living', href: 'programs/success-full-living/' },
-        { label: 'Success: Full Relating', href: 'programs/success-full-relating/' },
-        { label: 'Living the Prayer of Quiet', href: 'programs/prayer-of-quiet/' },
+        { label: 'A Day of Deep Peace', href: 'programs/day-of-deep-peace/' },
         { label: 'The Silva Method', href: 'programs/silva-method/' }
       ]},
       { label: 'Friar Justin', href: 'friar-justin/', children: [

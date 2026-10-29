@@ -99,6 +99,18 @@ A third scene, live in the browser like the temple: a limestone loggia high abov
 - **Interim, not final.** The final mark is still open (Brand refresh, "The final mark"). These export the mark the site uses today, so print and swag already in production aren't held up; rerun the script once the mark is chosen.
 - CMYK builds are plain conversions of the brand hex values; a printer may tune them to their press.
 
+## Samuel's Oct 26 revisions (2026-10-29)
+
+Samuel's email of Oct 26 (with the Hermitage Weekly for Oct 26 – Nov 1, the March 2026 Day of Deep Peace flyer, and portraits of himself and Richard Brennan), applied across the site. The same notes are in the Collab OS content docs.
+
+- **Gatherings** (`assets/data/gatherings.js`) now follow the Hermitage Weekly: Office Hours with Samuel and Wisdom Circle (Tuesdays, online), Energy Circle (Wednesdays, in person), Oneness Celebration (Sundays 10 am, in person), Contemplative Unity and The Way Between (Sundays, hybrid). All weekly; no monthly events; Tai Chi held back until its details are worked out. Yvonne's classes and the Tuesday online Energy Circle are gone from the list.
+- **Hybrid is a third mode.** It shows as "Online and in person" and appears under both the Online and the In person filters (`matches()`), so the In Person page lists the Sunday gatherings too.
+- **The home calendar shows the whole week** (`data-limit="6"`), and its no-JavaScript rows match. The calendar, Gatherings, the event pages and the home board all read the one list, as before.
+- **Programs:** Train Your Mind and Success: Full Living stay; Living the Prayer of Quiet is now **A Day of Deep Peace** at `programs/day-of-deep-peace/`, rebuilt from the flyer (a one-day retreat of meditation and silent renewal, led by Samuel, twice a year, $40 early / $50 on the day, no date yet); the Silva Method stays as a placeholder; **Success: Full Relating is removed** (git keeps the page for when it returns). The Full Relating *book* stays in Books & Media and the Library. Five Lights, Five Doorways loses its draft mark. In the Library catalog, Prayer of Quiet and Deep Peace are one program now.
+- **Teachers & Guides:** Samuel Robinson (Program Director), Richard Brennan (Mentor and Life Transition Coach in Indianapolis; bio to come) and Liz Wilson (Meditation Guide, a Silva Method graduate; portrait to come). Portraits in `assets/img/photo/samuel-robinson.jpg` and `richard-brennan.jpg`.
+- **Open with Samuel:** the Weekly gives the Oneness Celebration as "10:00 am – 11:00 pm" (built as 10–11 am, marked to confirm); how visitors join online gatherings (Zoom links on the site or by email); whether Office Hours belongs on the calendar; whether Yvonne still appears.
+- QA: every changed page loads with no console errors and no horizontal overflow at 390 px; next occurrences resolve correctly across the Nov 1 time change; no link points at the removed pages.
+
 ## Library prototype (started 2026-10-23)
 
 The Holos Library prototype (`iris-webflow-scripts/holos-library/`), rebuilt for the Hermitage at `/library/` (noindex, not in the sitemap). The page is `library/index.html`, styles are in `assets/css/library.css`, the renderer is `assets/js/library-room.js`, and the data is `assets/data/catalog.js`.
