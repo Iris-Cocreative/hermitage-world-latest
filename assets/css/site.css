@@ -1,0 +1,610 @@
+/* ==========================================================================
+   Hermitage World · the site's own components, on Trellis
+   Shared by every page that has moved onto Trellis. Everything structural is
+   Trellis (frame, section, split, stack, cluster, cols, grid, rail, card,
+   list, tag, button, field, crumbs, dot); this file holds only what is the
+   Hermitage's own: arches, roundels, line art, rooms with a photo, the voice,
+   honest placeholders, and a few compositions Trellis has no part for.
+   Tokens and cells only; nothing in px. Load after core.css, hermitage.css
+   and chrome.css. The specimen is design-system/trellis/; the old class →
+   new class map is docs/TRELLIS-MIGRATION.md.
+
+   Index:
+     rooms · gold lines · gold text · centered · card link · voice
+     arch · arch window · roundel · art · value glyph
+     backdrop: room photo · line art · room arch
+     page hero · quote · draft mark · pending · note · checklist
+     values · halls · board row · columns · person · stat · timeline · pathway
+     player · circle link · live · event · reveal
+
+   Sizes that come from a width (an arch, a roundel, a player) are measured
+   against the nearest container, so each sits in one: a .card, a .context,
+   or a composition here that is one (.hw-person, .hw-hero-media).
+   ========================================================================== */
+@layer trellis, hw;
+
+@layer hw.site {
+
+  /* ROOMS. A band (.section.cc-band) paints its ground to the screen's
+     edges from --band-bg, sunken by default. A band that is a scope with a
+     mood (data-product="hermitage" data-theme="dark|light") paints its own
+     ground instead, so a dark band is the dark page, and .hw-deep (chrome.css)
+     takes it down to the sunken ground. */
+  .section.cc-band[data-theme] { --band-bg: var(--surface); }
+
+  /* GOLD LINES. The site's hairlines are gold, as they always were: a line
+     and a quieter one, worked out on each part that draws them so a part in
+     a dark band takes the dark band's gold. */
+  :where(.hw-arch, .hw-arch-window, .hw-roundel, .hw-room-arch, .hw-timeline,
+         .hw-pathway, .hw-date, .hw-event, .hw-player, .hw-pending) {
+    --hw-line: color-mix(in oklab, var(--accent) 80%, transparent);
+    --hw-line-subtle: color-mix(in oklab, var(--accent) 35%, transparent);
+  }
+
+  /* GOLD TEXT. Gold as ink for small words (a role, a year, a kicker): the
+     accent drawn toward the text, so it keeps 4.5:1 on every ground, where
+     the accent alone is only promised 3:1. */
+  .hw-gold { color: color-mix(in oklab, var(--accent) 60%, var(--text)); }
+
+  /* CENTERED. The old .center and .ta-center: words set on the middle of
+     their column, and a stack's items with them. */
+  .hw-center { text-align: center; align-items: center; margin-inline: auto; }
+
+  /* A LINK THAT COVERS ITS CARD (the old .card--link and the event's title):
+     the link sits on the title; its ::after stretches over the whole .card,
+     and the card's edge turns gold on hover. Anything else that must stay
+     clickable in the card takes position: relative (.hw-event-meta). */
+  .hw-card-link { color: inherit; text-decoration: none; }
+  .hw-card-link::after { content: ""; position: absolute; inset: 0; border-radius: var(--card-radius); }
+  @media (hover: hover) { .card:has(.hw-card-link):hover { --card-border: color-mix(in oklab, var(--accent) 80%, transparent); } }
+
+  /* THE VOICE. Alegreya italic, only for a person speaking (brand: the Voice
+     Rule). In running text, or on a quote's words. */
+  .hw-voice, .hw-quote > p { font-family: var(--font-serif); font-style: italic; }
+
+  /* ------------------------------------------------------------------ arch
+     A round-headed arch over shoulders with a small foot radius. Its height
+     is whole cells, from its container's width and --arch-ratio (height ÷
+     width; 4:3 by default), set on the arch or anything around it. The head
+     stays a true semicircle: horizontal radii are half the width, vertical
+     radii the same length as a share of the height. */
+  .hw-arch {
+    position: relative;
+    display: block;
+    inline-size: 100%;
+    block-size: round(nearest, calc(100cqi * var(--arch-ratio, 1.3333)), var(--u));
+    overflow: hidden;
+    border-radius: 50% 50% var(--arch-foot, var(--r-1h)) var(--arch-foot, var(--r-1h)) /
+                   calc(50% / var(--arch-ratio, 1.3333)) calc(50% / var(--arch-ratio, 1.3333)) var(--arch-foot, var(--r-1h)) var(--arch-foot, var(--r-1h));
+    background: var(--bg-raised);
+  }
+  .hw-arch > :is(img, video) { position: absolute; inset: 0; inline-size: 100%; block-size: 100%; object-fit: cover; }
+  /* Its edge is a plane inside the shape, so it never changes the size. */
+  .hw-arch::after {
+    content: "";
+    position: absolute; inset: 0;
+    border-radius: inherit;
+    box-shadow: inset 0 0 0 var(--arch-edge, 0) var(--arch-edge-color, transparent);
+    pointer-events: none;
+  }
+  .hw-arch-outline { --arch-edge: var(--line); --arch-edge-color: var(--hw-line); }
+
+  /* The window: a hairline arch with a reveal around a thicker inner arch. */
+  .hw-arch-window {
+    --arch-ratio: 1.3158;
+    position: relative;
+    display: block;
+    inline-size: 100%;
+    block-size: round(nearest, calc(100cqi * var(--arch-ratio)), var(--u));
+    padding: var(--sp-1h);
+    border-radius: 50% 50% var(--r-1h) var(--r-1h) / calc(50% / var(--arch-ratio)) calc(50% / var(--arch-ratio)) var(--r-1h) var(--r-1h);
+    box-shadow: inset 0 0 0 var(--line) var(--accent);
+  }
+  .hw-arch-window > .hw-arch {
+    --arch-ratio: 1.3889;
+    --arch-foot: var(--r-h);
+    --arch-edge: calc(var(--line) * 3);
+    --arch-edge-color: var(--accent);
+    block-size: 100%;
+  }
+
+  /* --------------------------------------------------------------- roundel
+     A photograph in a circle inside a gold ring, a cell apart. The circle is
+     whole cells, its container's width or --roundel-size, whichever is less. */
+  .hw-roundel {
+    --roundel-d: round(down, min(var(--roundel-size, 100cqi), 100cqi), var(--u));
+    position: relative;
+    inline-size: var(--roundel-d);
+    block-size: var(--roundel-d);
+    padding: var(--sp-1);
+    border-radius: var(--r-round);
+  }
+  .hw-roundel > img { display: block; inline-size: 100%; block-size: 100%; object-fit: cover; object-position: var(--roundel-pos, center); border-radius: var(--r-round); }
+  .hw-roundel::after {
+    content: "";
+    position: absolute; inset: 0;
+    border-radius: inherit;
+    box-shadow: inset 0 0 0 calc(var(--line) * 1.5) var(--accent);
+    pointer-events: none;
+  }
+
+  /* ------------------------------------------------------------------- art
+     Line art and glyphs are SVG files drawn as masks, so their color is a
+     role (--art-color, the accent by default), never baked into the file.
+     Its height is whole cells, from its container's width and --art-ratio. */
+  .hw-art {
+    display: block;
+    inline-size: 100%;
+    block-size: round(nearest, calc(100cqi * var(--art-ratio, 1)), var(--u));
+    background-color: var(--art-color, var(--accent));
+    mask: var(--art-src) center / contain no-repeat;
+  }
+  .hw-art-inner-divinity { --art-src: url(../img/art/value-inner-divinity.svg); }
+  .hw-art-experience { --art-src: url(../img/art/value-experience.svg); }
+  .hw-art-acceptance { --art-src: url(../img/art/value-acceptance.svg); }
+  .hw-art-creation { --art-src: url(../img/art/value-creation.svg); }
+  .hw-art-unity { --art-src: url(../img/art/value-unity.svg); }
+  /* The friar is stained glass: drawn in the file's own glass colors (glass
+     is light, so it stays in the art), not as a mask. */
+  .hw-art-friar { background: url(../img/art/friar-roundel.svg) center / contain no-repeat; mask: none; }
+
+  /* A value's glyph: the art inside a ring (a circle) or a frame (a square),
+     in the quiet ink, a cell inside its edge. */
+  .hw-glyph {
+    --art-color: var(--text-secondary);
+    inline-size: var(--glyph-size, calc(var(--u) * 20));
+    block-size: var(--glyph-size, calc(var(--u) * 20));
+    padding: var(--sp-1);
+    border-radius: var(--r-round);
+    box-shadow: inset 0 0 0 var(--line) var(--text-secondary);
+  }
+  .hw-glyph-square { border-radius: 0; box-shadow: inset 0 0 0 calc(var(--line) * 2) var(--text-secondary); }
+  .hw-glyph > .hw-art { block-size: 100%; }
+
+  /* -------------------------------------------------------------- backdrop
+     A section with something behind its words: a room photo, line art, or
+     the big hairline arch. The section keeps them under its content and
+     clips them at its top and bottom; sideways they reach the screen's
+     edges, as a band's ground does. */
+  .hw-backdrop { position: relative; isolation: isolate; overflow-y: clip; }
+  .hw-room-photo, .hw-lineart {
+    position: absolute; z-index: -1;
+    inset-block: 0;
+    inset-inline: calc((100% - var(--fit-width, 100vw)) / 2 - var(--frame-shift, 0px))
+                  calc((100% - var(--fit-width, 100vw)) / 2 + var(--frame-shift, 0px));
+    pointer-events: none;
+  }
+  /* A photo behind the room, faint; --photo-pos and --photo-opacity tune it.
+     --photo-fade (0 to 1) melts its top and bottom into the ground. */
+  .hw-room-photo { opacity: var(--photo-opacity, .45); }
+  .hw-room-photo > img { inline-size: 100%; block-size: 100%; object-fit: cover; object-position: var(--photo-pos, center); }
+  .hw-room-photo::after {
+    content: "";
+    position: absolute; inset: 0;
+    background: linear-gradient(to bottom, var(--band-bg, var(--surface)) 0%, transparent 18%, transparent 82%, var(--band-bg, var(--surface)) 100%);
+    opacity: var(--photo-fade, 0);
+  }
+  /* Big faint gold drawings behind a room; --lineart-opacity, -pos, -size. */
+  .hw-lineart {
+    background-color: color-mix(in oklab, var(--accent) 55%, transparent);
+    mask: var(--art-src) var(--lineart-pos, center top) / var(--lineart-size, cover) no-repeat;
+    opacity: var(--lineart-opacity, 1);
+  }
+  .hw-lineart-arches { --art-src: url(../img/art/lineart-arches.svg); --lineart-size: 140% auto; }
+  .hw-lineart-vaults { --art-src: url(../img/art/lineart-vaults.svg); --lineart-size: 100% auto; }
+  /* A big hairline arch drawn around a whole section (the threshold, the
+     inner pages' heroes). Tall enough that its sides run past the section. */
+  .hw-room-arch {
+    position: absolute; z-index: -1;
+    inset-block-start: var(--room-arch-top, var(--sp-6));
+    inset-inline-start: 50%;
+    translate: -50% 0;
+    inline-size: min(calc(var(--fit-width, 100vw) - var(--sp-4)), calc(var(--u) * 138));
+    block-size: calc(var(--fit-width, 100vw) * 4);
+    border: var(--line) solid var(--hw-line);
+    border-block-end: 0;
+    border-start-start-radius: var(--r-round);
+    border-start-end-radius: var(--r-round);
+    opacity: var(--room-arch-opacity, 1);
+    pointer-events: none;
+  }
+
+  /* ------------------------------------------------------------- page hero
+     The inner pages' opening band: a .section.cc-band (usually a dark
+     scope) with .hw-backdrop and a room arch, holding a .split of the words
+     (.stack: crumbs, title, lede, actions) and the media (a roundel or the
+     friar). Both halves sit on the band's floor. */
+  .hw-hero { --room-arch-top: var(--sp-4); --room-arch-opacity: .55; }
+  .hw-hero-text { --stack-gap: var(--sp-2); align-self: end; }
+  .hw-hero-media {
+    container-type: inline-size;
+    align-self: end;
+    justify-self: end;
+    inline-size: 100%;
+    max-inline-size: calc(var(--u) * 40);
+  }
+
+  /* ----------------------------------------------------------------- quote
+     A person's words in the voice, and a dash-and-name cite. Centered by
+     default; .hw-quote-start sets it at the start of its column. The words
+     take a type role in the markup (t-h4; t-h5 for a smaller quote). */
+  .hw-quote {
+    display: flex; flex-direction: column; align-items: center;
+    gap: var(--sp-2);
+    max-inline-size: calc(var(--u) * 68);
+    margin: 0 auto;
+    text-align: center;
+  }
+  .hw-quote cite {
+    display: inline-flex; align-items: center; flex-wrap: wrap; justify-content: center;
+    gap: var(--sp-h) var(--sp-1);
+    font-style: normal;
+    font-weight: var(--fw-label);
+  }
+  .hw-quote cite::before { content: ""; inline-size: var(--sp-2); block-size: calc(var(--line) * 2); background: currentColor; }
+  .hw-quote cite small { font-weight: var(--fw-body); color: var(--text-secondary); }
+  .hw-quote-start { align-items: flex-start; margin-inline: 0; text-align: start; }
+  .hw-quote-start cite { justify-content: flex-start; }
+
+  /* ------------------------------------------------------------ draft mark
+     An inline "to confirm": the honest mark on anything not yet known. A
+     dashed pill in the warning hue, unmistakable on any ground. In text it
+     sits on the baseline, shorter than any line it is in, so it never
+     stretches one; in a row (a .cluster) it is a small box like a tag.
+     <html class="hw-hide-pending"> hides them all once the content is in. */
+  .hw-draft-mark {
+    /* Inline, so a long mark wraps like words; each line keeps its own pill. */
+    display: inline;
+    -webkit-box-decoration-break: clone; box-decoration-break: clone;
+    padding-inline: var(--sp-h);
+    border: var(--line) dashed color-mix(in oklab, var(--warn) 70%, var(--text));
+    border-radius: var(--r-round);
+    background: color-mix(in oklab, var(--warn) 10%, transparent);
+    color: var(--text-secondary);
+    font-family: var(--font-sans);
+    font-size: var(--fs-control);
+    font-style: normal;
+    font-weight: var(--fw-label);
+    letter-spacing: .02em;
+  }
+  .hw-hide-pending .hw-draft-mark { display: none; }
+
+  /* --------------------------------------------------------------- pending
+     A frame for an image that hasn't arrived, naming it and where it comes
+     from: <div class="hw-pending"><strong>Portrait</strong>to come</div>.
+     Inside an arch or a roundel it fills the shape. */
+  .hw-pending {
+    display: grid; place-content: center; justify-items: center;
+    min-block-size: calc(var(--u) * 8);
+    line-height: var(--sp-2);   /* each line two cells, so the frame stays whole cells as it grows */
+    padding: var(--sp-2);
+    border-radius: var(--r-1);
+    outline: var(--line) dashed var(--hw-line);
+    outline-offset: calc(var(--line) * -1);
+    background: repeating-linear-gradient(135deg, transparent 0 var(--sp-1), var(--hw-line-subtle) var(--sp-1) calc(var(--sp-1) + var(--line)));
+    color: var(--text-secondary);
+    font-size: var(--fs-control);
+    text-align: center;
+  }
+  .hw-pending strong { color: var(--text); font-size: var(--fs-control-lg); font-weight: var(--fw-label); }
+  .hw-arch > .hw-pending { position: absolute; inset: 0; border-radius: inherit; }
+  .hw-roundel > .hw-pending { position: absolute; inset: var(--sp-1); border-radius: var(--r-round); }
+
+  /* ------------------------------------------------------------------ note
+     A quiet aside with a gold rule at its start (square corners where the
+     rule is). Holds a paragraph: <div class="hw-note"><p class="t-sm">… */
+  .hw-note {
+    padding-block: var(--sp-1);
+    padding-inline: calc(var(--sp-2) - var(--line) * 3) var(--sp-2);
+    border-inline-start: calc(var(--line) * 3) solid var(--accent);
+    border-start-end-radius: var(--r-h);
+    border-end-end-radius: var(--r-h);
+    background: color-mix(in oklab, var(--text) 5%, transparent);
+    color: var(--text-secondary);
+  }
+  .hw-note strong { color: var(--text); }
+
+  /* ------------------------------------------------------------- checklist
+     A list whose marks are small gold checks, centered on each line's capitals. */
+  .hw-checklist { display: flex; flex-direction: column; gap: var(--sp-1); margin: 0; padding: 0; list-style: none; }
+  .hw-checklist > li { position: relative; padding-inline-start: var(--sp-2); }
+  .hw-checklist > li::before {
+    content: "";
+    position: absolute;
+    inset-inline-start: var(--sp-q);
+    inset-block-start: calc(.5cap - var(--sp-h));
+    inline-size: var(--sp-1);
+    block-size: var(--sp-h);
+    border-inline-start: calc(var(--line) * 1.5) solid var(--accent);
+    border-block-end: calc(var(--line) * 1.5) solid var(--accent);
+    rotate: -45deg;
+  }
+
+  /* ---------------------------------------------------------------- values
+     The five lights: a .rail (it scrolls and snaps, no script), each value a
+     glyph, a name and a line. Where there is room, every other glyph sits
+     under its words, so the row rises and falls. */
+  .hw-values { --rail-item: calc(var(--u) * 24); --rail-gap: var(--sp-4); }
+  .hw-value { display: flex; flex-direction: column; gap: var(--sp-1); }
+  .hw-value > .hw-glyph { margin-block-end: var(--sp-1); }
+  @container (width >= 40rem) {
+    .hw-value:nth-child(even) > .hw-glyph { order: 3; margin-block: var(--sp-1) 0; }
+  }
+
+  /* ----------------------------------------------------------------- halls
+     A hallway: a .card holding an arched photo that links on, a kicker, a
+     title, a line and an action kept at the card's foot. Three across in a
+     .cols, one where three won't fit. */
+  .hw-halls { --cols: 3; }
+  @container (width < 62rem) { .hw-halls { --cols: 1; } }
+  .hw-hall { display: flex; flex-direction: column; }
+  .hw-hall-body { flex: 1; }
+  .hw-hall-action { margin-block-start: auto; }
+  .hw-hall-photo > img { transition: scale calc(var(--dur-in-slow) * 4) var(--ease-out); }
+  .hw-hall-photo { transition: translate calc(var(--dur-in-slow) * 2) var(--ease-out); }
+  @media (hover: hover) and (prefers-reduced-motion: no-preference) {
+    .hw-hall-photo:hover { translate: 0 calc(var(--sp-h) * -1); }
+    .hw-hall-photo:hover > img { scale: 1.04; }
+  }
+  /* The round arrow on the photo, over a scrim of its own. */
+  .hw-hall-go {
+    position: absolute; z-index: 1;
+    inset-inline-end: var(--sp-2);
+    inset-block-end: var(--sp-2);
+    --btn-bg: color-mix(in oklab, var(--black) 35%, transparent);
+    --btn-ink: var(--white);
+    --btn-border: color-mix(in oklab, var(--white) 45%, transparent);
+    --icon-size: var(--size-icon-md);
+  }
+
+  /* ------------------------------------------------------------- board row
+     The old .board__row: a Trellis .list-item with a label in a column of
+     its own (a day, a kind) before its body and its action (.list-end). On
+     a narrow container the label takes its own line. */
+  .hw-row-label { flex: none; inline-size: calc(var(--u) * 14); }
+  @container (width < 40rem) {
+    .hw-board-row { flex-wrap: wrap; }
+    .hw-row-label { inline-size: 100%; }
+  }
+
+  /* ------------------------------------------------------------- columns
+     The old grid--2, grid--3 and grid--4 on a Trellis .cols: that many
+     columns while they fit, fewer as the container narrows, one on a phone.
+     <div class="cols hw-cols-3">. */
+  .hw-cols-2 { --cols: 2; }
+  .hw-cols-3 { --cols: 3; }
+  .hw-cols-4 { --cols: 4; }
+  @container (width < 62rem) { .hw-cols-3, .hw-cols-4 { --cols: 2; } }
+  @container (width < 40rem) { .hw-cols-2, .hw-cols-3, .hw-cols-4 { --cols: 1; } }
+
+  /* ---------------------------------------------------------------- person
+     A .stack: an arched portrait, a role in gold, a name, a line. It is the
+     portrait's container. */
+  .hw-person { container-type: inline-size; --arch-ratio: 1.25; }
+
+  /* ------------------------------------------------------------------ stat
+     A .pair: a number in the display face over what it counts. */
+  .hw-stat > :last-child { max-inline-size: calc(var(--u) * 18); }
+
+  /* -------------------------------------------------------------- timeline
+     Years on a gold line. Each item's mark is a Trellis dot: a ring for what
+     has been (.dot.cc-ring), filled and glowing for now (.dot), placed on the
+     line and centered on the year's capitals. Markup:
+     <li><p class="t-h6 hw-gold"><span class="dot cc-ring cc-accent hw-timeline-dot"
+     aria-hidden="true"></span>1979</p><h3 …>…</h3><p …>…</p></li> */
+  .hw-timeline {
+    position: relative;
+    display: flex; flex-direction: column; gap: var(--sp-3);
+    margin: 0;
+    padding: 0 0 0 var(--sp-3);
+    list-style: none;
+  }
+  .hw-timeline::before {
+    content: "";
+    position: absolute;
+    inset-inline-start: calc(var(--sp-h) - var(--line) / 2);
+    inset-block: var(--sp-h);
+    inline-size: var(--line);
+    background: var(--hw-line);
+  }
+  .hw-timeline > li { position: relative; display: flex; flex-direction: column; gap: var(--sp-1); }
+  .hw-timeline-dot {
+    --dot-size: var(--sp-1);
+    --dot-fill: var(--surface);
+    position: absolute;
+    inset-inline-start: calc(var(--sp-3) * -1 + var(--sp-h) - var(--dot-size) / 2);
+    inset-block-start: calc(.5cap - var(--dot-size) / 2);
+  }
+  .hw-timeline-dot:not(.cc-ring) { box-shadow: 0 0 var(--sp-1h) color-mix(in oklab, var(--accent) 60%, transparent); }
+
+  /* --------------------------------------------------------------- pathway
+     Stages that turn rather than climb: a .grid of steps, each opened by a
+     Roman numeral, between gold hairlines. .hw-pathway-list sets them one
+     under another, the numeral in a column of its own. */
+  .hw-pathway {
+    --grid-min: calc(var(--u) * 12);
+    --grid-gap: 0 var(--sp-1);
+    counter-reset: hw-step;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    background: linear-gradient(var(--hw-line), var(--hw-line)) top / 100% var(--line) no-repeat;
+  }
+  .hw-pathway-step {
+    display: flex; flex-direction: column; gap: var(--sp-1);
+    padding-block: var(--sp-2);
+    background: linear-gradient(var(--hw-line-subtle), var(--hw-line-subtle)) bottom / 100% var(--line) no-repeat;
+  }
+  .hw-pathway-step::before {
+    counter-increment: hw-step;
+    content: counter(hw-step, upper-roman);
+    display: block;
+    color: color-mix(in oklab, var(--accent) 60%, var(--text));
+    font-family: var(--font-heading);
+    font-size: var(--fs-control-lg);
+    letter-spacing: var(--label-tracking);
+    line-height: var(--sp-1);
+  }
+  .hw-pathway-list { --grid-min: 100%; }
+  .hw-pathway-list .hw-pathway-step {
+    display: grid;
+    grid-template-columns: calc(var(--u) * 4) minmax(0, 1fr);
+    column-gap: var(--sp-1);
+  }
+  .hw-pathway-list .hw-pathway-step::before { grid-row: span 2; }
+  .hw-pathway-list .hw-pathway-step > * { grid-column: 2; }
+
+  /* ---------------------------------------------------------------- player
+     A frame that says what it will be: a play mark in the middle and a line
+     at its foot. Its height is whole cells from its container's width and
+     --player-ratio (height ÷ width; 9/16 by default). Usually a dark scope. */
+  .hw-player {
+    position: relative;
+    display: grid; place-items: center;
+    inline-size: 100%;
+    block-size: round(nearest, calc(100cqi * var(--player-ratio, .5625)), var(--u));
+    min-block-size: calc(var(--u) * 16);   /* room for the mark and the line under it on a phone */
+    border-radius: var(--r-1h);
+    --icon-size: var(--size-icon-md);
+    background: radial-gradient(ellipse at 50% 40%, var(--bg-raised), var(--bg-sunken) 70%);
+    box-shadow: inset 0 0 0 var(--line) var(--hw-line-subtle);
+    overflow: hidden;
+  }
+  .hw-player-label { position: absolute; inset-inline: var(--sp-2); inset-block-end: var(--sp-2); color: var(--text-secondary); }
+
+  /* ----------------------------------------------------------- circle link
+     The arrow in a ring: "Begin the path". The ring steps toward where it
+     leads on hover. .hw-circle-link-down points down the page;
+     .hw-circle-link-sm is the small one (a cue with only an aria-label). */
+  .hw-circle-link {
+    display: inline-flex; align-items: center; gap: var(--sp-1);
+    color: var(--text);
+    font-weight: var(--fw-label);
+    text-decoration: none;
+  }
+  .hw-ring {
+    --icon-size: var(--size-icon-md);
+    display: grid; place-items: center; flex: none;
+    inline-size: var(--ring-size, calc(var(--u) * 5));
+    block-size: var(--ring-size, calc(var(--u) * 5));
+    border-radius: var(--r-round);
+    box-shadow: inset 0 0 0 var(--line) color-mix(in oklab, var(--text) 35%, transparent);
+    transition: translate calc(var(--dur-in-slow) * 2) var(--ease-out), box-shadow var(--dur-in) var(--ease-out);
+  }
+  .hw-circle-link-sm { --ring-size: var(--sp-4); }
+  .hw-circle-link-sm .hw-ring { --icon-size: var(--size-icon); }
+  @media (hover: hover) {
+    .hw-circle-link:hover .hw-ring { box-shadow: inset 0 0 0 var(--line) var(--accent); }
+  }
+  @media (hover: hover) and (prefers-reduced-motion: no-preference) {
+    .hw-circle-link:hover .hw-ring { translate: var(--sp-h) 0; }
+    .hw-circle-link-down:hover .hw-ring { translate: 0 var(--sp-h); }
+  }
+
+  /* ------------------------------------------------------------------ live
+     "Happening now": the one thing on the site that pulses, because it is
+     live. A gold Trellis dot beside its words; still under reduced motion. */
+  .hw-live { display: inline-flex; align-items: center; gap: var(--sp-h); font-weight: var(--fw-label); }
+  .hw-live-dot { animation: hw-live-pulse calc(var(--dur-in-slow) * 10) var(--ease-out) infinite; }
+  @keyframes hw-live-pulse {
+    0% { box-shadow: 0 0 0 0 color-mix(in oklab, var(--accent) 55%, transparent); }
+    70%, 100% { box-shadow: 0 0 0 var(--sp-h) color-mix(in oklab, var(--accent) 0%, transparent); }
+  }
+  @media (prefers-reduced-motion: reduce) { .hw-live-dot { animation: none; } }
+
+  /* ----------------------------------------------------------------- event
+     A gathering: a .card holding a date in a ring beside its title, when it
+     is, and its tags. The title's link (.hw-card-link) covers the card;
+     the tags sit above it. .hw-event-live lights the edge while it is happening. */
+  .hw-event {
+    display: grid;
+    grid-template-columns: calc(var(--u) * 8) minmax(0, 1fr);
+    gap: var(--sp-2);
+    align-items: start;
+  }
+  .hw-event-meta { position: relative; }
+  .hw-event-live {
+    --card-border: var(--accent);
+    box-shadow: 0 0 var(--sp-3) calc(var(--sp-1) * -1) color-mix(in oklab, var(--accent) 45%, transparent);
+  }
+  .hw-date {
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: var(--sp-h);
+    inline-size: calc(var(--u) * 8);
+    block-size: calc(var(--u) * 8);
+    border-radius: var(--r-round);
+    box-shadow: inset 0 0 0 var(--line) var(--hw-line);
+    text-align: center;
+  }
+
+  /* ---------------------------------------------------------------- reveal
+     Things fade up once as they arrive (hw.js adds .is-in). Only with the
+     script, and never under reduced motion: there they are simply at rest. */
+  @media (prefers-reduced-motion: no-preference) {
+    .hw-js [data-reveal] {
+      opacity: 0;
+      translate: 0 var(--sp-2);
+      transition: opacity calc(var(--dur-in-slow) * 3) var(--ease-out), translate calc(var(--dur-in-slow) * 3) var(--ease-out);
+    }
+    .hw-js [data-reveal].is-in { opacity: 1; translate: 0 0; }
+  }
+}
+
+/* ==========================================================================
+   SHARED BY THE PAGES. Parts more than one section needed while the pages
+   moved onto Trellis (2026-11-19); each was in two page files before.
+   ========================================================================== */
+@layer hw.site {
+  /* A LARGE CARD (the old card--lg): a cell more padding on every side. */
+  .card.hw-card-lg { --card-pad: var(--sp-3); }
+
+  /* WHAT FOLLOWS THE HERO in the same band (the old section--flush-top):
+     four cells below the hero's words, so it reads as the hero's floor, not
+     as a new room. */
+  .hw-hero-after { margin-block-start: var(--sp-4); }
+
+  /* A HERO WITHOUT MEDIA: the words keep the old hero's measure, so they
+     don't run the frame. (.hw-hero-text lines up beside media only.) */
+  .hw-hero-solo { max-inline-size: calc(var(--u) * 80); }
+
+  /* A SECTION HEAD WITH SOMETHING AT ITS END (a link, a draft mark): the
+     words take the row while there is room for thirty cells of them, and the
+     end drops under them when there is not (a bare .pair would crush them). */
+  .hw-head-main { flex-basis: calc(var(--u) * 30); }
+
+  /* GOLD EMPHASIS in a heading: an upright, gold em, so a marked heading
+     stays one editable area. */
+  .hw-gold-em em { font-style: normal; color: color-mix(in oklab, var(--accent) 60%, var(--text)); }
+
+  /* A FEATURE (the old .feature): a gold hairline over a gold icon, a title
+     and a quiet line. A .stack of its own. */
+  .hw-feature {
+    padding-block-start: var(--sp-2);
+    border-block-start: var(--line) solid color-mix(in oklab, var(--accent) 80%, transparent);
+  }
+  .hw-feature-mark { display: flex; color: var(--accent); --icon-size: var(--size-icon-lg); }
+
+  /* FIELDS SIDE BY SIDE (name and email): a wrapping row, each field at
+     least sixteen cells, one under another when two won't fit. */
+  .hw-fields { display: flex; flex-wrap: wrap; gap: var(--sp-1); }
+  .hw-fields > * { flex: 1 1 calc(var(--u) * 16); }
+
+  /* CHOICES DRAWN AS TAGS: each a .tag around a visually hidden radio, in a
+     frameless fieldset; the chosen one is solid gold, and the radio's focus
+     rings its tag. */
+  .hw-choices { margin: 0; padding: 0; border: 0; min-inline-size: 0; }
+  .hw-choice { cursor: pointer; }
+  @media (hover: hover) { .hw-choice:hover { --tag-edge: 100%; } }
+  .hw-choice:has(:checked) { --tag-color: var(--accent); --tag-fill: 100%; --tag-edge: 100%; --tag-ink: var(--accent-ink); }
+  .hw-choice:has(:focus-visible) { outline: calc(var(--line) * 2) solid var(--focus); outline-offset: calc(var(--line) * 2); }
+
+  /* A RECORDING ROW (assets/data/library.js): on a narrow container its marks
+     ("sample", Free) drop under the title, in line with it. */
+  @container (width < 30rem) {
+    .hw-recording { flex-wrap: wrap; }
+    .hw-recording-end { flex-basis: calc(100% - var(--size-control-xl) - var(--sp-1)); margin-inline-start: calc(var(--size-control-xl) + var(--sp-1)); }
+  }
+
+  /* A HAIRLINE RULE outside .prose (core styles an hr only inside prose). */
+  .hw-rule { block-size: var(--line); margin: 0; border: 0; background: var(--border-subtle); }
+}

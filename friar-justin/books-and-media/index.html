@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-product="hermitage">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,70 +10,71 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Marcellus&family=Alegreya+Sans:ital,wght@0,300;0,400;0,500;0,700;1,400&family=Alegreya:ital@0;1&display=swap">
-<link rel="stylesheet" href="../../assets/css/main.css">
-<script src="../../assets/js/site.js"></script>
+<link rel="stylesheet" href="../../assets/vendor/trellis/core.css">
+<link rel="stylesheet" href="../../assets/css/hermitage.css">
+<link rel="stylesheet" href="../../assets/css/chrome.css">
+<link rel="stylesheet" href="../../assets/css/site.css">
+<link rel="stylesheet" href="../../assets/css/pages/friar-justin.css">
+<script src="../../assets/vendor/trellis/settle.js" defer></script>
+<script src="../../assets/js/hw.js"></script>
 </head>
 <body>
-<hw-header></hw-header>
+<hw-bar></hw-bar>
 
-<main id="main">
+<main class="frame context" id="main">
 
-<section class="page-hero" data-room="dark">
-  <div class="room-arch" aria-hidden="true"></div>
-  <div class="container page-hero__inner">
-    <div data-reveal>
-      <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../">Friar Justin</a><span aria-hidden="true">/</span><span>Books &amp; Media</span></nav>
-      <h1>Books &amp; media</h1>
-      <p class="t-lede">Three volumes, an online course, and twenty-two meditation albums. The Success: Full Living books have been read in French, Portuguese, Polish, Hungarian, German, Russian and Greek.</p>
+<!-- The hero and the books under it: one dark band (the old flush-top section). -->
+<section class="section cc-band hw-backdrop hw-hero" data-product="hermitage" data-theme="dark">
+  <div class="hw-room-arch" aria-hidden="true"></div>
+  <div class="stack" style="--stack-gap: var(--sp-6)">
+    <div class="stack" style="--stack-gap: var(--sp-2)" data-reveal>
+      <nav aria-label="Breadcrumb"><ol class="crumbs"><li><a href="../">Friar Justin</a></li><li aria-current="page">Books &amp; Media</li></ol></nav>
+      <h1 class="t-h1" data-edit="text">Books &amp; media</h1>
+      <p class="t-lg u-text-secondary hw-measure" data-edit="text">Three volumes, an online course, and twenty-two meditation albums. The Success: Full Living books have been read in French, Portuguese, Polish, Hungarian, German, Russian and Greek.</p>
+    </div>
+    <div class="cols hw-cols-3">
+      <article class="stack context" style="--stack-gap: var(--sp-1)" data-reveal>
+        <div class="hw-arch hw-arch-outline" style="--arch-ratio: 1.389"><div class="hw-pending"><strong>Cover</strong>from Garry’s files</div></div>
+        <h2 class="t-h5" data-edit="text">Success: Full Living</h2>
+        <p class="t-body u-text-secondary" data-edit="text">Justin’s flagship: the mechanism of a full life, meditation, and spirituality. Also an e-book and an online course.</p>
+        <div class="cluster"><span class="tag"><span class="tag-label">Book</span></span><span class="tag"><span class="tag-label">E-book</span></span><span class="tag"><span class="tag-label">Online course</span></span></div>
+      </article>
+      <article class="stack context" style="--stack-gap: var(--sp-1)" data-reveal>
+        <div class="hw-arch hw-arch-outline" style="--arch-ratio: 1.389"><div class="hw-pending"><strong>Cover</strong>from Garry’s files</div></div>
+        <h2 class="t-h5" data-edit="text">Success: Full Relating</h2>
+        <p class="t-body u-text-secondary">The same principles turned toward the people in our lives. <span class="hw-draft-mark">to confirm</span></p>
+        <div class="cluster"><span class="tag"><span class="tag-label">Book</span></span></div>
+      </article>
+      <article class="stack context" style="--stack-gap: var(--sp-1)" data-reveal>
+        <div class="hw-arch hw-arch-outline" style="--arch-ratio: 1.389"><div class="hw-pending"><strong>Cover</strong>from Garry’s files</div></div>
+        <h2 class="t-h5" data-edit="text">Success: Full Thinking</h2>
+        <p class="t-body u-text-secondary">The third volume, on the power of thought to shape a life. <span class="hw-draft-mark">to confirm</span></p>
+        <div class="cluster"><span class="tag"><span class="tag-label">Book</span></span></div>
+      </article>
     </div>
   </div>
 </section>
 
-<section class="section section--flush-top" data-room="dark">
-  <div class="container">
-    <div class="grid grid--3">
-      <article class="book" data-reveal>
-        <div class="arch arch--outline book__cover"><div class="pending"><strong>Cover</strong>from Garry’s files</div></div>
-        <h2 class="t-h3">Success: Full Living</h2>
-        <p class="t-muted">Justin’s flagship: the mechanism of a full life, meditation, and spirituality. Also an e-book and an online course.</p>
-        <div class="cluster cluster--tight"><span class="tag">Book</span><span class="tag">E-book</span><span class="tag">Online course</span></div>
-      </article>
-      <article class="book" data-reveal>
-        <div class="arch arch--outline book__cover"><div class="pending"><strong>Cover</strong>from Garry’s files</div></div>
-        <h2 class="t-h3">Success: Full Relating</h2>
-        <p class="t-muted">The same principles turned toward the people in our lives. <span class="draft-mark">to confirm</span></p>
-        <div class="cluster cluster--tight"><span class="tag">Book</span></div>
-      </article>
-      <article class="book" data-reveal>
-        <div class="arch arch--outline book__cover"><div class="pending"><strong>Cover</strong>from Garry’s files</div></div>
-        <h2 class="t-h3">Success: Full Thinking</h2>
-        <p class="t-muted">The third volume, on the power of thought to shape a life. <span class="draft-mark">to confirm</span></p>
-        <div class="cluster cluster--tight"><span class="tag">Book</span></div>
-      </article>
-    </div>
-  </div>
-</section>
-
-<section class="section section--seam" data-room="deep">
-  <div class="container split" style="--split-a: 1fr; --split-b: 1fr">
-    <div class="stack stack--lg" data-reveal>
-      <h2>Twenty-two meditation albums</h2>
-      <p class="t-lede">Recorded on CD and MP3 over the years. The healing meditations are free; the others carry a nominal cost. The audio is being cleaned now.</p>
+<section class="section cc-band hw-deep" data-product="hermitage" data-theme="dark">
+  <div class="split" style="--split-a: 1; --split-b: 1; --split-gap: var(--sp-4)">
+    <div class="stack" style="--stack-gap: var(--sp-2)" data-reveal>
+      <h2 class="t-h2" data-edit="text">Twenty-two meditation albums</h2>
+      <p class="t-lg u-text-secondary" data-edit="text">Recorded on CD and MP3 over the years. The healing meditations are free; the others carry a nominal cost. The audio is being cleaned now.</p>
       <div class="cluster">
-        <a class="btn btn--solid" href="../../meditation/library/">Listen in the library</a>
+        <a class="button cc-primary" data-edit="link" href="../../meditation/library/">Listen in the library</a>
       </div>
     </div>
-    <div class="stack stack--sm" data-reveal>
-      <h2 class="t-h3">Where to buy</h2>
-      <p class="t-muted">Print copies and albums will be available here, with checkout or links to booksellers. <span class="draft-mark">store decision pending</span></p>
-      <p class="t-muted">Formerly sold as “CDs &amp; Albums” and “Digital Media” on hermitageindy.org; both are folded into this page.</p>
+    <div class="stack" data-reveal>
+      <h2 class="t-h5" data-edit="text">Where to buy</h2>
+      <p class="t-body u-text-secondary">Print copies and albums will be available here, with checkout or links to booksellers. <span class="hw-draft-mark">store decision pending</span></p>
+      <p class="t-body u-text-secondary" data-edit="text">Formerly sold as “CDs &amp; Albums” and “Digital Media” on hermitageindy.org; both are folded into this page.</p>
     </div>
   </div>
 </section>
 
 </main>
 
-<hw-signup></hw-signup>
-<hw-footer></hw-footer>
+<hw-letter></hw-letter>
+<hw-foot></hw-foot>
 </body>
 </html>

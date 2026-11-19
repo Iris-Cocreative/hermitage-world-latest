@@ -1,0 +1,12 @@
+/* ==========================================================================
+   Hermitage World · the programs pages, on Trellis
+   programs/ and its four program pages. Only what these pages compose that
+   site.css has no part for; tokens and cells only. Loaded after site.css.
+   ========================================================================== */
+@layer trellis, hw;
+
+@layer hw.page {
+  /* THE REGISTER CARD: the prose measure, centered in its band. Its name
+     and email are site.css's .hw-fields. */
+  .hw-register { justify-self: center; inline-size: 100%; }
+}

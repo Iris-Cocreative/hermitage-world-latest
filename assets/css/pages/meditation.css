@@ -1,0 +1,24 @@
+/* ==========================================================================
+   Hermitage World · the Meditation section's own parts, on Trellis
+   Linked only from meditation/ and meditation/library/. Tokens and cells
+   only. Load after site.css.
+   ========================================================================== */
+@layer trellis, hw;
+
+@layer hw.page {
+
+  /* ------------------------------------------------------- library filter
+     The search box and two rows of choices, between hairlines, wrapping as
+     the room narrows. Each choice is a Trellis tag around a visually hidden
+     radio (the form is read with FormData by assets/data/library.js); the
+     checked one turns gold, the only interactive accent. */
+  .hw-library-filter {
+    display: flex; flex-wrap: wrap; align-items: center;
+    gap: var(--sp-1) var(--sp-2);
+    padding-block: var(--sp-2);
+    border-block: var(--line) solid var(--border-subtle);
+  }
+  .hw-library-search { flex: 1 1 calc(var(--u) * 24); }
+
+
+}

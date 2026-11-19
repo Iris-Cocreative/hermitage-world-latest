@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-product="hermitage">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,147 +10,166 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Marcellus&family=Alegreya+Sans:ital,wght@0,300;0,400;0,500;0,700;1,400&family=Alegreya:ital@0;1&display=swap">
-<link rel="stylesheet" href="../assets/css/main.css">
-<script src="../assets/js/site.js"></script>
+<link rel="stylesheet" href="../assets/vendor/trellis/core.css">
+<link rel="stylesheet" href="../assets/css/hermitage.css">
+<link rel="stylesheet" href="../assets/css/chrome.css">
+<link rel="stylesheet" href="../assets/css/site.css">
+<link rel="stylesheet" href="../assets/css/pages/meditation.css">
+<script src="../assets/vendor/trellis/settle.js" defer></script>
+<script src="../assets/js/hw.js"></script>
 </head>
 <body>
-<hw-header></hw-header>
+<hw-bar></hw-bar>
 
-<main id="main">
+<main class="frame context" id="main">
 
-<section class="page-hero page-hero--media" data-room="dark">
-  <div class="room-arch" aria-hidden="true"></div>
-  <div class="container page-hero__inner">
-    <div data-reveal>
-      <h1>The quiet space within</h1>
-      <p class="t-lede">Meditation is how you find it. Friar Justin taught that it is more than relaxation, stress relief or quieting the mind: it is a way of discovering who we are, and of experiencing the Divine Presence within us.</p>
-      <div class="page-hero__actions cluster">
-        <a class="btn btn--solid" href="#first-sitting">Begin with a first sitting</a>
-        <a class="btn" href="library/">The meditation library</a>
+<section class="section cc-band hw-backdrop hw-hero" data-product="hermitage" data-theme="dark">
+  <div class="hw-room-arch" aria-hidden="true"></div>
+  <div class="split" style="--split-a: 5; --split-b: 4; --split-gap: var(--sp-4)">
+    <div class="stack hw-hero-text" data-reveal>
+      <h1 class="t-h1" data-edit="text">The quiet space within</h1>
+      <p class="t-lg u-text-secondary" data-edit="text">Meditation is how you find it. Friar Justin taught that it is more than relaxation, stress relief or quieting the mind: it is a way of discovering who we are, and of experiencing the Divine Presence within us.</p>
+      <div class="cluster">
+        <a class="button cc-primary" data-edit="link" href="#first-sitting">Begin with a first sitting</a>
+        <a class="button" data-edit="link" href="library/">The meditation library</a>
       </div>
     </div>
-    <div class="page-hero__media" data-reveal>
-      <div class="arch arch--outline" style="--arch-a: .78"><img src="../assets/img/photo/hall-begin.jpg" alt="A wooden bench beneath a single square window of light"></div>
+    <div class="hw-hero-media" data-reveal>
+      <div class="hw-arch hw-arch-outline" style="--arch-ratio: 1.282"><img data-edit="image" src="../assets/img/photo/hall-begin.jpg" width="1000" height="1280" alt="A wooden bench beneath a single square window of light"></div>
     </div>
   </div>
 </section>
 
 <!-- Two dimensions — from the Collab OS doc "Meditation" (Oct 12) -->
-<section class="section" id="two-dimensions" data-room="plaster">
-  <div class="lineart lineart--arches" aria-hidden="true" style="opacity:.6"></div>
-  <div class="container">
-    <div class="section-head">
-      <div class="section-head__text" data-reveal>
-        <h2>Two practices, one journey</h2>
-        <p class="t-lede">The journey into awareness has two complementary sides: active meditation, and contemplation, which Justin also called passive meditation.</p>
-      </div>
-    </div>
-    <div class="grid grid--2">
-      <article class="card card--lg" data-reveal>
-        <span class="t-caps">Active meditation</span>
-        <h3>Discovering our power to change</h3>
-        <p>We consciously direct our thoughts and imagination toward growth. Through visualization we explore new possibilities, develop positive qualities, clarify our intentions, and form an inner picture of the life we want to live. It moves us from habitual patterns toward intentional living.</p>
-        <blockquote class="quote quote--left quote--sm card__foot">
-          <p>“Taking control of the thought process and giving it direction.”</p>
-          <cite>Friar Justin <small>Success Thinking, ch. III</small></cite>
-        </blockquote>
+<section class="section cc-band hw-backdrop" id="two-dimensions" data-product="hermitage" data-theme="light">
+  <div class="hw-lineart hw-lineart-arches" aria-hidden="true" style="--lineart-opacity: .6"></div>
+  <div class="section-head stack" data-reveal>
+    <h2 class="t-h2" data-edit="text">Two practices, one journey</h2>
+    <p class="t-lg u-text-secondary hw-measure" data-edit="text">The journey into awareness has two complementary sides: active meditation, and contemplation, which Justin also called passive meditation.</p>
+  </div>
+  <div class="section-body stack" style="--stack-gap: var(--sp-4)">
+    <div class="cols hw-cols-2">
+      <article class="card hw-hall" style="--card-pad: var(--sp-3)" data-reveal>
+        <div class="stack hw-hall-body" style="--stack-gap: var(--sp-1)">
+          <p class="t-label hw-gold" data-edit="text">Active meditation</p>
+          <h3 class="t-h5" data-edit="text">Discovering our power to change</h3>
+          <p class="t-body" data-edit="text">We consciously direct our thoughts and imagination toward growth. Through visualization we explore new possibilities, develop positive qualities, clarify our intentions, and form an inner picture of the life we want to live. It moves us from habitual patterns toward intentional living.</p>
+          <blockquote class="hw-quote hw-quote-start hw-hall-action">
+            <p class="t-h5" data-edit="text">“Taking control of the thought process and giving it direction.”</p>
+            <cite class="t-body">Friar Justin <small>Success Thinking, ch. III</small></cite>
+          </blockquote>
+        </div>
       </article>
-      <article class="card card--lg" data-reveal>
-        <span class="t-caps">Contemplation</span>
-        <h3>Discovering who we are in the quiet</h3>
-        <p>Rather than directing our thoughts toward an outcome, we enter the quiet with openness and curiosity, and learn to listen: to our deeper selves, to the wisdom that rises from within, and to the Divine Presence that is always with us. It is not the absence of activity. It is the practice of becoming deeply present.</p>
-        <blockquote class="quote quote--left quote--sm card__foot">
-          <p>“In Passive Mental Prayer there is no language. It is simply ‘being’ with God.”</p>
-          <cite>Friar Justin <small>Success Thinking, ch. III</small></cite>
-        </blockquote>
+      <article class="card hw-hall" style="--card-pad: var(--sp-3)" data-reveal>
+        <div class="stack hw-hall-body" style="--stack-gap: var(--sp-1)">
+          <p class="t-label hw-gold" data-edit="text">Contemplation</p>
+          <h3 class="t-h5" data-edit="text">Discovering who we are in the quiet</h3>
+          <p class="t-body" data-edit="text">Rather than directing our thoughts toward an outcome, we enter the quiet with openness and curiosity, and learn to listen: to our deeper selves, to the wisdom that rises from within, and to the Divine Presence that is always with us. It is not the absence of activity. It is the practice of becoming deeply present.</p>
+          <blockquote class="hw-quote hw-quote-start hw-hall-action">
+            <p class="t-h5" data-edit="text">“In Passive Mental Prayer there is no language. It is simply ‘being’ with God.”</p>
+            <cite class="t-body">Friar Justin <small>Success Thinking, ch. III</small></cite>
+          </blockquote>
+        </div>
       </article>
     </div>
-    <p class="t-h3 ta-center mt-2xl measure center" data-reveal>Active meditation helps us discover what we can become. Contemplation helps us discover who we are.</p>
+    <p class="t-h4 hw-center hw-measure" data-edit="text" data-reveal>Active meditation helps us discover what we can become. Contemplation helps us discover who we are.</p>
   </div>
 </section>
 
 <!-- A first sitting -->
-<section class="section" id="first-sitting" data-room="dark">
-  <div class="container split split--top" style="--split-a: 1fr; --split-b: 1.1fr">
-    <div class="stack stack--lg" data-reveal>
-      <h2>A first sitting</h2>
-      <p class="t-lede">Ten minutes is enough. Nothing here asks for belief; everything invites practice.</p>
-      <blockquote class="quote quote--left quote--sm">
-        <p>“Meditation is to the mind as exercise is to the body. In a world where your attention has become the product, learning to strengthen and use it is a necessity.”</p>
-        <cite>Samuel Robinson <small>Program Director</small></cite>
-      </blockquote>
+<section class="section cc-band" id="first-sitting" data-product="hermitage" data-theme="dark">
+  <div class="section-body stack">
+    <div class="split" style="--split-a: 10; --split-b: 11; --split-gap: var(--sp-4)">
+      <div class="stack" style="--stack-gap: var(--sp-2)" data-reveal>
+        <h2 class="t-h2" data-edit="text">A first sitting</h2>
+        <p class="t-lg u-text-secondary" data-edit="text">Ten minutes is enough. Nothing here asks for belief; everything invites practice.</p>
+        <blockquote class="hw-quote hw-quote-start">
+          <p class="t-h5" data-edit="text">“Meditation is to the mind as exercise is to the body. In a world where your attention has become the product, learning to strengthen and use it is a necessity.”</p>
+          <cite class="t-body">Samuel Robinson <small>Program Director</small></cite>
+        </blockquote>
+      </div>
+      <ol class="grid hw-pathway hw-pathway-list" role="list" data-reveal>
+        <li class="hw-pathway-step"><h3 class="t-h6" data-edit="text">Settle</h3><p class="t-sm u-text-secondary" data-edit="text">Sit upright and at ease, in a chair or on a cushion. Let your hands rest. Close your eyes or let them soften.</p></li>
+        <li class="hw-pathway-step"><h3 class="t-h6" data-edit="text">Relax</h3><p class="t-sm u-text-secondary" data-edit="text">Breathe a little slower than usual. Let the body loosen from the top of the head down to the feet.</p></li>
+        <li class="hw-pathway-step"><h3 class="t-h6" data-edit="text">Rest</h3><p class="t-sm u-text-secondary" data-edit="text">Let your attention rest on the breath, or on one quiet word. When thoughts arrive, notice them without argument.</p></li>
+        <li class="hw-pathway-step"><h3 class="t-h6" data-edit="text">Return</h3><p class="t-sm u-text-secondary" data-edit="text">Come back to the breath as often as you need to. Returning is the practice. Close with a moment of thanks.</p></li>
+      </ol>
     </div>
-    <ol class="pathway pathway--list" role="list" data-reveal>
-      <li class="pathway__step"><h3>Settle</h3><p>Sit upright and at ease, in a chair or on a cushion. Let your hands rest. Close your eyes or let them soften.</p></li>
-      <li class="pathway__step"><h3>Relax</h3><p>Breathe a little slower than usual. Let the body loosen from the top of the head down to the feet.</p></li>
-      <li class="pathway__step"><h3>Rest</h3><p>Let your attention rest on the breath, or on one quiet word. When thoughts arrive, notice them without argument.</p></li>
-      <li class="pathway__step"><h3>Return</h3><p>Come back to the breath as often as you need to. Returning is the practice. Close with a moment of thanks.</p></li>
-    </ol>
-  </div>
-  <div class="container mt-xl">
-    <p class="note" data-reveal><span><strong>Draft guidance.</strong> These four steps are a placeholder written for the prototype; the Hermitage's own first-sitting text (or one of Justin's recorded introductions) will replace them.</span></p>
+    <div class="hw-note" data-reveal><p class="t-sm"><strong>Draft guidance.</strong> These four steps are a placeholder written for the prototype; the Hermitage's own first-sitting text (or one of Justin's recorded introductions) will replace them.</p></div>
   </div>
 </section>
 
 <!-- Free healing meditations -->
-<section class="section section--seam" id="healing" data-room="deep">
-  <div class="container">
-    <div class="section-head">
-      <div class="section-head__text" data-reveal>
-        <h2>Free healing meditations</h2>
-        <p class="t-lede">Friar Justin always gave his healing meditations away. They stay free, for anyone, wherever they are.</p>
+<section class="section cc-band hw-deep" id="healing" data-product="hermitage" data-theme="dark">
+  <div class="section-head stack">
+    <div class="cluster" style="--cluster-gap: var(--sp-2)">
+      <div class="pair hw-head-main">
+        <div class="stack" data-reveal>
+          <h2 class="t-h2" data-edit="text">Free healing meditations</h2>
+          <p class="t-lg u-text-secondary" data-edit="text">Friar Justin always gave his healing meditations away. They stay free, for anyone, wherever they are.</p>
+        </div>
       </div>
-      <a class="circle-link circle-link--sm" href="library/" data-reveal>
-        <span class="circle-link__ring"><svg class="icon" aria-hidden="true"><use href="../assets/img/icons.svg#arrow"/></svg></span>
-        <span>The whole library</span>
+      <a class="hw-circle-link hw-circle-link-sm" href="library/" data-reveal>
+        <span class="hw-ring"><svg class="icon" aria-hidden="true"><use href="../assets/img/icons.svg#arrow"/></svg></span>
+        <span class="t-body">The whole library</span>
       </a>
     </div>
-    <div data-library="healing" data-limit="4"></div>
   </div>
+  <div class="section-body" data-library="healing" data-limit="4"></div>
 </section>
 
 <!-- From the works of Fr. Justin -->
-<section class="section" data-room="stone">
-  <div class="container">
-    <h2 class="ta-center mb-xl" data-reveal>What meditation is, in Justin’s words</h2>
-    <div class="grid grid--2">
-      <blockquote class="quote quote--left quote--sm" data-reveal>
-        <span class="t-caps">Theologically</span>
-        <p class="mt-sm">“A state of physical and mental relaxation in which a person can become aware of, and experience the Divine Presence within.”</p>
-        <cite>Friar Justin</cite>
+<section class="section cc-band">
+  <div class="section-head stack hw-center">
+    <h2 class="t-h2" data-edit="text" data-reveal>What meditation is, in Justin’s words</h2>
+  </div>
+  <div class="section-body stack" style="--stack-gap: var(--sp-4)">
+    <div class="cols hw-cols-2">
+      <blockquote class="hw-quote hw-quote-start" data-reveal>
+        <p class="t-label hw-gold" data-edit="text">Theologically</p>
+        <p class="t-h5" data-edit="text">“A state of physical and mental relaxation in which a person can become aware of, and experience the Divine Presence within.”</p>
+        <cite class="t-body">Friar Justin</cite>
       </blockquote>
-      <blockquote class="quote quote--left quote--sm" data-reveal>
-        <span class="t-caps">Scientifically</span>
-        <p class="mt-sm">“A state of physical and mental relaxation in which a person can experience Mind at the unconscious level … and all that is True, Good and Beautiful.”</p>
-        <cite>Friar Justin</cite>
+      <blockquote class="hw-quote hw-quote-start" data-reveal>
+        <p class="t-label hw-gold" data-edit="text">Scientifically</p>
+        <p class="t-h5" data-edit="text">“A state of physical and mental relaxation in which a person can experience Mind at the unconscious level … and all that is True, Good and Beautiful.”</p>
+        <cite class="t-body">Friar Justin</cite>
       </blockquote>
     </div>
-    <blockquote class="quote mt-2xl" data-reveal>
-      <p>“Meditation is our becoming aware of God, who is present in us always!”</p>
-      <cite>Friar Justin</cite>
+    <blockquote class="hw-quote" data-reveal>
+      <p class="t-h4" data-edit="text">“Meditation is our becoming aware of God, who is present in us always!”</p>
+      <cite class="t-body">Friar Justin</cite>
     </blockquote>
   </div>
 </section>
 
 <!-- Ways in -->
-<section class="section" data-room="dark">
-  <div class="container">
-    <h2 class="mb-xl" data-reveal>Practice with others</h2>
-    <div class="grid grid--3">
-      <article class="card card--link" data-reveal>
-        <span class="t-caps">A class</span>
-        <h3><a class="card__title" href="../programs/train-your-mind/">Train Your Mind</a></h3>
-        <p>Meditation foundations in two phases of four classes: modern science and ancient contemplative wisdom.</p>
+<section class="section cc-band" data-product="hermitage" data-theme="dark">
+  <div class="section-head stack">
+    <h2 class="t-h2" data-edit="text" data-reveal>Practice with others</h2>
+  </div>
+  <div class="section-body">
+    <div class="cols hw-cols-3">
+      <article class="card" data-reveal>
+        <div class="stack" style="--stack-gap: var(--sp-1)">
+          <p class="t-label hw-gold" data-edit="text">A class</p>
+          <h3 class="t-h5"><a class="hw-card-link" href="../programs/train-your-mind/">Train Your Mind</a></h3>
+          <p class="t-body u-text-secondary" data-edit="text">Meditation foundations in two phases of four classes: modern science and ancient contemplative wisdom.</p>
+        </div>
       </article>
-      <article class="card card--link" data-reveal>
-        <span class="t-caps">Sundays</span>
-        <h3><a class="card__title" href="../gatherings/event/?id=contemplative-unity">Contemplative Unity</a></h3>
-        <p>Silent meditation, lightly guided. In Indianapolis and on Zoom.</p>
+      <article class="card" data-reveal>
+        <div class="stack" style="--stack-gap: var(--sp-1)">
+          <p class="t-label hw-gold" data-edit="text">Sundays</p>
+          <h3 class="t-h5"><a class="hw-card-link" href="../gatherings/event/?id=contemplative-unity">Contemplative Unity</a></h3>
+          <p class="t-body u-text-secondary" data-edit="text">Silent meditation, lightly guided. In Indianapolis and on Zoom.</p>
+        </div>
       </article>
-      <article class="card card--link" data-reveal>
-        <span class="t-caps">Wednesdays</span>
-        <h3><a class="card__title" href="../gatherings/event/?id=energy-circle">Energy Circle</a></h3>
-        <p>Success stories and a guided meditation, in person at 42nd Street.</p>
+      <article class="card" data-reveal>
+        <div class="stack" style="--stack-gap: var(--sp-1)">
+          <p class="t-label hw-gold" data-edit="text">Wednesdays</p>
+          <h3 class="t-h5"><a class="hw-card-link" href="../gatherings/event/?id=energy-circle">Energy Circle</a></h3>
+          <p class="t-body u-text-secondary" data-edit="text">Success stories and a guided meditation, in person at 42nd Street.</p>
+        </div>
       </article>
     </div>
   </div>
@@ -158,8 +177,8 @@
 
 </main>
 
-<hw-signup></hw-signup>
-<hw-footer></hw-footer>
+<hw-letter></hw-letter>
+<hw-foot></hw-foot>
 <script src="../assets/data/library.js"></script>
 </body>
 </html>

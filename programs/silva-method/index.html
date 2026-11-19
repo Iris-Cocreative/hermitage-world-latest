@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-product="hermitage">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,81 +10,94 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Marcellus&family=Alegreya+Sans:ital,wght@0,300;0,400;0,500;0,700;1,400&family=Alegreya:ital@0;1&display=swap">
-<link rel="stylesheet" href="../../assets/css/main.css">
-<script src="../../assets/js/site.js"></script>
+<link rel="stylesheet" href="../../assets/vendor/trellis/core.css">
+<link rel="stylesheet" href="../../assets/css/hermitage.css">
+<link rel="stylesheet" href="../../assets/css/chrome.css">
+<link rel="stylesheet" href="../../assets/css/site.css">
+<link rel="stylesheet" href="../../assets/css/pages/programs.css">
+<script src="../../assets/vendor/trellis/settle.js" defer></script>
+<script src="../../assets/js/hw.js"></script>
 </head>
 <body>
-<hw-header></hw-header>
+<hw-bar></hw-bar>
 
-<main id="main">
+<main class="frame context" id="main">
 
-<section class="page-hero page-hero--media" data-room="dark">
-  <div class="room-arch" aria-hidden="true"></div>
-  <div class="container page-hero__inner">
-    <div data-reveal>
-      <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../">Programs</a><span aria-hidden="true">/</span><span>The Silva Method</span></nav>
-      <span class="tag tag--accent">A legacy method</span>
-      <h1 class="mt-sm">The Silva Method</h1>
-      <p class="t-lede">The meditation method created by José Silva, which set the course of Justin’s ministry after he first encountered it in 1974. He became a certified instructor during his 1978–79 sabbatical.</p>
-      <div class="page-hero__actions cluster">
-        <a class="btn btn--solid" href="#register">Hear when it opens</a>
-        <a class="btn" href="../../calendar/">See the calendar</a>
+<section class="section cc-band hw-backdrop hw-hero" data-product="hermitage" data-theme="dark">
+  <div class="hw-room-arch" aria-hidden="true"></div>
+  <div class="split" style="--split-a: 5; --split-b: 4; --split-gap: var(--sp-4)">
+    <div class="stack hw-hero-text" data-reveal>
+      <nav aria-label="Breadcrumb"><ol class="crumbs"><li><a href="../">Programs</a></li><li aria-current="page">The Silva Method</li></ol></nav>
+      <div class="cluster"><span class="tag cc-solid"><span class="tag-label">A legacy method</span></span></div>
+      <h1 class="t-h1" data-edit="text">The Silva Method</h1>
+      <p class="t-lg u-text-secondary" data-edit="text">The meditation method created by José Silva, which set the course of Justin’s ministry after he first encountered it in 1974. He became a certified instructor during his 1978–79 sabbatical.</p>
+      <div class="cluster">
+        <a class="button cc-primary" data-edit="link" href="#register">Hear when it opens</a>
+        <a class="button" data-edit="link" href="../../calendar/">See the calendar</a>
       </div>
     </div>
-    <div class="page-hero__media" data-reveal>
-      <div class="arch arch--outline" style="--arch-a: .78"><img src="../../assets/img/photo/hall-remember.jpg" alt="A dark wall of small lit windows"></div>
+    <div class="hw-hero-media" data-reveal>
+      <div class="hw-arch hw-arch-outline" style="--arch-ratio: 1.282"><img data-edit="image" src="../../assets/img/photo/hall-remember.jpg" width="802" height="1086" alt="A dark wall of small lit windows"></div>
     </div>
   </div>
-</section>
-
-<section class="section section--flush-top" data-room="dark">
-  <div class="container split split--top" style="--split-a: 1fr; --split-b: 1.2fr">
+  <div class="split hw-hero-after" style="--split-a: 5; --split-b: 6; --split-gap: var(--sp-4)">
     <div class="stack" data-reveal>
-      <h2 class="t-h3">At a glance</h2>
-      <p class="t-muted">Silva graduates, and anyone curious about the method behind much of Justin’s early teaching.</p>
+      <h2 class="t-h5" data-edit="text">At a glance</h2>
+      <p class="t-body u-text-secondary" data-edit="text">Silva graduates, and anyone curious about the method behind much of Justin’s early teaching.</p>
     </div>
-    <div class="board" data-reveal><div class="board__row"><span class="board__label">History</span><div><p class="board__title">Justin trained in Laredo, Texas, during his 1978–79 sabbatical</p></div><span></span></div><div class="board__row"><span class="board__label">Graduates</span><div><p class="board__title">Met monthly at the Hermitage for years</p></div><span></span></div><div class="board__row"><span class="board__label">Future</span><div><p class="board__title">Being decided <span class="draft-mark">to confirm</span></p></div><span></span></div></div>
+    <ul class="list" data-reveal>
+      <li class="list-item hw-board-row"><p class="t-label hw-gold hw-row-label" data-edit="text">History</p><div class="list-body"><p class="list-title t-h6" data-edit="text">Justin trained in Laredo, Texas, during his 1978–79 sabbatical</p></div></li>
+      <li class="list-item hw-board-row"><p class="t-label hw-gold hw-row-label" data-edit="text">Graduates</p><div class="list-body"><p class="list-title t-h6" data-edit="text">Met monthly at the Hermitage for years</p></div></li>
+      <li class="list-item hw-board-row"><p class="t-label hw-gold hw-row-label" data-edit="text">Future</p><div class="list-body"><p class="list-title t-h6">Being decided <span class="hw-draft-mark">to confirm</span></p></div></li>
+    </ul>
   </div>
 </section>
 
-<section class="section" data-room="plaster">
-  <div class="lineart lineart--vaults" aria-hidden="true" style="opacity:.45"></div>
-  <div class="container">
-    <h2 class="mb-xl" data-reveal>What you’ll practice</h2>
-    <div class="grid grid--3"><article class="card card--lg" data-reveal><span class="t-caps">I</span><h3>What happens next</h3><p>The Hermitage is deciding how the Silva Method continues, and with which instructors. This page will say so as soon as it is settled.</p></article></div>
-    
+<section class="section cc-band hw-backdrop" data-product="hermitage" data-theme="light">
+  <div class="hw-lineart hw-lineart-vaults" style="--lineart-opacity: .45" aria-hidden="true"></div>
+  <div class="section-head stack" data-reveal>
+    <h2 class="t-h2" data-edit="text">What you’ll practice</h2>
+  </div>
+  <div class="section-body">
+    <div class="cols hw-cols-3">
+      <article class="card hw-card-lg" data-reveal><div class="stack"><p class="t-label hw-gold">I</p><h3 class="t-h5" data-edit="text">What happens next</h3><p class="t-body" data-edit="text">The Hermitage is deciding how the Silva Method continues, and with which instructors. This page will say so as soon as it is settled.</p></div></article>
+    </div>
   </div>
 </section>
 
-<section class="section" id="register" data-room="dark">
-  <div class="container container--narrow">
-    <div class="card card--lg" data-reveal>
-      <h2 class="t-h2">Hear when it opens</h2>
-      <p>Registration and payment open with the next dates. Leave your email and we’ll write once, when they do.</p>
-      <form class="signup" action="#" method="post" data-demo-form data-done="We’ll write when it opens.">
-        <div class="signup__fields">
-          <label class="sr-only" for="r-name">Name</label>
-          <input class="input" id="r-name" type="text" name="name" placeholder="Name" autocomplete="given-name">
-          <label class="sr-only" for="r-email">Email</label>
-          <input class="input" id="r-email" type="email" name="email" placeholder="Email" autocomplete="email" required>
+<section class="section cc-band" id="register" data-product="hermitage" data-theme="dark">
+  <div class="card hw-card-lg hw-measure hw-register" data-reveal>
+    <div class="stack" style="--stack-gap: var(--sp-2)">
+      <h2 class="t-h2" data-edit="text">Hear when it opens</h2>
+      <p class="t-body" data-edit="text">Registration and payment open with the next dates. Leave your email and we’ll write once, when they do.</p>
+      <form class="stack" action="#" method="post" data-demo-form data-done="We’ll write when it opens.">
+        <div class="hw-fields">
+          <div><div class="field"><label class="field-label u-sr-only" for="r-name">Name</label><input class="input" id="r-name" type="text" name="name" placeholder="Name" autocomplete="given-name"></div></div>
+          <div><div class="field"><label class="field-label u-sr-only" for="r-email">Email</label><input class="input" id="r-email" type="email" name="email" placeholder="Email" autocomplete="email" required></div></div>
         </div>
-        <button class="btn btn--solid btn--block" type="submit">Notify me</button>
-        <p class="form-note">Prototype: nothing is sent yet.</p>
+        <button class="button cc-primary" type="submit"><span class="button-label">Notify me</span></button>
+        <p class="t-sm u-text-tertiary">Prototype: nothing is sent yet.</p>
       </form>
     </div>
   </div>
 </section>
 
-<section class="section section--seam" data-room="dark">
-  <div class="container">
-    <h2 class="t-h3 mb-xl" data-reveal>Other programs</h2>
-    <div class="grid grid--3"><article class="card card--link" data-reveal><span class="t-caps">Begin here</span><h3><a class="card__title" href="../train-your-mind/">Train Your Mind</a></h3></article><article class="card card--link" data-reveal><span class="t-caps">The flagship</span><h3><a class="card__title" href="../success-full-living/">Success: Full Living</a></h3></article><article class="card card--link" data-reveal><span class="t-caps">A one-day retreat</span><h3><a class="card__title" href="../day-of-deep-peace/">A Day of Deep Peace</a></h3></article></div>
+<section class="section cc-band" data-product="hermitage" data-theme="dark">
+  <div class="section-head stack" data-reveal>
+    <h2 class="t-h5" data-edit="text">Other programs</h2>
+  </div>
+  <div class="section-body">
+    <div class="cols hw-cols-3">
+      <article class="card" data-reveal><div class="stack"><p class="t-label hw-gold" data-edit="text">Begin here</p><h3 class="t-h5"><a class="hw-card-link" href="../train-your-mind/">Train Your Mind</a></h3></div></article>
+      <article class="card" data-reveal><div class="stack"><p class="t-label hw-gold" data-edit="text">The flagship</p><h3 class="t-h5"><a class="hw-card-link" href="../success-full-living/">Success: Full Living</a></h3></div></article>
+      <article class="card" data-reveal><div class="stack"><p class="t-label hw-gold" data-edit="text">A one-day retreat</p><h3 class="t-h5"><a class="hw-card-link" href="../day-of-deep-peace/">A Day of Deep Peace</a></h3></div></article>
+    </div>
   </div>
 </section>
 
 </main>
 
-<hw-signup></hw-signup>
-<hw-footer></hw-footer>
+<hw-letter></hw-letter>
+<hw-foot></hw-foot>
 </body>
 </html>

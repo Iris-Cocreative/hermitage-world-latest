@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-product="hermitage">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,77 +10,82 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Marcellus&family=Alegreya+Sans:ital,wght@0,300;0,400;0,500;0,700;1,400&family=Alegreya:ital@0;1&display=swap">
-<link rel="stylesheet" href="../../assets/css/main.css">
-<script src="../../assets/js/site.js"></script>
+<link rel="stylesheet" href="../../assets/vendor/trellis/core.css">
+<link rel="stylesheet" href="../../assets/css/hermitage.css">
+<link rel="stylesheet" href="../../assets/css/chrome.css">
+<link rel="stylesheet" href="../../assets/css/site.css">
+<link rel="stylesheet" href="../../assets/css/pages/friar-justin.css">
+<script src="../../assets/vendor/trellis/settle.js" defer></script>
+<script src="../../assets/js/hw.js"></script>
 </head>
 <body>
-<hw-header></hw-header>
+<hw-bar></hw-bar>
 
-<main id="main">
+<main class="frame context" id="main">
 
-<section class="page-hero page-hero--media" data-room="dark">
-  <div class="room-arch" aria-hidden="true"></div>
-  <div class="container page-hero__inner">
-    <div data-reveal>
-      <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../">Friar Justin</a><span aria-hidden="true">/</span><span>The Library</span></nav>
-      <h1>The Library</h1>
-      <p class="t-lede">The founder’s voice, kept working. Sunday homilies, teaching series and the meditations he recorded, being cleaned, titled and gathered in one place for the first time.</p>
+<!-- The hero and the counts under it: one dark band (the old flush-top section). -->
+<section class="section cc-band hw-backdrop hw-hero" data-product="hermitage" data-theme="dark">
+  <div class="hw-room-arch" aria-hidden="true"></div>
+  <div class="stack" style="--stack-gap: var(--sp-6)">
+    <div class="split" style="--split-a: 5; --split-b: 4; --split-gap: var(--sp-4)">
+      <div class="stack hw-hero-text" data-reveal>
+        <nav aria-label="Breadcrumb"><ol class="crumbs"><li><a href="../">Friar Justin</a></li><li aria-current="page">The Library</li></ol></nav>
+        <h1 class="t-h1" data-edit="text">The Library</h1>
+        <p class="t-lg u-text-secondary" data-edit="text">The founder’s voice, kept working. Sunday homilies, teaching series and the meditations he recorded, being cleaned, titled and gathered in one place for the first time.</p>
+      </div>
+      <div class="hw-hero-media" data-reveal>
+        <div class="hw-arch hw-arch-outline" style="--arch-ratio: 1.282"><img data-edit="image" src="../../assets/img/photo/hall-remember.jpg" width="802" height="1086" alt="A dark wall of small lit windows"></div>
+      </div>
     </div>
-    <div class="page-hero__media" data-reveal>
-      <div class="arch arch--outline" style="--arch-a: .78"><img src="../../assets/img/photo/hall-remember.jpg" alt="A dark wall of small lit windows"></div>
-    </div>
-  </div>
-</section>
-
-<section class="section section--flush-top" data-room="dark">
-  <div class="container">
-    <div class="grid grid--4">
-      <div class="stat" data-reveal><span class="stat__num">~17 h</span><span class="stat__label">of Sunday homilies</span></div>
-      <div class="stat" data-reveal><span class="stat__num">7–8 h</span><span class="stat__label">teaching series, including Success: Full Living</span></div>
-      <div class="stat" data-reveal><span class="stat__num">22</span><span class="stat__label">meditation albums on CD and MP3</span></div>
-      <div class="stat" data-reveal><span class="stat__num">3</span><span class="stat__label">volumes: Full Living, Full Relating, Full Thinking</span></div>
+    <div class="cols hw-cols-4">
+      <div class="pair hw-stat" data-reveal><span class="t-h2" data-edit="text">~17 h</span><span class="t-sm u-text-secondary" data-edit="text">of Sunday homilies</span></div>
+      <div class="pair hw-stat" data-reveal><span class="t-h2" data-edit="text">7–8 h</span><span class="t-sm u-text-secondary" data-edit="text">teaching series, including Success: Full Living</span></div>
+      <div class="pair hw-stat" data-reveal><span class="t-h2" data-edit="text">22</span><span class="t-sm u-text-secondary" data-edit="text">meditation albums on CD and MP3</span></div>
+      <div class="pair hw-stat" data-reveal><span class="t-h2" data-edit="text">3</span><span class="t-sm u-text-secondary" data-edit="text">volumes: Full Living, Full Relating, Full Thinking</span></div>
     </div>
   </div>
 </section>
 
-<section class="section section--seam" data-room="deep">
-  <div class="container split split--top" style="--split-a: 1.3fr; --split-b: 1fr">
-    <div data-reveal>
-      <div class="player">
-        <button class="icon-btn icon-btn--solid" type="button" aria-disabled="true" style="--icon-btn: 4.5rem" title="Video arrives with the first library set">
-          <svg class="icon" aria-hidden="true"><use href="../../assets/img/icons.svg#play"/></svg><span class="sr-only">Play (arrives with the first library set)</span>
+<section class="section cc-band hw-deep" data-product="hermitage" data-theme="dark">
+  <div class="split" style="--split-a: 13; --split-b: 10; --split-gap: var(--sp-4)">
+    <div class="context" data-reveal>
+      <div class="hw-player">
+        <button class="button icon-button cc-primary cc-lg" type="button" aria-disabled="true" title="Video arrives with the first library set">
+          <svg class="icon" aria-hidden="true"><use href="../../assets/img/icons.svg#play"/></svg><span class="u-sr-only">Play (arrives with the first library set)</span>
         </button>
-        <p class="player__label">An introduction to the Hermitage · Friar Justin · the first library set arrives mid-October</p>
+        <p class="hw-player-label t-sm" data-edit="text">An introduction to the Hermitage · Friar Justin · the first library set arrives mid-October</p>
       </div>
     </div>
     <div class="stack" data-reveal>
-      <h2 class="t-h3">Chapters</h2>
-      <p class="t-muted">Each recording will open with chapters, so you can find the moment you are looking for. Transcripts will make every homily searchable.</p>
-      <ol class="board" role="list">
-        <li class="board__row" style="grid-template-columns: 4rem 1fr"><span class="board__label">00:00</span><span>Welcome</span></li>
-        <li class="board__row" style="grid-template-columns: 4rem 1fr"><span class="board__label">—</span><span class="t-muted">Chapters come with the cleaned video</span></li>
+      <h2 class="t-h5" data-edit="text">Chapters</h2>
+      <p class="t-body u-text-secondary" data-edit="text">Each recording will open with chapters, so you can find the moment you are looking for. Transcripts will make every homily searchable.</p>
+      <ol class="list" role="list">
+        <li class="list-item hw-board-row hw-chapter"><p class="t-label hw-gold hw-row-label">00:00</p><div class="list-body"><p class="list-title t-body">Welcome</p></div></li>
+        <li class="list-item hw-board-row hw-chapter"><p class="t-label hw-gold hw-row-label">—</p><div class="list-body"><p class="list-title t-body u-text-secondary">Chapters come with the cleaned video</p></div></li>
       </ol>
     </div>
   </div>
 </section>
 
-<section class="section" data-room="dark">
-  <div class="container">
-    <div class="section-head">
-      <div class="section-head__text" data-reveal>
-        <h2>Homilies &amp; teachings</h2>
-        <p class="t-lede">Free to watch. The guided series live in the <a class="link" href="../../meditation/library/">meditation library</a>.</p>
+<section class="section cc-band" data-product="hermitage" data-theme="dark">
+  <div class="section-head stack">
+    <div class="cluster" style="--cluster-gap: var(--sp-2)">
+      <div class="pair hw-head-main">
+        <div class="stack" data-reveal>
+          <h2 class="t-h2" data-edit="text">Homilies &amp; teachings</h2>
+          <p class="t-lg u-text-secondary" data-edit="text">Free to watch. The guided series live in the <a href="../../meditation/library/">meditation library</a>.</p>
+        </div>
       </div>
-      <span class="draft-mark">catalog arriving from Garry</span>
+      <span class="hw-draft-mark">catalog arriving from Garry</span>
     </div>
-    <div data-library="justin"></div>
   </div>
+  <div class="section-body" data-library="justin"></div>
 </section>
 
 </main>
 
-<hw-signup></hw-signup>
-<hw-footer></hw-footer>
+<hw-letter></hw-letter>
+<hw-foot></hw-foot>
 <script src="../../assets/data/library.js"></script>
 </body>
 </html>

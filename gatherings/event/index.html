@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-product="hermitage">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,65 +10,72 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Marcellus&family=Alegreya+Sans:ital,wght@0,300;0,400;0,500;0,700;1,400&family=Alegreya:ital@0;1&display=swap">
-<link rel="stylesheet" href="../../assets/css/main.css">
-<script src="../../assets/js/site.js"></script>
+<link rel="stylesheet" href="../../assets/vendor/trellis/core.css">
+<link rel="stylesheet" href="../../assets/css/hermitage.css">
+<link rel="stylesheet" href="../../assets/css/chrome.css">
+<link rel="stylesheet" href="../../assets/css/site.css">
+<link rel="stylesheet" href="../../assets/css/pages/gatherings.css">
+<script src="../../assets/vendor/trellis/settle.js" defer></script>
+<script src="../../assets/js/hw.js"></script>
 </head>
 <body>
-<hw-header></hw-header>
+<hw-bar></hw-bar>
 
 <!-- The event template. Which gathering it shows comes from ?id= and
-     assets/data/gatherings.js fills every [data-g] slot. -->
-<main id="main" data-gatherings="event">
+     assets/data/gatherings.js fills every [data-g] slot (so none of them is
+     marked for the Site Editor). -->
+<main class="frame context" id="main" data-gatherings="event">
 
-<section class="page-hero page-hero--media" data-room="dark">
-  <div class="room-arch" aria-hidden="true"></div>
-  <div class="container page-hero__inner">
-    <div data-reveal>
-      <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../">Gatherings</a><span aria-hidden="true">/</span><span data-g="title">Contemplative Unity</span></nav>
-      <div class="cluster cluster--tight"><span data-g="mode"></span><span data-g="live"></span></div>
-      <h1 class="mt-sm" data-g="title">Contemplative Unity</h1>
-      <p class="t-lede" data-g="summary">Silent meditation, lightly guided. In Indianapolis and on Zoom.</p>
+<section class="section cc-band hw-backdrop hw-hero" data-product="hermitage" data-theme="dark">
+  <div class="hw-room-arch" aria-hidden="true"></div>
+  <div class="split" style="--split-a: 5; --split-b: 4; --split-gap: var(--sp-4)">
+    <div class="stack hw-hero-text" data-reveal>
+      <nav aria-label="Breadcrumb"><ol class="crumbs"><li><a href="../">Gatherings</a></li><li aria-current="page" data-g="title">Contemplative Unity</li></ol></nav>
+      <div class="cluster"><span data-g="mode"></span><span data-g="live"></span></div>
+      <h1 class="t-h1" data-g="title">Contemplative Unity</h1>
+      <p class="t-lg u-text-secondary" data-g="summary">Silent meditation, lightly guided. In Indianapolis and on Zoom.</p>
     </div>
-    <div class="page-hero__media" data-reveal>
-      <div class="card card--lg event-panel">
-        <div class="stack stack--xs"><span class="t-caps">When, your time</span><p class="t-h4" data-g="when">Sundays</p><p class="t-small t-muted" data-g="host-time"></p></div>
-        <hr>
-        <div class="stack stack--xs"><span class="t-caps">Where</span><p data-g="place">Indiana Interchurch Center, and on Zoom</p></div>
-        <div class="stack stack--xs"><span class="t-caps">Host</span><p data-g="host">The Hermitage</p></div>
-        <div class="stack stack--sm mt-sm">
-          <a class="btn btn--solid btn--block" href="#rsvp" data-g="action">Join</a>
-          <a class="btn btn--block" href="#" data-g="ics"><svg class="icon" aria-hidden="true"><use href="../../assets/img/icons.svg#calendar"/></svg>Add to my calendar</a>
+    <div class="hw-hero-media" data-reveal>
+      <div class="card" style="--card-pad: var(--sp-3)">
+        <div class="stack hw-event-panel">
+          <div class="stack"><p class="t-label hw-gold">When, your time</p><p class="t-h6" data-g="when">Sundays</p><p class="t-sm u-text-secondary" data-g="host-time"></p></div>
+          <hr class="hw-rule">
+          <div class="stack"><p class="t-label hw-gold">Where</p><p class="t-body" data-g="place">Indiana Interchurch Center, and on Zoom</p></div>
+          <div class="stack"><p class="t-label hw-gold">Host</p><p class="t-body" data-g="host">The Hermitage</p></div>
+          <div class="stack">
+            <a class="button cc-primary" href="#rsvp" data-g="action">Join</a>
+            <a class="button" href="#" data-g="ics"><svg class="icon" aria-hidden="true"><use href="../../assets/img/icons.svg#calendar"/></svg><span class="button-label">Add to my calendar</span></a>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</section>
-
-<section class="section section--flush-top" data-room="dark">
-  <div class="container split split--top" style="--split-a: 1.2fr; --split-b: 1fr">
-    <div class="stack stack--lg" data-reveal>
-      <h2 class="t-h3">What to expect</h2>
+  <div class="split hw-hero-after hw-after-hero" style="--split-a: 6; --split-b: 5; --split-gap: var(--sp-4)">
+    <div class="stack" style="--stack-gap: var(--sp-2)" data-reveal>
+      <h2 class="t-h5" data-edit="text">What to expect</h2>
       <div class="prose" data-g="body"><p>Details to come.</p></div>
     </div>
-    <div id="rsvp" class="card card--lg" data-reveal>
-      <h2 class="t-h3">Save a place</h2>
-      <p>We’ll send the link and a reminder before it begins.</p>
-      <form class="signup" action="#" method="post" data-demo-form data-done="You’re in. Watch your inbox.">
-        <label class="sr-only" for="rv-name">Name</label>
-        <input class="input" id="rv-name" type="text" name="name" placeholder="Name" autocomplete="name">
-        <label class="sr-only" for="rv-email">Email</label>
-        <input class="input" id="rv-email" type="email" name="email" placeholder="Email" autocomplete="email" required>
-        <button class="btn btn--solid btn--block" type="submit">Send me the link</button>
-        <p class="form-note">Prototype: nothing is sent yet.</p>
-      </form>
+    <div id="rsvp" class="card" style="--card-pad: var(--sp-3)" data-reveal>
+      <div class="stack">
+        <h2 class="t-h5" data-edit="text">Save a place</h2>
+        <p class="t-body" data-edit="text">We’ll send the link and a reminder before it begins.</p>
+        <form class="stack" action="#" method="post" data-demo-form data-done="You’re in. Watch your inbox.">
+          <div class="field"><label class="field-label u-sr-only" for="rv-name">Name</label>
+            <input class="input" id="rv-name" type="text" name="name" placeholder="Name" autocomplete="name"></div>
+          <div class="field"><label class="field-label u-sr-only" for="rv-email">Email</label>
+            <input class="input" id="rv-email" type="email" name="email" placeholder="Email" autocomplete="email" required></div>
+          <button class="button cc-primary" type="submit"><span class="button-label">Send me the link</span></button>
+          <p class="t-sm u-text-tertiary">Prototype: nothing is sent yet.</p>
+        </form>
+      </div>
     </div>
   </div>
 </section>
 
 </main>
 
-<hw-signup></hw-signup>
-<hw-footer></hw-footer>
+<hw-letter></hw-letter>
+<hw-foot></hw-foot>
 <script src="../../assets/data/gatherings.js"></script>
 </body>
 </html>

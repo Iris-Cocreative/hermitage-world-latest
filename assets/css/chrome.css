@@ -1,0 +1,93 @@
+/* ==========================================================================
+   Hermitage World · the chrome, on Trellis
+   The bar, the site map, the weekly-letter strip and the footer that
+   assets/js/hw.js draws on every Trellis page (the static site's and the
+   app's), and the page-wide basics they share. Everything structural is
+   Trellis (frame, split, grid, list, tag, button, field, modal); this holds
+   only what is the Hermitage's own. Tokens and cells only; nothing in px.
+   Load after core.css and hermitage.css; site.css holds the components.
+   ========================================================================== */
+@layer trellis, hw;
+
+@layer hw.chrome {
+  body { background: var(--bg); color: var(--text); }
+
+  /* DARK BANDS are Trellis scopes with a mood: data-product="hermitage"
+     data-theme="dark" on the element, and core paints its ground (since
+     Trellis 0.10 a color-scheme alone no longer recolors). .hw-deep puts a
+     band on the sunken ground, the old site's "deep" room. */
+  .hw-deep { --surface: var(--bg-sunken); --band-bg: var(--bg-sunken); }
+
+  /* Notes for Trellis (TRELLIS-LEDGER.md): a link drawn as a button keeps
+     core's underline, and core's reset makes a symbol sheet a block. */
+  a.button { text-decoration: none; }
+  .hw-sprite { position: absolute; width: 0; height: 0; overflow: hidden; }
+
+  /* Skip link: out of sight until focused. */
+  .hw-skip { position: absolute; z-index: var(--z-toast); inset-block-start: var(--sp-1); inset-inline-start: var(--sp-1); translate: 0 calc(-100% - var(--sp-2)); }
+  .hw-skip:focus-visible { translate: 0 0; }
+
+  /* THE MARK and the lockup. */
+  .hw-mark { inline-size: var(--sp-3); block-size: var(--sp-3); flex: none; fill: var(--accent); }
+  .hw-mark-lg { inline-size: var(--sp-6); block-size: var(--sp-6); }
+  hw-mark { display: inline-flex; }
+  .hw-brand { display: inline-flex; align-items: center; gap: var(--sp-1); color: inherit; text-decoration: none; }
+  .hw-brand-name { font-family: var(--font-heading); font-size: var(--fs-control-lg); line-height: 1; }
+  .hw-mark-lg + .hw-brand-name { font-size: var(--fs-control-lg); }
+
+  /* THE BAR. Sticky and solid; the overlay variant floats over a page's
+     opening (the temple) and turns solid once [data-bar-until] has passed.
+     A container, so its links fold into the map when the bar is narrow,
+     not when the window is. */
+  hw-bar { display: contents; }
+  .hw-bar {
+    position: sticky; inset-block-start: 0; z-index: var(--z-sticky);
+    container-type: inline-size;
+    background: var(--bg);
+    box-shadow: 0 var(--hair) 0 var(--border-subtle);
+    transition: background-color var(--dur-in) var(--ease-out), box-shadow var(--dur-in) var(--ease-out);
+  }
+  .hw-bar-overlay { position: fixed; inset-inline: 0; background: transparent; box-shadow: none; }
+  .hw-bar-overlay[data-solid] { background: var(--bg); box-shadow: 0 var(--hair) 0 var(--border-subtle); }
+  .hw-bar-row { display: flex; align-items: center; justify-content: space-between; gap: var(--sp-2); block-size: var(--sp-6); }
+  .hw-nav { display: flex; align-items: center; gap: var(--sp-q); }
+  .hw-bar-end { display: flex; align-items: center; gap: var(--sp-1); }
+  @container (width < 72rem) { .hw-nav { display: none; } }
+  @container (width < 30rem) { .hw-bar-contact { display: none; } }
+
+  /* THE MAP: a Trellis tray from the right. */
+  .hw-map-groups { --stack-gap: var(--sp-3); }
+  .hw-map-group { --stack-gap: var(--sp-1); }
+  .hw-map-group > a { color: var(--text); text-decoration: none; }
+  @media (hover: hover) { .hw-map-group > a:hover { text-decoration: underline; } }
+  .hw-map a[aria-current="page"] { color: var(--accent); }
+
+  /* THE LETTER STRIP. */
+  hw-letter, hw-foot { display: block; }
+  .hw-letter-form { display: flex; flex-wrap: wrap; align-items: center; gap: var(--sp-2); }
+  .hw-letter-form > h2 { flex: 1 1 calc(var(--u) * 24); }
+  .hw-letter-field { flex: 1 1 calc(var(--u) * 16); }
+
+  /* THE FOOTER. */
+  .hw-foot-body { --stack-gap: var(--sp-4); }
+  .split.hw-foot-split { --split-a: 1; --split-b: 2; --split-gap: var(--sp-4); }
+  .grid.hw-foot-cols { --grid-min: calc(var(--u) * 14); }
+  .hw-foot-cols > .stack { --stack-gap: var(--sp-1); }
+  .hw-foot-cols a, .hw-foot-bar a { color: var(--text-secondary); text-decoration: none; }
+  @media (hover: hover) { .hw-foot-cols a:hover, .hw-foot-bar a:hover { color: var(--text); text-decoration: underline; } }
+  .hw-foot-bar { justify-content: space-between; }
+
+  /* AN APP PAGE (the Next.js app's Trellis pages): a head and a body. */
+  .hw-page { padding-block: var(--sp-4) var(--sp-8); }
+  .hw-page-head { --stack-gap: var(--sp-1); padding-block-end: var(--sp-4); }
+  .hw-measure { max-inline-size: var(--prose-measure); }
+  .hw-back { color: var(--text-secondary); text-decoration: none; }
+  @media (hover: hover) { .hw-back:hover { color: var(--text); text-decoration: underline; } }
+  .hw-admin-nav { padding-block: var(--sp-1) 0; }
+  .hw-admin-head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: var(--sp-2); }
+  .hw-admin-row-meta { display: flex; flex-wrap: wrap; gap: var(--sp-h); align-items: center; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hw-bar { transition: none; }
+  }
+}

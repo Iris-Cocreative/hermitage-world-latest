@@ -15,7 +15,7 @@ python -m http.server 8741 --bind 127.0.0.1
 
 ## Deploy
 
-Push to `main`. GitHub Pages publishes the repository root.
+Push to `main`. GitHub Pages publishes the repository root (the static site). The app in `app/` deploys to Vercel from the same push and serves the static site too; see `app/README.md`.
 
 ## How it's organized
 
@@ -33,5 +33,6 @@ Push to `main`. GitHub Pages publishes the repository root.
 | `design-system/` | Live reference of every token and component |
 | `docs/` | Product brief, brand guidelines, earlier design notes, timeline |
 | `archive/` | v1, v2 and v3 prototypes, kept for reference |
+| `app/` | The app: accounts, the shop, posts and the team's admin (Next.js + Supabase + Stripe, deployed on Vercel). See `app/README.md` |
 
 See `HERMITAGE-WORLD-BUILD.md` for decisions, sources and open questions.

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-product="hermitage">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,102 +10,104 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Marcellus&family=Alegreya+Sans:ital,wght@0,300;0,400;0,500;0,700;1,400&family=Alegreya:ital@0;1&display=swap">
-<link rel="stylesheet" href="../assets/css/main.css">
-<script src="../assets/js/site.js"></script>
+<link rel="stylesheet" href="../assets/vendor/trellis/core.css">
+<link rel="stylesheet" href="../assets/css/hermitage.css">
+<link rel="stylesheet" href="../assets/css/chrome.css">
+<link rel="stylesheet" href="../assets/css/site.css">
+<link rel="stylesheet" href="../assets/css/pages/programs.css">
+<script src="../assets/vendor/trellis/settle.js" defer></script>
+<script src="../assets/js/hw.js"></script>
 </head>
 <body>
-<hw-header></hw-header>
+<hw-bar></hw-bar>
 
-<main id="main">
+<main class="frame context" id="main">
 
-<section class="page-hero page-hero--media" data-room="dark">
-  <div class="room-arch" aria-hidden="true"></div>
-  <div class="container page-hero__inner">
-    <div data-reveal>
-      <h1>Come for meditation, stay for spirituality</h1>
-      <p class="t-lede">Practice is the front door. Depth comes slowly, when you want it: a first class in meditation, a program that reshapes a life, a day of deep peace.</p>
+<section class="section cc-band hw-backdrop hw-hero" data-product="hermitage" data-theme="dark">
+  <div class="hw-room-arch" aria-hidden="true"></div>
+  <div class="split" style="--split-a: 5; --split-b: 4; --split-gap: var(--sp-4)">
+    <div class="stack hw-hero-text" data-reveal>
+      <h1 class="t-h1" data-edit="text">Come for meditation, stay for spirituality</h1>
+      <p class="t-lg u-text-secondary" data-edit="text">Practice is the front door. Depth comes slowly, when you want it: a first class in meditation, a program that reshapes a life, a day of deep peace.</p>
     </div>
-    <div class="page-hero__media" data-reveal>
-      <div class="arch arch--outline" style="--arch-a: .78"><img src="../assets/img/photo/hall-deepen.jpg" alt="Wooden chairs in a circle in a sunlit stone room"></div>
+    <div class="hw-hero-media" data-reveal>
+      <div class="hw-arch hw-arch-outline" style="--arch-ratio: 1.282"><img data-edit="image" src="../assets/img/photo/hall-deepen.jpg" width="1046" height="596" alt="Wooden chairs in a circle in a sunlit stone room"></div>
     </div>
   </div>
-</section>
-
-<section class="section section--flush-top" data-room="dark">
-  <div class="container">
-    <div class="grid grid--2">
-      <article class="card card--lg card--link" data-reveal>
-        <div class="cluster cluster--tight"><span class="tag tag--accent">Begin here</span><span class="tag">2 phases × 4 classes</span></div>
-        <h2 class="t-h2"><a class="card__title" href="train-your-mind/">Train Your Mind</a></h2>
-        <p>Meditation foundations: modern science and ancient contemplative wisdom, in a rotating class for anyone, with no experience needed.</p>
-        <span class="card__foot circle-link circle-link--sm"><span class="circle-link__ring"><svg class="icon" aria-hidden="true"><use href="../assets/img/icons.svg#arrow"/></svg></span><span>Meditation Foundations</span></span>
-      </article>
-      <article class="card card--lg card--link" data-reveal>
-        <div class="cluster cluster--tight"><span class="tag tag--accent">The flagship</span><span class="tag">Book · course · workshop</span></div>
-        <h2 class="t-h2"><a class="card__title" href="success-full-living/">Success: Full Living</a></h2>
-        <p>Friar Justin’s program of a lifetime: the mechanism of a full life, joined to meditation and direct spirituality.</p>
-        <span class="card__foot circle-link circle-link--sm"><span class="circle-link__ring"><svg class="icon" aria-hidden="true"><use href="../assets/img/icons.svg#arrow"/></svg></span><span>The full life</span></span>
-      </article>
-    </div>
-    <div class="grid grid--2 mt-lg">
-      <article class="card card--link" data-reveal>
-        <span class="t-caps">A one-day retreat</span>
-        <h3><a class="card__title" href="day-of-deep-peace/">A Day of Deep Peace</a></h3>
-        <p>A full day of silence, meditation and gentle renewal, led by Samuel.</p>
-      </article>
-      <article class="card card--link" data-reveal>
-        <span class="t-caps">A legacy method</span>
-        <h3><a class="card__title" href="silva-method/">The Silva Method</a></h3>
-        <p>The meditation method that set the course of Justin’s ministry.</p>
-      </article>
-    </div>
+  <div class="cols hw-cols-2 hw-hero-after">
+    <article class="card hw-card-lg hw-hall" data-reveal>
+      <div class="stack hw-hall-body">
+        <div class="cluster"><span class="tag cc-solid"><span class="tag-label">Begin here</span></span><span class="tag"><span class="tag-label">2 phases × 4 classes</span></span></div>
+        <h2 class="t-h2"><a class="hw-card-link" href="train-your-mind/">Train Your Mind</a></h2>
+        <p class="t-body" data-edit="text">Meditation foundations: modern science and ancient contemplative wisdom, in a rotating class for anyone, with no experience needed.</p>
+        <span class="hw-circle-link hw-circle-link-sm hw-hall-action"><span class="hw-ring"><svg class="icon" aria-hidden="true"><use href="../assets/img/icons.svg#arrow"/></svg></span><span class="t-body">Meditation Foundations</span></span>
+      </div>
+    </article>
+    <article class="card hw-card-lg hw-hall" data-reveal>
+      <div class="stack hw-hall-body">
+        <div class="cluster"><span class="tag cc-solid"><span class="tag-label">The flagship</span></span><span class="tag"><span class="tag-label">Book · course · workshop</span></span></div>
+        <h2 class="t-h2"><a class="hw-card-link" href="success-full-living/">Success: Full Living</a></h2>
+        <p class="t-body" data-edit="text">Friar Justin’s program of a lifetime: the mechanism of a full life, joined to meditation and direct spirituality.</p>
+        <span class="hw-circle-link hw-circle-link-sm hw-hall-action"><span class="hw-ring"><svg class="icon" aria-hidden="true"><use href="../assets/img/icons.svg#arrow"/></svg></span><span class="t-body">The full life</span></span>
+      </div>
+    </article>
+    <article class="card" data-reveal>
+      <div class="stack">
+        <p class="t-label hw-gold" data-edit="text">A one-day retreat</p>
+        <h3 class="t-h5"><a class="hw-card-link" href="day-of-deep-peace/">A Day of Deep Peace</a></h3>
+        <p class="t-body" data-edit="text">A full day of silence, meditation and gentle renewal, led by Samuel.</p>
+      </div>
+    </article>
+    <article class="card" data-reveal>
+      <div class="stack">
+        <p class="t-label hw-gold" data-edit="text">A legacy method</p>
+        <h3 class="t-h5"><a class="hw-card-link" href="silva-method/">The Silva Method</a></h3>
+        <p class="t-body" data-edit="text">The meditation method that set the course of Justin’s ministry.</p>
+      </div>
+    </article>
   </div>
 </section>
 
 <!-- Samuel's pathway (Collab OS surface, Sept 18 review) -->
-<section class="section" id="pathway" data-room="plaster">
-  <div class="lineart lineart--arches" aria-hidden="true" style="opacity:.5"></div>
-  <div class="container">
-    <div class="section-head">
-      <div class="section-head__text" data-reveal>
-        <h2>A path that turns, not a ladder</h2>
-        <p class="t-lede">There are many ways into the Hermitage, and no one has to take them in order. Seven stages, as Samuel Robinson describes the experience of arriving and staying.</p>
-      </div>
-    </div>
-    <ol class="pathway" role="list">
-      <li class="pathway__step" data-reveal><h3>Discover</h3><p>Short teachings, the Justin archive, articles and the free healing meditations.</p></li>
-      <li class="pathway__step" data-reveal><h3>Experience</h3><p>Meditate with us online, introductory evenings, open celebrations and livestreams.</p></li>
-      <li class="pathway__step" data-reveal><h3>Explore</h3><p>One-off workshops and talks with Hermitage teachers and guests.</p></li>
-      <li class="pathway__step" data-reveal><h3>Practice</h3><p>Four- to eight-week programs: Full Living, Train Your Mind, book groups.</p></li>
-      <li class="pathway__step" data-reveal><h3>Belong</h3><p>Weekly groups, The Way Between, shared meals and the online community.</p></li>
-      <li class="pathway__step" data-reveal><h3>Deepen</h3><p>Day and weekend retreats, advanced programs and spiritual formation.</p></li>
-      <li class="pathway__step" data-reveal><h3>Serve</h3><p>Facilitate circles, mentor newcomers, volunteer, and help carry the tradition forward.</p></li>
+<section class="section cc-band hw-backdrop" id="pathway" data-product="hermitage" data-theme="light">
+  <div class="hw-lineart hw-lineart-arches" style="--lineart-opacity: .5" aria-hidden="true"></div>
+  <div class="section-head stack" data-reveal>
+    <h2 class="t-h2" data-edit="text">A path that turns, not a ladder</h2>
+    <p class="t-lg u-text-secondary hw-measure" data-edit="text">There are many ways into the Hermitage, and no one has to take them in order. Seven stages, as Samuel Robinson describes the experience of arriving and staying.</p>
+  </div>
+  <div class="section-body">
+    <ol class="grid hw-pathway" role="list">
+      <li class="hw-pathway-step" data-reveal><h3 class="t-h6" data-edit="text">Discover</h3><p class="t-sm u-text-secondary" data-edit="text">Short teachings, the Justin archive, articles and the free healing meditations.</p></li>
+      <li class="hw-pathway-step" data-reveal><h3 class="t-h6" data-edit="text">Experience</h3><p class="t-sm u-text-secondary" data-edit="text">Meditate with us online, introductory evenings, open celebrations and livestreams.</p></li>
+      <li class="hw-pathway-step" data-reveal><h3 class="t-h6" data-edit="text">Explore</h3><p class="t-sm u-text-secondary" data-edit="text">One-off workshops and talks with Hermitage teachers and guests.</p></li>
+      <li class="hw-pathway-step" data-reveal><h3 class="t-h6" data-edit="text">Practice</h3><p class="t-sm u-text-secondary" data-edit="text">Four- to eight-week programs: Full Living, Train Your Mind, book groups.</p></li>
+      <li class="hw-pathway-step" data-reveal><h3 class="t-h6" data-edit="text">Belong</h3><p class="t-sm u-text-secondary" data-edit="text">Weekly groups, The Way Between, shared meals and the online community.</p></li>
+      <li class="hw-pathway-step" data-reveal><h3 class="t-h6" data-edit="text">Deepen</h3><p class="t-sm u-text-secondary" data-edit="text">Day and weekend retreats, advanced programs and spiritual formation.</p></li>
+      <li class="hw-pathway-step" data-reveal><h3 class="t-h6" data-edit="text">Serve</h3><p class="t-sm u-text-secondary" data-edit="text">Facilitate circles, mentor newcomers, volunteer, and help carry the tradition forward.</p></li>
     </ol>
   </div>
 </section>
 
 <!-- Five doorways -->
-<section class="section" data-room="dark">
-  <div class="container">
-    <div class="section-head">
-      <div class="section-head__text" data-reveal>
-        <h2>Five lights, five doorways</h2>
-        <p class="t-lede">Each of the five values opens onto its own kind of program.</p>
-      </div>
-    </div>
-    <div class="board">
-      <div class="board__row" data-reveal><span class="board__label">Inner divinity</span><div><p class="board__title">Meditation series, workshops, retreats, an online course</p></div><span></span></div>
-      <div class="board__row" data-reveal><span class="board__label">Experience over doctrine</span><div><p class="board__title">The Way Between, guest speakers, interfaith conversations</p></div><span></span></div>
-      <div class="board__row" data-reveal><span class="board__label">Radical acceptance</span><div><p class="board__title">Workshops on grief, forgiveness, self-acceptance, relationships and healing</p></div><span></span></div>
-      <div class="board__row" data-reveal><span class="board__label">Conscious creation</span><div><p class="board__title">Success: Full Living and Justin’s teaching on human potential</p></div><span></span></div>
-      <div class="board__row" data-reveal><span class="board__label">Unity &amp; connection</span><div><p class="board__title">Creation spirituality, Oneness celebrations, community and service</p></div><span></span></div>
-    </div>
+<section class="section cc-band" data-product="hermitage" data-theme="dark">
+  <div class="section-head stack" data-reveal>
+    <h2 class="t-h2" data-edit="text">Five lights, five doorways</h2>
+    <p class="t-lg u-text-secondary hw-measure" data-edit="text">Each of the five values opens onto its own kind of program.</p>
+  </div>
+  <div class="section-body">
+    <ul class="list">
+      <li class="list-item hw-board-row" data-reveal><p class="t-label hw-gold hw-row-label" data-edit="text">Inner divinity</p><div class="list-body"><p class="list-title t-h6" data-edit="text">Meditation series, workshops, retreats, an online course</p></div></li>
+      <li class="list-item hw-board-row" data-reveal><p class="t-label hw-gold hw-row-label" data-edit="text">Experience over doctrine</p><div class="list-body"><p class="list-title t-h6" data-edit="text">The Way Between, guest speakers, interfaith conversations</p></div></li>
+      <li class="list-item hw-board-row" data-reveal><p class="t-label hw-gold hw-row-label" data-edit="text">Radical acceptance</p><div class="list-body"><p class="list-title t-h6" data-edit="text">Workshops on grief, forgiveness, self-acceptance, relationships and healing</p></div></li>
+      <li class="list-item hw-board-row" data-reveal><p class="t-label hw-gold hw-row-label" data-edit="text">Conscious creation</p><div class="list-body"><p class="list-title t-h6" data-edit="text">Success: Full Living and Justin’s teaching on human potential</p></div></li>
+      <li class="list-item hw-board-row" data-reveal><p class="t-label hw-gold hw-row-label" data-edit="text">Unity &amp; connection</p><div class="list-body"><p class="list-title t-h6" data-edit="text">Creation spirituality, Oneness celebrations, community and service</p></div></li>
+    </ul>
   </div>
 </section>
 
 </main>
 
-<hw-signup></hw-signup>
-<hw-footer></hw-footer>
+<hw-letter></hw-letter>
+<hw-foot></hw-foot>
 </body>
 </html>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-product="hermitage">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,113 +10,116 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Marcellus&family=Alegreya+Sans:ital,wght@0,300;0,400;0,500;0,700;1,400&family=Alegreya:ital@0;1&display=swap">
-<link rel="stylesheet" href="../assets/css/main.css">
-<script src="../assets/js/site.js"></script>
+<link rel="stylesheet" href="../assets/vendor/trellis/core.css">
+<link rel="stylesheet" href="../assets/css/hermitage.css">
+<link rel="stylesheet" href="../assets/css/chrome.css">
+<link rel="stylesheet" href="../assets/css/site.css">
+<link rel="stylesheet" href="../assets/css/pages/about.css">
+<script src="../assets/vendor/trellis/settle.js" defer></script>
+<script src="../assets/js/hw.js"></script>
 </head>
 <body>
-<hw-header></hw-header>
+<hw-bar></hw-bar>
 
-<main id="main">
+<main class="frame context" id="main">
 
-<section class="page-hero page-hero--media" data-room="dark">
-  <div class="room-arch" aria-hidden="true"></div>
-  <div class="container page-hero__inner">
-    <div data-reveal>
-      <h1>An interfaith center for meditation and spirituality</h1>
-      <p class="t-lede">Broader than a single tradition, deeper than a wellness app. People come for the meditation and stay for the spirituality, and for each other.</p>
+<section class="section cc-band hw-backdrop hw-hero" data-product="hermitage" data-theme="dark">
+  <div class="hw-room-arch" aria-hidden="true"></div>
+  <div class="split" style="--split-a: 5; --split-b: 4; --split-gap: var(--sp-4)">
+    <div class="stack hw-hero-text" data-reveal>
+      <h1 class="t-h1" data-edit="text">An interfaith center for meditation and spirituality</h1>
+      <p class="t-lg u-text-secondary" data-edit="text">Broader than a single tradition, deeper than a wellness app. People come for the meditation and stay for the spirituality, and for each other.</p>
     </div>
-    <div class="page-hero__media" data-reveal>
-      <div class="roundel"><img src="../assets/img/photo/forest-canopy.jpg" alt="Sunlight through a forest canopy"></div>
+    <div class="hw-hero-media" data-reveal>
+      <div class="hw-roundel"><img data-edit="image" src="../assets/img/photo/forest-canopy.jpg" width="900" height="1350" alt="Sunlight through a forest canopy"></div>
     </div>
   </div>
 </section>
 
-<section class="section" id="mission" data-room="plaster">
-  <div class="lineart lineart--arches" aria-hidden="true" style="opacity:.5"></div>
-  <div class="container stack stack--xl">
-    <blockquote class="quote" data-reveal>
-      <p>“The Hermitage exists to help every person awaken to the divine energy within, so that through meditation, simplicity, and community, we may each live with greater love, peace, and purpose.”</p>
-      <cite>Our mission <small><span class="draft-mark">final wording with the board</span></small></cite>
+<section class="section cc-band hw-backdrop" id="mission" data-product="hermitage" data-theme="light">
+  <div class="hw-lineart hw-lineart-arches" aria-hidden="true" style="--lineart-opacity: .5"></div>
+  <div class="stack" style="--stack-gap: var(--sp-3)">
+    <blockquote class="hw-quote" data-reveal>
+      <p class="t-h4" data-edit="text">“The Hermitage exists to help every person awaken to the divine energy within, so that through meditation, simplicity, and community, we may each live with greater love, peace, and purpose.”</p>
+      <cite class="t-body">Our mission <small><span class="hw-draft-mark">final wording with the board</span></small></cite>
     </blockquote>
-    <div class="grid grid--2">
-      <div class="stack stack--sm" data-reveal>
-        <h2 class="t-h3">Hermitage</h2>
-        <p class="t-muted">The quiet space within each human being. Meditation is how you find it; community is what holds you there.</p>
+    <div class="cols hw-cols-2">
+      <div class="stack" data-reveal>
+        <h2 class="t-h5" data-edit="text">Hermitage</h2>
+        <p class="t-body u-text-secondary" data-edit="text">The quiet space within each human being. Meditation is how you find it; community is what holds you there.</p>
       </div>
-      <div class="stack stack--sm" data-reveal>
-        <h2 class="t-h3">World</h2>
-        <p class="t-muted">Building a better world consciously, starting with inner transformation. Friar Justin hoped to help as many people meditate daily as possible, so that we could have world peace.</p>
+      <div class="stack" data-reveal>
+        <h2 class="t-h5" data-edit="text">World</h2>
+        <p class="t-body u-text-secondary" data-edit="text">Building a better world consciously, starting with inner transformation. Friar Justin hoped to help as many people meditate daily as possible, so that we could have world peace.</p>
       </div>
     </div>
   </div>
 </section>
 
-<section class="section" id="values" data-room="photo" data-carousel>
-  <div class="room-photo" style="--photo-pos: 72% center; --photo-opacity: .4" aria-hidden="true"><img src="../assets/img/photo/light-shaft-room.jpg" alt="" loading="lazy"></div>
-  <div class="container">
-    <div class="section-head" data-reveal>
-      <h2>Five lights hold this place up</h2>
-      <div class="cluster cluster--tight">
-        <button class="icon-btn" type="button" data-carousel-prev aria-label="Previous value"><svg class="icon" aria-hidden="true"><use href="../assets/img/icons.svg#arrow-left"/></svg></button>
-        <button class="icon-btn" type="button" data-carousel-next aria-label="Next value"><svg class="icon" aria-hidden="true"><use href="../assets/img/icons.svg#arrow-right"/></svg></button>
-      </div>
-    </div>
-    <div class="values" data-carousel-track>
-      <article class="value"><div class="value__glyph value__glyph--circle"><span class="art art--value-inner-divinity"></span></div><h3>Inner<br>Divinity</h3><p>Every person carries the divine energy within, and an unlimited potential to grow into it.</p></article>
-      <article class="value"><div class="value__glyph value__glyph--square"><span class="art art--value-experience"></span></div><h3>Experience<br>over Doctrine</h3><p>Personal experience before belief. Nothing here asks for a creed; everything invites practice.</p></article>
-      <article class="value"><div class="value__glyph value__glyph--circle"><span class="art art--value-acceptance"></span></div><h3>Radical<br>Acceptance</h3><p>There is beauty in everyone and everything. You are welcome exactly as you arrive.</p></article>
-      <article class="value"><div class="value__glyph value__glyph--square"><span class="art art--value-creation"></span></div><h3>Conscious<br>Creation</h3><p>Self-responsibility: thought, intention and action shape a life, and we practice shaping ours well.</p></article>
-      <article class="value"><div class="value__glyph value__glyph--circle"><span class="art art--value-unity"></span></div><h3>Unity &amp;<br>Connection</h3><p>All life is held together by love. We are co-creators within it, and none of us seeks alone.</p></article>
+<section class="section cc-band hw-backdrop" id="values" data-product="hermitage" data-theme="dark">
+  <div class="hw-room-photo" style="--photo-pos: 72% center; --photo-opacity: .4" aria-hidden="true"><img src="../assets/img/photo/light-shaft-room.jpg" alt="" loading="lazy"></div>
+  <div class="section-head stack" data-reveal>
+    <h2 class="t-h2" data-edit="text">Five lights hold this place up</h2>
+  </div>
+  <div class="section-body">
+    <div class="rail hw-values" tabindex="0" role="group" aria-label="Five lights">
+      <article class="hw-value"><span class="hw-glyph"><span class="hw-art hw-art-inner-divinity"></span></span><h3 class="t-h4" data-edit="text">Inner<br>Divinity</h3><p class="t-sm" data-edit="text">Every person carries the divine energy within, and an unlimited potential to grow into it.</p></article>
+      <article class="hw-value"><span class="hw-glyph hw-glyph-square"><span class="hw-art hw-art-experience"></span></span><h3 class="t-h4" data-edit="text">Experience<br>over Doctrine</h3><p class="t-sm" data-edit="text">Personal experience before belief. Nothing here asks for a creed; everything invites practice.</p></article>
+      <article class="hw-value"><span class="hw-glyph"><span class="hw-art hw-art-acceptance"></span></span><h3 class="t-h4" data-edit="text">Radical<br>Acceptance</h3><p class="t-sm" data-edit="text">There is beauty in everyone and everything. You are welcome exactly as you arrive.</p></article>
+      <article class="hw-value"><span class="hw-glyph hw-glyph-square"><span class="hw-art hw-art-creation"></span></span><h3 class="t-h4" data-edit="text">Conscious<br>Creation</h3><p class="t-sm" data-edit="text">Self-responsibility: thought, intention and action shape a life, and we practice shaping ours well.</p></article>
+      <article class="hw-value"><span class="hw-glyph"><span class="hw-art hw-art-unity"></span></span><h3 class="t-h4" data-edit="text">Unity &amp;<br>Connection</h3><p class="t-sm" data-edit="text">All life is held together by love. We are co-creators within it, and none of us seeks alone.</p></article>
     </div>
   </div>
 </section>
 
-<section class="section" id="story" data-room="dark">
-  <div class="container split split--top" style="--split-a: .8fr; --split-b: 1.2fr">
-    <div class="stack stack--lg" data-reveal>
-      <h2>Our story</h2>
-      <p class="t-lede">From a retreat house in Indianapolis, to seven wooded acres on Fall Creek, to a worldwide community that meets every week.</p>
-      <a class="btn" href="../friar-justin/">Friar Justin’s life</a>
+<section class="section cc-band" id="story" data-product="hermitage" data-theme="dark">
+  <div class="split" style="--split-a: 2; --split-b: 3; --split-gap: var(--sp-4)">
+    <div class="stack" style="--stack-gap: var(--sp-2)" data-reveal>
+      <h2 class="t-h2" data-edit="text">Our story</h2>
+      <p class="t-lg u-text-secondary" data-edit="text">From a retreat house in Indianapolis, to seven wooded acres on Fall Creek, to a worldwide community that meets every week.</p>
+      <div class="cluster"><a class="button" data-edit="link" href="../friar-justin/">Friar Justin’s life</a></div>
     </div>
-    <ol class="timeline" role="list">
-      <li class="timeline__item" data-reveal><span class="timeline__year">1979</span><h3>Alverna Retreat House</h3><p>Friar Justin begins teaching Success: Full Living and meditation in Indianapolis.</p></li>
-      <li class="timeline__item" data-reveal><span class="timeline__year">1985</span><h3>The Franciscan Hermitage</h3><p>With a few volunteers and supporters, he founds the Hermitage as an independent not-for-profit, soon at home on Fall Creek.</p></li>
-      <li class="timeline__item" data-reveal><span class="timeline__year">2015</span><h3>Thirty years, a million people</h3><p>Classes, retreats, radio and television in many countries have reached more than a million people.</p></li>
-      <li class="timeline__item" data-reveal><span class="timeline__year">2020</span><h3>The circle goes online</h3><p>The weekly Energy Circle becomes worldwide on Zoom.</p></li>
-      <li class="timeline__item" data-reveal><span class="timeline__year">2023</span><h3>Justin’s passing</h3><p>Friar Justin dies on October 13, at 88, shortly after a final retreat to Assisi.</p></li>
-      <li class="timeline__item is-now" data-reveal><span class="timeline__year">2026</span><h3>Hermitage World</h3><p>The building is released; the Hermitage meets at the Indiana Interchurch Center and online everywhere. hermitageindy.org becomes hermitageworld.org.</p></li>
+    <ol class="hw-timeline" role="list">
+      <li data-reveal><p class="t-h6 hw-gold"><span class="dot cc-ring cc-accent hw-timeline-dot" aria-hidden="true"></span>1979</p><h3 class="t-h5" data-edit="text">Alverna Retreat House</h3><p class="t-body u-text-secondary" data-edit="text">Friar Justin begins teaching Success: Full Living and meditation in Indianapolis.</p></li>
+      <li data-reveal><p class="t-h6 hw-gold"><span class="dot cc-ring cc-accent hw-timeline-dot" aria-hidden="true"></span>1985</p><h3 class="t-h5" data-edit="text">The Franciscan Hermitage</h3><p class="t-body u-text-secondary" data-edit="text">With a few volunteers and supporters, he founds the Hermitage as an independent not-for-profit, soon at home on Fall Creek.</p></li>
+      <li data-reveal><p class="t-h6 hw-gold"><span class="dot cc-ring cc-accent hw-timeline-dot" aria-hidden="true"></span>2015</p><h3 class="t-h5" data-edit="text">Thirty years, a million people</h3><p class="t-body u-text-secondary" data-edit="text">Classes, retreats, radio and television in many countries have reached more than a million people.</p></li>
+      <li data-reveal><p class="t-h6 hw-gold"><span class="dot cc-ring cc-accent hw-timeline-dot" aria-hidden="true"></span>2020</p><h3 class="t-h5" data-edit="text">The circle goes online</h3><p class="t-body u-text-secondary" data-edit="text">The weekly Energy Circle becomes worldwide on Zoom.</p></li>
+      <li data-reveal><p class="t-h6 hw-gold"><span class="dot cc-ring cc-accent hw-timeline-dot" aria-hidden="true"></span>2023</p><h3 class="t-h5" data-edit="text">Justin’s passing</h3><p class="t-body u-text-secondary" data-edit="text">Friar Justin dies on October 13, at 88, shortly after a final retreat to Assisi.</p></li>
+      <li data-reveal><p class="t-h6 hw-gold"><span class="dot cc-accent hw-timeline-dot" aria-hidden="true"></span>2026</p><h3 class="t-h5" data-edit="text">Hermitage World</h3><p class="t-body u-text-secondary" data-edit="text">The building is released; the Hermitage meets at the Indiana Interchurch Center and online everywhere. hermitageindy.org becomes hermitageworld.org.</p></li>
     </ol>
   </div>
 </section>
 
-<section class="section section--seam" id="interfaith" data-room="deep">
-  <div class="container">
-    <blockquote class="quote" data-reveal>
-      <p>Truth is one; God is one. Human traditions are ways of becoming acquainted with the One.</p>
+<section class="section cc-band hw-deep" id="interfaith" data-product="hermitage" data-theme="dark">
+  <div class="stack" style="--stack-gap: var(--sp-3)">
+    <blockquote class="hw-quote" data-reveal>
+      <p class="t-h4" data-edit="text">Truth is one; God is one. Human traditions are ways of becoming acquainted with the One.</p>
     </blockquote>
-    <p class="t-lede center ta-center mt-lg" data-reveal>Buddhist, Jewish, Hindu, Christian, secular, or none of these: you belong here through the shared work of seeking, not through agreement.</p>
+    <p class="t-lg u-text-secondary hw-center hw-measure" data-edit="text" data-reveal>Buddhist, Jewish, Hindu, Christian, secular, or none of these: you belong here through the shared work of seeking, not through agreement.</p>
   </div>
 </section>
 
-<section class="section" id="stewards" data-room="stone">
-  <div class="container">
-    <h2 class="mb-xl" data-reveal>Stewards</h2>
-    <div class="grid grid--3">
-      <article class="person" data-reveal><span class="person__role">Chairman, Hermitage Charitable Foundation</span><h3>Garry Chilluffo</h3></article>
-      <article class="person" data-reveal><span class="person__role">Program Director</span><h3>Samuel Robinson</h3></article>
-      <article class="person" data-reveal><span class="person__role">The board</span><h3>Board members</h3><p><span class="draft-mark">names to add</span></p></article>
+<section class="section cc-band" id="stewards">
+  <div class="section-head stack" data-reveal>
+    <h2 class="t-h2" data-edit="text">Stewards</h2>
+  </div>
+  <div class="section-body stack">
+    <div class="cols hw-cols-3">
+      <article class="stack hw-person" data-reveal><p class="t-label hw-gold" data-edit="text">Chairman, Hermitage Charitable Foundation</p><h3 class="t-h5" data-edit="text">Garry Chilluffo</h3></article>
+      <article class="stack hw-person" data-reveal><p class="t-label hw-gold" data-edit="text">Program Director</p><h3 class="t-h5" data-edit="text">Samuel Robinson</h3></article>
+      <article class="stack hw-person" data-reveal><p class="t-label hw-gold" data-edit="text">The board</p><h3 class="t-h5" data-edit="text">Board members</h3><p class="t-body u-text-secondary"><span class="hw-draft-mark">names to add</span></p></article>
     </div>
-    <div class="cluster mt-xl" data-reveal>
-      <a class="btn btn--ink" href="faq/">Questions &amp; answers</a>
-      <a class="btn btn--ink" href="../give/">Ways to give</a>
-      <a class="btn btn--ink" href="../contact/">Contact</a>
+    <div class="cluster" data-reveal>
+      <a class="button" data-edit="link" href="faq/">Questions &amp; answers</a>
+      <a class="button" data-edit="link" href="../give/">Ways to give</a>
+      <a class="button" data-edit="link" href="../contact/">Contact</a>
     </div>
   </div>
 </section>
 
 </main>
 
-<hw-signup></hw-signup>
-<hw-footer></hw-footer>
+<hw-letter></hw-letter>
+<hw-foot></hw-foot>
 </body>
 </html>

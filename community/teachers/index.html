@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-product="hermitage">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,66 +10,69 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Marcellus&family=Alegreya+Sans:ital,wght@0,300;0,400;0,500;0,700;1,400&family=Alegreya:ital@0;1&display=swap">
-<link rel="stylesheet" href="../../assets/css/main.css">
-<script src="../../assets/js/site.js"></script>
+<link rel="stylesheet" href="../../assets/vendor/trellis/core.css">
+<link rel="stylesheet" href="../../assets/css/hermitage.css">
+<link rel="stylesheet" href="../../assets/css/chrome.css">
+<link rel="stylesheet" href="../../assets/css/site.css">
+<link rel="stylesheet" href="../../assets/css/pages/about.css">
+<script src="../../assets/vendor/trellis/settle.js" defer></script>
+<script src="../../assets/js/hw.js"></script>
 </head>
 <body>
-<hw-header></hw-header>
+<hw-bar></hw-bar>
 
-<main id="main">
+<main class="frame context" id="main">
 
-<section class="page-hero" data-room="dark">
-  <div class="room-arch" aria-hidden="true"></div>
-  <div class="container page-hero__inner">
-    <div data-reveal>
-      <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../">Community</a><span aria-hidden="true">/</span><span>Teachers &amp; Guides</span></nav>
-      <h1>Teachers &amp; guides</h1>
-      <p class="t-lede">Justin is the foundation, and the building goes on. These are the people teaching now: some formed by him directly, some newly arrived, all building on what he began.</p>
-    </div>
+<section class="section cc-band hw-backdrop hw-hero" data-product="hermitage" data-theme="dark">
+  <div class="hw-room-arch" aria-hidden="true"></div>
+  <div class="stack hw-hero-text hw-hero-solo" data-reveal>
+    <nav aria-label="Breadcrumb"><ol class="crumbs"><li><a href="../">Community</a></li><li aria-current="page">Teachers &amp; Guides</li></ol></nav>
+    <h1 class="t-h1" data-edit="text">Teachers &amp; guides</h1>
+    <p class="t-lg u-text-secondary" data-edit="text">Justin is the foundation, and the building goes on. These are the people teaching now: some formed by him directly, some newly arrived, all building on what he began.</p>
   </div>
-</section>
 
-<section class="section section--flush-top" data-room="dark">
-  <div class="container grid grid--3">
-    <article class="person" data-reveal>
-      <div class="arch arch--outline"><img src="../../assets/img/photo/samuel-robinson.jpg" alt="Samuel Robinson, smiling, leaning on the back of a chair by a stone fireplace"></div>
-      <span class="person__role">Program Director</span>
-      <h2 class="t-h3">Samuel Robinson</h2>
-      <p>Teaches Train Your Mind: Meditation Foundations, leads A Day of Deep Peace, and keeps an open office every Tuesday for anyone curious about the Hermitage.</p>
+  <div class="cols hw-cols-3 hw-hero-after">
+    <article class="stack hw-person" data-reveal>
+      <div class="hw-arch hw-arch-outline"><img data-edit="image" src="../../assets/img/photo/samuel-robinson.jpg" width="401" height="600" alt="Samuel Robinson, smiling, leaning on the back of a chair by a stone fireplace"></div>
+      <p class="t-label hw-gold" data-edit="text">Program Director</p>
+      <h2 class="t-h5" data-edit="text">Samuel Robinson</h2>
+      <p class="t-body u-text-secondary" data-edit="text">Teaches Train Your Mind: Meditation Foundations, leads A Day of Deep Peace, and keeps an open office every Tuesday for anyone curious about the Hermitage.</p>
     </article>
-    <article class="person" data-reveal>
-      <div class="arch arch--outline"><img src="../../assets/img/photo/richard-brennan.jpg" alt="Richard Brennan, hands folded, in front of snowy pines"></div>
-      <span class="person__role">Mentor and Life Transition Coach</span>
-      <h2 class="t-h3">Richard Brennan</h2>
-      <p>A mentor and life transition coach in Indianapolis. <span class="draft-mark">bio to come</span></p>
+    <article class="stack hw-person" data-reveal>
+      <div class="hw-arch hw-arch-outline"><img data-edit="image" src="../../assets/img/photo/richard-brennan.jpg" width="927" height="960" alt="Richard Brennan, hands folded, in front of snowy pines"></div>
+      <p class="t-label hw-gold" data-edit="text">Mentor and Life Transition Coach</p>
+      <h2 class="t-h5" data-edit="text">Richard Brennan</h2>
+      <p class="t-body u-text-secondary">A mentor and life transition coach in Indianapolis. <span class="hw-draft-mark">bio to come</span></p>
     </article>
-    <article class="person" data-reveal>
-      <div class="arch arch--outline"><div class="pending"><strong>Portrait</strong>to come</div></div>
-      <span class="person__role">Meditation Guide</span>
-      <h2 class="t-h3">Liz Wilson</h2>
-      <p>A Silva Method graduate and a meditation guide at the Hermitage.</p>
+    <article class="stack hw-person" data-reveal>
+      <div class="hw-arch hw-arch-outline"><div class="hw-pending"><strong>Portrait</strong>to come</div></div>
+      <p class="t-label hw-gold" data-edit="text">Meditation Guide</p>
+      <h2 class="t-h5" data-edit="text">Liz Wilson</h2>
+      <p class="t-body u-text-secondary" data-edit="text">A Silva Method graduate and a meditation guide at the Hermitage.</p>
     </article>
   </div>
 </section>
 
-<section class="section section--seam" data-room="deep">
-  <div class="container split" style="--split-a: 1fr; --split-b: 1fr">
-    <div class="stack stack--lg" data-reveal>
-      <h2>The lineage</h2>
-      <p class="t-lede">Friar Justin taught for more than forty years and trained others to teach. The Hermitage’s future is that lineage, widening: new programs, new voices, the same quiet center.</p>
-      <div class="cluster"><a class="btn" href="../../friar-justin/">Friar Justin</a></div>
+<section class="section cc-band hw-deep" data-product="hermitage" data-theme="dark">
+  <div class="split" style="--split-a: 1; --split-b: 1; --split-gap: var(--sp-4)">
+    <div class="stack" style="--stack-gap: var(--sp-2)" data-reveal>
+      <h2 class="t-h2" data-edit="text">The lineage</h2>
+      <p class="t-lg u-text-secondary" data-edit="text">Friar Justin taught for more than forty years and trained others to teach. The Hermitage’s future is that lineage, widening: new programs, new voices, the same quiet center.</p>
+      <div class="cluster"><a class="button" data-edit="link" href="../../friar-justin/">Friar Justin</a></div>
     </div>
-    <div class="card card--lg" data-reveal>
-      <h2 class="t-h3">Teach with us</h2>
-      <p>Guest teachers bring workshops and talks into the Explore stage of the path. If you have something to offer the community, we’d like to hear from you.</p>
-      <div class="card__foot"><a class="btn btn--solid" href="../../contact/">Write to us</a></div>
+    <div class="card" style="--card-pad: var(--sp-3)" data-reveal>
+      <div class="stack">
+        <h2 class="t-h5" data-edit="text">Teach with us</h2>
+        <p class="t-body" data-edit="text">Guest teachers bring workshops and talks into the Explore stage of the path. If you have something to offer the community, we’d like to hear from you.</p>
+        <div class="cluster"><a class="button cc-primary" data-edit="link" href="../../contact/">Write to us</a></div>
+      </div>
     </div>
   </div>
 </section>
 
 </main>
 
-<hw-signup></hw-signup>
-<hw-footer></hw-footer>
+<hw-letter></hw-letter>
+<hw-foot></hw-foot>
 </body>
 </html>

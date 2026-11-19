@@ -1,0 +1,68 @@
+/* ==========================================================================
+   Hermitage World · a Trellis product layer
+   Knobs only, on :root, as Trellis requires: the brand's three families, an
+   open ratio for a 35–65+ audience, umber and plaster as one warm neutral,
+   gold as the only accent, and the site's geometry (pill controls, round
+   cards). Every role (ground, ink, edge, the dark theme) is derived from
+   these seeds by core.css.
+   Load after core.css, with data-product="hermitage" on <html>.
+   The one product layer: the app's Trellis pages load it from here, and
+   the static site will when its pages move onto Trellis.
+   ========================================================================== */
+@layer trellis.product {
+  :root[data-product="hermitage"] {
+    /* Type: Marcellus (one weight, never bold) for display, Alegreya Sans for
+       body, Alegreya for a person's voice (.t-serif). */
+    --font-sans: "Alegreya Sans", "Segoe UI", system-ui, sans-serif;
+    --font-serif: "Alegreya", Georgia, serif;
+    --font-heading: "Marcellus", "Times New Roman", Georgia, serif;
+    --fw-body: 400;
+    --fw-heading: 400;
+    --fw-label: 500;
+    --fw-label-text: 500;
+    --fw-strong: 700;
+    --fw-serif: 400;
+    --heading-tracking: 0;
+    --label-tracking: .18em;
+    --label-case: uppercase;
+
+    /* The ratio: a minor third opening to a perfect fourth, from a large H1.
+       Body is a step larger than core's, for older eyes. */
+    --h1-min: 2.5;     --h1-max: 6;
+    --rh-min: 1.2;     --rh-max: 1.333;
+    --body-min: 1.0625; --body-max: 1.25;
+    --rp-min: 1.125;   --rp-max: 1.2;
+    --label-min: .75;  --label-max: .8125;
+    --lh-h1: 1.05;     --lh-h-step: .05;
+    --lh-body: 1.55;   --lh-p-step: .03;
+
+    /* Palette. Neutral: umber's hue at plaster's warmth, so the light theme is
+       plaster and the dark theme is umber. Accent: Figma's gold (#a68140);
+       its ink resolves to umber (decision 7 in the build log). Tags read as
+       stone and gold, never blue: glass colors stay light, never UI. */
+    --seed-neutral: oklch(.55 .024 80);
+    --seed-accent: oklch(.625 .095 79.7);
+    --seed-topic: oklch(.46 .074 79.5);
+    --seed-event: oklch(.46 .074 79.5);
+    --seed-person: oklch(.544 .086 80.1);
+    --seed-group: oklch(.46 .05 80);
+    --seed-course: oklch(.46 .05 80);
+    /* Success is a green of its own: core derives it at the accent's
+       lightness, which on plaster is under 3:1 for gold's .625. */
+    --seed-ok: oklch(.52 .1 150);
+    --color-lift: .17;
+    --ink-flip: .58;
+
+    /* Shape: arch, circle and pill. */
+    --shape-card: var(--r-2);
+    --shape-control: var(--r-round);
+    --shape-input: var(--r-round);
+    --shape-float: var(--r-1);
+    --density-card-pad: var(--sp-2);
+    --density-control-h: var(--size-control-xl);
+    --density-control-fs: var(--fs-control-lg);
+    --prose-measure: calc(var(--u) * 52);
+    --tag-default-h: var(--size-control-md);
+    --tag-default-fs: var(--tag-fs-lg);
+  }
+}

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-product="hermitage">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,63 +10,63 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Marcellus&family=Alegreya+Sans:ital,wght@0,300;0,400;0,500;0,700;1,400&family=Alegreya:ital@0;1&display=swap">
-<link rel="stylesheet" href="../assets/css/main.css">
-<script src="../assets/js/site.js"></script>
+<link rel="stylesheet" href="../assets/vendor/trellis/core.css">
+<link rel="stylesheet" href="../assets/css/hermitage.css">
+<link rel="stylesheet" href="../assets/css/chrome.css">
+<link rel="stylesheet" href="../assets/css/site.css">
+<link rel="stylesheet" href="../assets/css/pages/gatherings.css">
+<script src="../assets/vendor/trellis/settle.js" defer></script>
+<script src="../assets/js/hw.js"></script>
 </head>
 <body>
-<hw-header></hw-header>
+<hw-bar></hw-bar>
 
-<main id="main">
+<main class="frame context" id="main">
 
-<section class="page-hero" data-room="dark">
-  <div class="room-arch" aria-hidden="true"></div>
-  <div class="container page-hero__inner">
-    <div data-reveal>
-      <h1>The week keeps a rhythm</h1>
-      <p class="t-lede">Join it from anywhere. Everything is free and everything is optional: come once, or come every week. Times are shown in your own time zone, <strong data-viewer-tz>your time zone</strong>.</p>
-      <div class="page-hero__actions cluster">
-        <a class="btn" href="../calendar/">The full calendar</a>
-        <a class="btn" href="../in-person/">In person, Indianapolis</a>
-      </div>
+<section class="section cc-band hw-backdrop hw-hero" data-product="hermitage" data-theme="dark">
+  <div class="hw-room-arch" aria-hidden="true"></div>
+  <div class="stack hw-hero-text" data-reveal>
+    <h1 class="t-h1" data-edit="text">The week keeps a rhythm</h1>
+    <p class="t-lg u-text-secondary">Join it from anywhere. Everything is free and everything is optional: come once, or come every week. Times are shown in your own time zone, <strong data-viewer-tz>your time zone</strong>.</p>
+    <div class="cluster">
+      <a class="button" data-edit="link" href="../calendar/">The full calendar</a>
+      <a class="button" data-edit="link" href="../in-person/">In person, Indianapolis</a>
+    </div>
+  </div>
+  <div class="stack hw-hero-after hw-after-hero">
+    <div class="cluster" role="group" aria-label="Show" data-gatherings-filter="#gathering-cards">
+      <button class="tag" type="button" value="all" aria-pressed="true"><span class="tag-label">Everything</span></button>
+      <button class="tag" type="button" value="online" aria-pressed="false"><span class="tag-label">Online</span></button>
+      <button class="tag" type="button" value="in-person" aria-pressed="false"><span class="tag-label">In person</span></button>
+      <button class="tag" type="button" value="program" aria-pressed="false"><span class="tag-label">Programs</span></button>
+    </div>
+    <div class="cols hw-cols-2" id="gathering-cards" data-gatherings="cards" aria-live="polite">
+      <noscript><p class="t-body u-text-secondary">Tuesdays: Office Hours with Samuel and Wisdom Circle, online. Wednesdays: Energy Circle, in person. Sundays: Oneness Celebration, in person; Contemplative Unity and The Way Between, online and in person.</p></noscript>
     </div>
   </div>
 </section>
 
-<section class="section section--flush-top" data-room="dark">
-  <div class="container">
-    <fieldset class="chips" data-gatherings-filter="#gathering-cards" aria-label="Show">
-      <label class="chip"><input type="radio" name="g-filter" value="all" checked><span>Everything</span></label>
-      <label class="chip"><input type="radio" name="g-filter" value="online"><span>Online</span></label>
-      <label class="chip"><input type="radio" name="g-filter" value="in-person"><span>In person</span></label>
-      <label class="chip"><input type="radio" name="g-filter" value="program"><span>Programs</span></label>
-    </fieldset>
-    <div class="grid grid--2 mt-lg" id="gathering-cards" data-gatherings="cards" aria-live="polite">
-      <noscript><p class="t-muted">Tuesdays: Office Hours with Samuel and Wisdom Circle, online. Wednesdays: Energy Circle, in person. Sundays: Oneness Celebration, in person; Contemplative Unity and The Way Between, online and in person.</p></noscript>
+<section class="section cc-band hw-deep" data-product="hermitage" data-theme="dark">
+  <div class="cols hw-cols-3" style="--cols-gap: var(--sp-4)">
+    <div class="stack" data-reveal>
+      <h2 class="t-h5" data-edit="text">You are never late</h2>
+      <p class="t-body u-text-secondary" data-edit="text">A gathering shows as happening now until it is actually over, so if you arrive halfway through, the door is still open.</p>
     </div>
-  </div>
-</section>
-
-<section class="section section--seam" data-room="deep">
-  <div class="container grid grid--3">
-    <div class="stack stack--sm" data-reveal>
-      <h2 class="t-h3">You are never late</h2>
-      <p class="t-muted">A gathering shows as happening now until it is actually over, so if you arrive halfway through, the door is still open.</p>
+    <div class="stack" data-reveal>
+      <h2 class="t-h5" data-edit="text">How to join</h2>
+      <p class="t-body u-text-secondary">Zoom links arrive by email when you sign up for a gathering, so the room stays safe for the people in it. <span class="hw-draft-mark">sign-up flow to build</span></p>
     </div>
-    <div class="stack stack--sm" data-reveal>
-      <h2 class="t-h3">How to join</h2>
-      <p class="t-muted">Zoom links arrive by email when you sign up for a gathering, so the room stays safe for the people in it. <span class="draft-mark">sign-up flow to build</span></p>
-    </div>
-    <div class="stack stack--sm" data-reveal>
-      <h2 class="t-h3">Hosting a circle</h2>
-      <p class="t-muted">Circles meet in Indianapolis, Australia, Europe and across the United States. If you would like to host one, <a class="link" href="../contact/">write to us</a>.</p>
+    <div class="stack" data-reveal>
+      <h2 class="t-h5" data-edit="text">Hosting a circle</h2>
+      <p class="t-body u-text-secondary" data-edit="text">Circles meet in Indianapolis, Australia, Europe and across the United States. If you would like to host one, <a href="../contact/">write to us</a>.</p>
     </div>
   </div>
 </section>
 
 </main>
 
-<hw-signup></hw-signup>
-<hw-footer></hw-footer>
+<hw-letter></hw-letter>
+<hw-foot></hw-foot>
 <script src="../assets/data/gatherings.js"></script>
 </body>
 </html>

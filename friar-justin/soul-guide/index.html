@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-product="hermitage">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,60 +10,70 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Marcellus&family=Alegreya+Sans:ital,wght@0,300;0,400;0,500;0,700;1,400&family=Alegreya:ital@0;1&display=swap">
-<link rel="stylesheet" href="../../assets/css/main.css">
-<script src="../../assets/js/site.js"></script>
+<link rel="stylesheet" href="../../assets/vendor/trellis/core.css">
+<link rel="stylesheet" href="../../assets/css/hermitage.css">
+<link rel="stylesheet" href="../../assets/css/chrome.css">
+<link rel="stylesheet" href="../../assets/css/site.css">
+<link rel="stylesheet" href="../../assets/css/pages/friar-justin.css">
+<script src="../../assets/vendor/trellis/settle.js" defer></script>
+<script src="../../assets/js/hw.js"></script>
 </head>
 <body>
-<hw-header></hw-header>
+<hw-bar></hw-bar>
 
-<main id="main">
+<main class="frame context" id="main">
 
-<section class="page-hero" data-room="dark">
-  <div class="room-arch" aria-hidden="true"></div>
-  <div class="container page-hero__inner">
-    <div data-reveal>
-      <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../">Friar Justin</a><span aria-hidden="true">/</span><span>Soul Guide</span></nav>
-      <span class="tag tag--soon">Candidate · phase two</span>
-      <h1 class="mt-sm">Ask the library</h1>
-      <p class="t-lede">A question in your own words; the exact moment in a homily or teaching where Justin speaks to it. Nothing generated, nothing put in his mouth. Only his recorded words, found for you.</p>
+<!-- The hero and the preview under it: one dark band (the old flush-top section). -->
+<section class="section cc-band hw-backdrop hw-hero" data-product="hermitage" data-theme="dark">
+  <div class="hw-room-arch" aria-hidden="true"></div>
+  <div class="stack" style="--stack-gap: var(--sp-6)">
+    <div class="stack" style="--stack-gap: var(--sp-2)" data-reveal>
+      <nav aria-label="Breadcrumb"><ol class="crumbs"><li><a href="../">Friar Justin</a></li><li aria-current="page">Soul Guide</li></ol></nav>
+      <div class="cluster"><span class="tag cc-outline"><span class="tag-label">Candidate · phase two</span></span></div>
+      <h1 class="t-h1" data-edit="text">Ask the library</h1>
+      <p class="t-lg u-text-secondary hw-measure" data-edit="text">A question in your own words; the exact moment in a homily or teaching where Justin speaks to it. Nothing generated, nothing put in his mouth. Only his recorded words, found for you.</p>
+    </div>
+
+    <div class="stack hw-measure" style="--stack-gap: var(--sp-2)">
+      <form class="hw-soul-ask" action="#" data-reveal onsubmit="return false">
+        <label class="u-sr-only" for="ask">Your question</label>
+        <input class="input" id="ask" type="text" placeholder="How do I forgive someone who hasn’t asked?" disabled>
+        <button class="button cc-primary" type="submit" disabled>Ask</button>
+      </form>
+      <p class="t-sm u-text-tertiary hw-center">A preview of the idea, not a working feature.</p>
+
+      <article class="card" style="--card-pad: var(--sp-3)" data-reveal>
+        <div class="stack" style="--stack-gap: var(--sp-2)">
+          <p class="t-label hw-gold">How a result would look</p>
+          <div class="context">
+            <div class="hw-player" style="--player-ratio: calc(9 / 21)">
+              <span class="button icon-button cc-primary cc-lg" aria-hidden="true"><svg class="icon"><use href="../../assets/img/icons.svg#play"/></svg></span>
+              <p class="hw-player-label t-sm">Sunday homily · starts at the moment he answers · about two minutes</p>
+            </div>
+          </div>
+          <p class="t-body u-text-secondary" data-edit="text">The clip plays from where the answer begins, with the transcript beside it and a link to the whole homily. If nothing in the library answers the question, it says so.</p>
+        </div>
+      </article>
     </div>
   </div>
 </section>
 
-<section class="section section--flush-top" data-room="dark">
-  <div class="container container--narrow stack stack--lg">
-    <form class="soul-ask" action="#" data-reveal onsubmit="return false">
-      <label class="sr-only" for="ask">Your question</label>
-      <input class="input" id="ask" type="text" placeholder="How do I forgive someone who hasn’t asked?" disabled>
-      <button class="btn btn--solid" type="submit" disabled>Ask</button>
-    </form>
-    <p class="form-note ta-center">A preview of the idea, not a working feature.</p>
-
-    <article class="card card--lg soul-result" data-reveal>
-      <span class="t-caps">How a result would look</span>
-      <div class="player" style="aspect-ratio: 21/9">
-        <span class="icon-btn icon-btn--solid" style="--icon-btn: 3.6rem" aria-hidden="true"><svg class="icon"><use href="../../assets/img/icons.svg#play"/></svg></span>
-        <p class="player__label">Sunday homily · starts at the moment he answers · about two minutes</p>
-      </div>
-      <p class="t-muted">The clip plays from where the answer begins, with the transcript beside it and a link to the whole homily. If nothing in the library answers the question, it says so.</p>
-    </article>
+<section class="section cc-band">
+  <div class="section-head stack">
+    <h2 class="t-h2" data-edit="text" data-reveal>Guardrails</h2>
   </div>
-</section>
-
-<section class="section" data-room="stone">
-  <div class="container">
-    <h2 class="mb-xl" data-reveal>Guardrails</h2>
-    <div class="grid grid--3">
-      <div class="stack stack--sm" data-reveal><h3>Exact clips only</h3><p class="t-muted">It retrieves and plays what Justin actually said. It never writes new words in his name.</p></div>
-      <div class="stack stack--sm" data-reveal><h3>No likeness</h3><p class="t-muted">No imitation of his voice, face or robe. Any guide figure is a friendly friar of its own, not a replica.</p></div>
-      <div class="stack stack--sm" data-reveal><h3>Within the teachings</h3><p class="t-muted">Scoped to the Hermitage library. It points to people, not answers, for anything that needs a human.</p></div>
+  <div class="section-body">
+    <div class="cols hw-cols-3">
+      <div class="stack" style="--stack-gap: var(--sp-1)" data-reveal><h3 class="t-h5" data-edit="text">Exact clips only</h3><p class="t-body u-text-secondary" data-edit="text">It retrieves and plays what Justin actually said. It never writes new words in his name.</p></div>
+      <div class="stack" style="--stack-gap: var(--sp-1)" data-reveal><h3 class="t-h5" data-edit="text">No likeness</h3><p class="t-body u-text-secondary" data-edit="text">No imitation of his voice, face or robe. Any guide figure is a friendly friar of its own, not a replica.</p></div>
+      <div class="stack" style="--stack-gap: var(--sp-1)" data-reveal><h3 class="t-h5" data-edit="text">Within the teachings</h3><p class="t-body u-text-secondary" data-edit="text">Scoped to the Hermitage library. It points to people, not answers, for anything that needs a human.</p></div>
     </div>
   </div>
 </section>
 
 </main>
 
-<hw-signup></hw-signup>
-<hw-footer></hw-footer>
+<hw-letter></hw-letter>
+<hw-foot></hw-foot>
 </body>
 </html>

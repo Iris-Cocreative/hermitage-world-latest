@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-product="hermitage">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,92 +10,106 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Marcellus&family=Alegreya+Sans:ital,wght@0,300;0,400;0,500;0,700;1,400&family=Alegreya:ital@0;1&display=swap">
-<link rel="stylesheet" href="../../assets/css/main.css">
-<script src="../../assets/js/site.js"></script>
+<link rel="stylesheet" href="../../assets/vendor/trellis/core.css">
+<link rel="stylesheet" href="../../assets/css/hermitage.css">
+<link rel="stylesheet" href="../../assets/css/chrome.css">
+<link rel="stylesheet" href="../../assets/css/site.css">
+<link rel="stylesheet" href="../../assets/css/pages/programs.css">
+<script src="../../assets/vendor/trellis/settle.js" defer></script>
+<script src="../../assets/js/hw.js"></script>
 </head>
 <body>
-<hw-header></hw-header>
+<hw-bar></hw-bar>
 
-<main id="main">
+<main class="frame context" id="main">
 
 <!-- From Samuel's flyer for the March 21, 2026 offering (sent Oct 26). -->
-<section class="page-hero page-hero--media" data-room="dark">
-  <div class="room-arch" aria-hidden="true"></div>
-  <div class="container page-hero__inner">
-    <div data-reveal>
-      <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../">Programs</a><span aria-hidden="true">/</span><span>A Day of Deep Peace</span></nav>
-      <span class="tag tag--accent">A one-day retreat</span>
-      <h1 class="mt-sm">A Day of Deep Peace</h1>
-      <p class="t-lede">A day of meditation and silent renewal. In a world of constant noise and demand, we need spaces that invite us back to what is essential.</p>
-      <div class="page-hero__actions cluster">
-        <a class="btn btn--solid" href="#register">Hear when it opens</a>
-        <a class="btn" href="../../calendar/">See the calendar</a>
+<section class="section cc-band hw-backdrop hw-hero" data-product="hermitage" data-theme="dark">
+  <div class="hw-room-arch" aria-hidden="true"></div>
+  <div class="split" style="--split-a: 5; --split-b: 4; --split-gap: var(--sp-4)">
+    <div class="stack hw-hero-text" data-reveal>
+      <nav aria-label="Breadcrumb"><ol class="crumbs"><li><a href="../">Programs</a></li><li aria-current="page">A Day of Deep Peace</li></ol></nav>
+      <div class="cluster"><span class="tag cc-solid"><span class="tag-label">A one-day retreat</span></span></div>
+      <h1 class="t-h1" data-edit="text">A Day of Deep Peace</h1>
+      <p class="t-lg u-text-secondary" data-edit="text">A day of meditation and silent renewal. In a world of constant noise and demand, we need spaces that invite us back to what is essential.</p>
+      <div class="cluster">
+        <a class="button cc-primary" data-edit="link" href="#register">Hear when it opens</a>
+        <a class="button" data-edit="link" href="../../calendar/">See the calendar</a>
       </div>
     </div>
-    <div class="page-hero__media" data-reveal>
-      <div class="arch arch--outline" style="--arch-a: .78"><img src="../../assets/img/photo/stained-glass-hall.jpg" alt="Morning sun through a tall stained-glass window"></div>
+    <div class="hw-hero-media" data-reveal>
+      <div class="hw-arch hw-arch-outline" style="--arch-ratio: 1.282"><img data-edit="image" src="../../assets/img/photo/stained-glass-hall.jpg" width="1536" height="1024" alt="Morning sun through a tall stained-glass window"></div>
     </div>
   </div>
-</section>
-
-<section class="section section--flush-top" data-room="dark">
-  <div class="container split split--top" style="--split-a: 1fr; --split-b: 1.2fr">
+  <div class="split hw-hero-after" style="--split-a: 5; --split-b: 6; --split-gap: var(--sp-4)">
     <div class="stack" data-reveal>
-      <h2 class="t-h3">At a glance</h2>
-      <p class="t-muted">Twice a year, a chance to step away from distraction and enter a full day of silence, meditation and gentle renewal. For anyone who longs for peace, beginners and experienced practitioners alike.</p>
+      <h2 class="t-h5" data-edit="text">At a glance</h2>
+      <p class="t-body u-text-secondary" data-edit="text">Twice a year, a chance to step away from distraction and enter a full day of silence, meditation and gentle renewal. For anyone who longs for peace, beginners and experienced practitioners alike.</p>
     </div>
-    <div class="board" data-reveal><div class="board__row"><span class="board__label">Format</span><div><p class="board__title">A full day, 9 am to 5 pm</p></div><span></span></div><div class="board__row"><span class="board__label">Led by</span><div><p class="board__title">Samuel Robinson</p></div><span></span></div><div class="board__row"><span class="board__label">Next date</span><div><p class="board__title">To be announced <span class="draft-mark">no date yet</span></p></div><span></span></div><div class="board__row"><span class="board__label">Cost</span><div><p class="board__title">$40 early, $50 on the day <span class="draft-mark">to confirm</span></p><p class="board__text">Breakfast, lunch and snacks included. If cost is a hardship, please reach out: we never want finances to prevent participation.</p></div><span></span></div></div>
+    <ul class="list" data-reveal>
+      <li class="list-item hw-board-row"><p class="t-label hw-gold hw-row-label" data-edit="text">Format</p><div class="list-body"><p class="list-title t-h6" data-edit="text">A full day, 9 am to 5 pm</p></div></li>
+      <li class="list-item hw-board-row"><p class="t-label hw-gold hw-row-label" data-edit="text">Led by</p><div class="list-body"><p class="list-title t-h6" data-edit="text">Samuel Robinson</p></div></li>
+      <li class="list-item hw-board-row"><p class="t-label hw-gold hw-row-label" data-edit="text">Next date</p><div class="list-body"><p class="list-title t-h6">To be announced <span class="hw-draft-mark">no date yet</span></p></div></li>
+      <li class="list-item hw-board-row"><p class="t-label hw-gold hw-row-label" data-edit="text">Cost</p><div class="list-body"><p class="list-title t-h6">$40 early, $50 on the day <span class="hw-draft-mark">to confirm</span></p><p class="list-sub t-sm" data-edit="text">Breakfast, lunch and snacks included. If cost is a hardship, please reach out: we never want finances to prevent participation.</p></div></li>
+    </ul>
   </div>
 </section>
 
-<section class="section" data-room="plaster">
-  <div class="lineart lineart--vaults" aria-hidden="true" style="opacity:.45"></div>
-  <div class="container">
-    <div class="section-head">
-      <div class="section-head__text" data-reveal>
-        <h2>This is not a lecture. It is a return.</h2>
-        <p class="t-lede">A sacred pause: a space to quiet the mind, soften the heart, and rediscover the peace already present within. Space is limited, to keep the day deep and intimate.</p>
-      </div>
+<section class="section cc-band hw-backdrop" data-product="hermitage" data-theme="light">
+  <div class="hw-lineart hw-lineart-vaults" style="--lineart-opacity: .45" aria-hidden="true"></div>
+  <div class="section-head stack" data-reveal>
+    <h2 class="t-h2" data-edit="text">This is not a lecture. It is a return.</h2>
+    <p class="t-lg u-text-secondary hw-measure" data-edit="text">A sacred pause: a space to quiet the mind, soften the heart, and rediscover the peace already present within. Space is limited, to keep the day deep and intimate.</p>
+  </div>
+  <div class="section-body">
+    <div class="cols hw-cols-3">
+      <article class="card hw-card-lg" data-reveal><div class="stack"><p class="t-label hw-gold">I</p><h3 class="t-h5" data-edit="text">Guidance</h3><p class="t-body" data-edit="text">Meditation guidance for beginners and experienced practitioners alike.</p></div></article>
+      <article class="card hw-card-lg" data-reveal><div class="stack"><p class="t-label hw-gold">II</p><h3 class="t-h5" data-edit="text">Release</h3><p class="t-body" data-edit="text">Letting go of accumulated stress and inner tension.</p></div></article>
+      <article class="card hw-card-lg" data-reveal><div class="stack"><p class="t-label hw-gold">III</p><h3 class="t-h5" data-edit="text">Noble silence</h3><p class="t-body" data-edit="text">Extended periods of silence, held together.</p></div></article>
+      <article class="card hw-card-lg" data-reveal><div class="stack"><p class="t-label hw-gold">IV</p><h3 class="t-h5" data-edit="text">A mindful walk</h3><p class="t-body" data-edit="text">Walking mindfully in nature.</p></div></article>
+      <article class="card hw-card-lg" data-reveal><div class="stack"><p class="t-label hw-gold">V</p><h3 class="t-h5" data-edit="text">A parable</h3><p class="t-body" data-edit="text">A contemplative parable to sit with.</p></div></article>
+      <article class="card hw-card-lg" data-reveal><div class="stack"><p class="t-label hw-gold">VI</p><h3 class="t-h5" data-edit="text">Shared meals</h3><p class="t-body" data-edit="text">Nourishing meals in a spirit of awareness and gratitude.</p></div></article>
     </div>
-    <div class="grid grid--3"><article class="card card--lg" data-reveal><span class="t-caps">I</span><h3>Guidance</h3><p>Meditation guidance for beginners and experienced practitioners alike.</p></article><article class="card card--lg" data-reveal><span class="t-caps">II</span><h3>Release</h3><p>Letting go of accumulated stress and inner tension.</p></article><article class="card card--lg" data-reveal><span class="t-caps">III</span><h3>Noble silence</h3><p>Extended periods of silence, held together.</p></article><article class="card card--lg" data-reveal><span class="t-caps">IV</span><h3>A mindful walk</h3><p>Walking mindfully in nature.</p></article><article class="card card--lg" data-reveal><span class="t-caps">V</span><h3>A parable</h3><p>A contemplative parable to sit with.</p></article><article class="card card--lg" data-reveal><span class="t-caps">VI</span><h3>Shared meals</h3><p>Nourishing meals in a spirit of awareness and gratitude.</p></article></div>
   </div>
 </section>
 
-<section class="section" data-room="deep">
-  <div class="container">
-    <blockquote class="quote" data-reveal><p>“In a world of noise, confusion and conflict it is necessary that there be places of silence, inner discipline and peace. In such places love can blossom.”</p><cite>Thomas Merton</cite></blockquote>
-  </div>
+<section class="section cc-band hw-deep" data-product="hermitage" data-theme="dark">
+  <blockquote class="hw-quote" data-reveal><p class="t-h4" data-edit="text">“In a world of noise, confusion and conflict it is necessary that there be places of silence, inner discipline and peace. In such places love can blossom.”</p><cite class="t-body" data-edit="text">Thomas Merton</cite></blockquote>
 </section>
 
-<section class="section" id="register" data-room="dark">
-  <div class="container container--narrow">
-    <div class="card card--lg" data-reveal>
-      <h2 class="t-h2">Hear when it opens</h2>
-      <p>Registration opens with the next date. Leave your email and we’ll write once, when it does.</p>
-      <form class="signup" action="#" method="post" data-demo-form data-done="We’ll write when it opens.">
-        <div class="signup__fields">
-          <label class="sr-only" for="r-name">Name</label>
-          <input class="input" id="r-name" type="text" name="name" placeholder="Name" autocomplete="given-name">
-          <label class="sr-only" for="r-email">Email</label>
-          <input class="input" id="r-email" type="email" name="email" placeholder="Email" autocomplete="email" required>
+<section class="section cc-band" id="register" data-product="hermitage" data-theme="dark">
+  <div class="card hw-card-lg hw-measure hw-register" data-reveal>
+    <div class="stack" style="--stack-gap: var(--sp-2)">
+      <h2 class="t-h2" data-edit="text">Hear when it opens</h2>
+      <p class="t-body" data-edit="text">Registration opens with the next date. Leave your email and we’ll write once, when it does.</p>
+      <form class="stack" action="#" method="post" data-demo-form data-done="We’ll write when it opens.">
+        <div class="hw-fields">
+          <div><div class="field"><label class="field-label u-sr-only" for="r-name">Name</label><input class="input" id="r-name" type="text" name="name" placeholder="Name" autocomplete="given-name"></div></div>
+          <div><div class="field"><label class="field-label u-sr-only" for="r-email">Email</label><input class="input" id="r-email" type="email" name="email" placeholder="Email" autocomplete="email" required></div></div>
         </div>
-        <button class="btn btn--solid btn--block" type="submit">Notify me</button>
-        <p class="form-note">Prototype: nothing is sent yet.</p>
+        <button class="button cc-primary" type="submit"><span class="button-label">Notify me</span></button>
+        <p class="t-sm u-text-tertiary">Prototype: nothing is sent yet.</p>
       </form>
     </div>
   </div>
 </section>
 
-<section class="section section--seam" data-room="dark">
-  <div class="container">
-    <h2 class="t-h3 mb-xl" data-reveal>Other programs</h2>
-    <div class="grid grid--3"><article class="card card--link" data-reveal><span class="t-caps">Begin here</span><h3><a class="card__title" href="../train-your-mind/">Train Your Mind</a></h3></article><article class="card card--link" data-reveal><span class="t-caps">The flagship</span><h3><a class="card__title" href="../success-full-living/">Success: Full Living</a></h3></article><article class="card card--link" data-reveal><span class="t-caps">A legacy method</span><h3><a class="card__title" href="../silva-method/">The Silva Method</a></h3></article></div>
+<section class="section cc-band" data-product="hermitage" data-theme="dark">
+  <div class="section-head stack" data-reveal>
+    <h2 class="t-h5" data-edit="text">Other programs</h2>
+  </div>
+  <div class="section-body">
+    <div class="cols hw-cols-3">
+      <article class="card" data-reveal><div class="stack"><p class="t-label hw-gold" data-edit="text">Begin here</p><h3 class="t-h5"><a class="hw-card-link" href="../train-your-mind/">Train Your Mind</a></h3></div></article>
+      <article class="card" data-reveal><div class="stack"><p class="t-label hw-gold" data-edit="text">The flagship</p><h3 class="t-h5"><a class="hw-card-link" href="../success-full-living/">Success: Full Living</a></h3></div></article>
+      <article class="card" data-reveal><div class="stack"><p class="t-label hw-gold" data-edit="text">A legacy method</p><h3 class="t-h5"><a class="hw-card-link" href="../silva-method/">The Silva Method</a></h3></div></article>
+    </div>
   </div>
 </section>
 
 </main>
 
-<hw-signup></hw-signup>
-<hw-footer></hw-footer>
+<hw-letter></hw-letter>
+<hw-foot></hw-foot>
 </body>
 </html>

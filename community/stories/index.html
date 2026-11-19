@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-product="hermitage">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,86 +10,87 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Marcellus&family=Alegreya+Sans:ital,wght@0,300;0,400;0,500;0,700;1,400&family=Alegreya:ital@0;1&display=swap">
-<link rel="stylesheet" href="../../assets/css/main.css">
-<script src="../../assets/js/site.js"></script>
+<link rel="stylesheet" href="../../assets/vendor/trellis/core.css">
+<link rel="stylesheet" href="../../assets/css/hermitage.css">
+<link rel="stylesheet" href="../../assets/css/chrome.css">
+<link rel="stylesheet" href="../../assets/css/site.css">
+<link rel="stylesheet" href="../../assets/css/pages/about.css">
+<script src="../../assets/vendor/trellis/settle.js" defer></script>
+<script src="../../assets/js/hw.js"></script>
 </head>
 <body>
-<hw-header></hw-header>
+<hw-bar></hw-bar>
 
-<main id="main">
+<main class="frame context" id="main">
 
-<section class="page-hero" data-room="dark">
-  <div class="room-arch" aria-hidden="true"></div>
-  <div class="container page-hero__inner">
-    <div data-reveal>
-      <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../">Community</a><span aria-hidden="true">/</span><span>Stories</span></nav>
-      <h1>Stories</h1>
-      <p class="t-lede">Over thirty years, the Hermitage’s programs reached more than a million people. Stories of what changed for them are how the next seeker learns they are not alone.</p>
-    </div>
+<section class="section cc-band hw-backdrop hw-hero" data-product="hermitage" data-theme="dark">
+  <div class="hw-room-arch" aria-hidden="true"></div>
+  <div class="stack hw-hero-text hw-hero-solo" data-reveal>
+    <nav aria-label="Breadcrumb"><ol class="crumbs"><li><a href="../">Community</a></li><li aria-current="page">Stories</li></ol></nav>
+    <h1 class="t-h1" data-edit="text">Stories</h1>
+    <p class="t-lg u-text-secondary" data-edit="text">Over thirty years, the Hermitage’s programs reached more than a million people. Stories of what changed for them are how the next seeker learns they are not alone.</p>
   </div>
-</section>
 
-<!-- Endorsements carried over from hermitageindy.org -->
-<section class="section section--flush-top" data-room="dark">
-  <div class="container">
-    <blockquote class="quote" data-reveal>
-      <p>“Success: Full Living offers us a roadmap to inner peace and to a balance of inner and outer success.”</p>
-      <cite>Gerald Jampolsky, M.D.</cite>
+  <!-- Endorsements carried over from hermitageindy.org -->
+  <div class="stack hw-hero-after" style="--stack-gap: var(--sp-4)">
+    <blockquote class="hw-quote" data-reveal>
+      <p class="t-h4" data-edit="text">“Success: Full Living offers us a roadmap to inner peace and to a balance of inner and outer success.”</p>
+      <cite class="t-body" data-edit="text">Gerald Jampolsky, M.D.</cite>
     </blockquote>
-    <div class="grid grid--3 mt-2xl">
-      <blockquote class="quote quote--left quote--sm" data-reveal>
-        <p>“His messages are powerful truths about how to grow in life.”</p>
-        <cite>The Amazing Kreskin</cite>
+    <div class="cols hw-cols-3">
+      <blockquote class="hw-quote hw-quote-start" data-reveal>
+        <p class="t-h5" data-edit="text">“His messages are powerful truths about how to grow in life.”</p>
+        <cite class="t-body" data-edit="text">The Amazing Kreskin</cite>
       </blockquote>
-      <div class="stack stack--sm" data-reveal>
-        <p class="t-h4">Wayne Dyer, Ph.D.</p>
-        <p class="t-muted">Endorsement to carry over from hermitageindy.org. <span class="draft-mark">wording to verify</span></p>
+      <div class="stack" data-reveal>
+        <p class="t-h6" data-edit="text">Wayne Dyer, Ph.D.</p>
+        <p class="t-body u-text-secondary">Endorsement to carry over from hermitageindy.org. <span class="hw-draft-mark">wording to verify</span></p>
       </div>
-      <div class="stack stack--sm" data-reveal>
-        <p class="t-h4">Barbara Stahura</p>
-        <p class="t-muted">Author and certified instructor, Journal to the Self. Endorsement to carry over. <span class="draft-mark">wording to verify</span></p>
+      <div class="stack" data-reveal>
+        <p class="t-h6" data-edit="text">Barbara Stahura</p>
+        <p class="t-body u-text-secondary">Author and certified instructor, Journal to the Self. Endorsement to carry over. <span class="hw-draft-mark">wording to verify</span></p>
       </div>
     </div>
   </div>
 </section>
 
-<section class="section section--seam" data-room="deep">
-  <div class="container">
-    <div class="section-head">
-      <div class="section-head__text" data-reveal>
-        <h2>Community voices</h2>
-        <p class="t-lede">Samuel has been recording people telling their Hermitage stories. They will live here.</p>
-      </div>
-    </div>
-    <div class="grid grid--3">
-      <div class="player" data-reveal><span class="icon-btn" aria-hidden="true"><svg class="icon"><use href="../../assets/img/icons.svg#play"/></svg></span><p class="player__label">A story, recorded in Indianapolis · coming soon</p></div>
-      <div class="player" data-reveal><span class="icon-btn" aria-hidden="true"><svg class="icon"><use href="../../assets/img/icons.svg#play"/></svg></span><p class="player__label">A story from Australia · coming soon</p></div>
-      <div class="player" data-reveal><span class="icon-btn" aria-hidden="true"><svg class="icon"><use href="../../assets/img/icons.svg#play"/></svg></span><p class="player__label">A story from the Tuesday circle · coming soon</p></div>
+<section class="section cc-band hw-deep" data-product="hermitage" data-theme="dark">
+  <div class="section-head stack" data-reveal>
+    <h2 class="t-h2" data-edit="text">Community voices</h2>
+    <p class="t-lg u-text-secondary hw-measure" data-edit="text">Samuel has been recording people telling their Hermitage stories. They will live here.</p>
+  </div>
+  <div class="section-body">
+    <div class="cols hw-cols-3">
+      <div class="context" data-reveal><div class="hw-player" data-product="hermitage" data-theme="dark"><span class="button icon-button" aria-hidden="true"><svg class="icon"><use href="../../assets/img/icons.svg#play"/></svg></span><p class="hw-player-label t-sm">A story, recorded in Indianapolis · coming soon</p></div></div>
+      <div class="context" data-reveal><div class="hw-player" data-product="hermitage" data-theme="dark"><span class="button icon-button" aria-hidden="true"><svg class="icon"><use href="../../assets/img/icons.svg#play"/></svg></span><p class="hw-player-label t-sm">A story from Australia · coming soon</p></div></div>
+      <div class="context" data-reveal><div class="hw-player" data-product="hermitage" data-theme="dark"><span class="button icon-button" aria-hidden="true"><svg class="icon"><use href="../../assets/img/icons.svg#play"/></svg></span><p class="hw-player-label t-sm">A story from the Tuesday circle · coming soon</p></div></div>
     </div>
   </div>
 </section>
 
-<section class="section" data-room="stone">
-  <div class="container container--narrow">
-    <div class="card card--lg" data-reveal>
-      <h2 class="t-h2">Share yours</h2>
-      <p>What did the Hermitage, or Justin, change for you? A few sentences is plenty. We’ll ask before sharing anything.</p>
-      <form class="stack" action="#" method="post" data-demo-form data-done="Thank you. We’ll be in touch.">
-        <div class="grid grid--2" style="--grid-gap: var(--space-sm)">
-          <div class="field"><label class="field__label" for="s-name">Name</label><input class="input" id="s-name" name="name" autocomplete="name"></div>
-          <div class="field"><label class="field__label" for="s-place">Where you are</label><input class="input" id="s-place" name="place" placeholder="City, country"></div>
-        </div>
-        <div class="field"><label class="field__label" for="s-story">Your story</label><textarea class="textarea" id="s-story" name="story" rows="5"></textarea></div>
-        <button class="btn btn--solid" type="submit">Send my story</button>
-        <p class="form-note">Prototype: nothing is sent yet.</p>
-      </form>
+<section class="section cc-band">
+  <div class="section-body stack hw-measure">
+    <div class="card" style="--card-pad: var(--sp-3)" data-reveal>
+      <div class="stack">
+        <h2 class="t-h2" data-edit="text">Share yours</h2>
+        <p class="t-body" data-edit="text">What did the Hermitage, or Justin, change for you? A few sentences is plenty. We’ll ask before sharing anything.</p>
+        <form class="stack" action="#" method="post" data-demo-form data-done="Thank you. We’ll be in touch.">
+          <div class="hw-fields">
+            <div class="field"><label class="field-label t-label" for="s-name">Name</label><input class="input" id="s-name" name="name" autocomplete="name"></div>
+            <div class="field"><label class="field-label t-label" for="s-place">Where you are</label><input class="input" id="s-place" name="place" placeholder="City, country"></div>
+          </div>
+          <div class="field"><label class="field-label t-label" for="s-story">Your story</label><textarea class="input" id="s-story" name="story" rows="5" style="--input-rows: 5"></textarea></div>
+          <div class="cluster"><button class="button cc-primary" type="submit"><span class="button-label">Send my story</span></button></div>
+          <p class="t-sm u-text-tertiary">Prototype: nothing is sent yet.</p>
+        </form>
+      </div>
     </div>
   </div>
 </section>
 
 </main>
 
-<hw-signup></hw-signup>
-<hw-footer></hw-footer>
+<hw-letter></hw-letter>
+<hw-foot></hw-foot>
 </body>
 </html>

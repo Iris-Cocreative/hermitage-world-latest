@@ -1,0 +1,173 @@
+/* ==========================================================================
+   Hermitage World · the homepage on Trellis · one-off compositions
+   Everything structural is Trellis (frame, section, cover, split, grid, card,
+   list, tag, button, field, modal). This file holds only what is the
+   Hermitage's own: rooms, the temple walk, the door, arches, roundels and the
+   value glyphs. Values are Trellis tokens and cells; nothing is in px.
+   ========================================================================== */
+@layer hw.page {
+
+  /* ROOMS. A room is a color-scheme context: every Trellis role is
+     light-dark(), so a section that says "dark" re-derives its ground, ink
+     and edges from the same seeds. A band paints its ground to the screen's
+     edges (.section.cc-band, through --band-bg). Text color is set again on
+     the room because an inherited color was computed on the body. */
+  [data-room] { color: var(--text); }
+  [data-room="dark"], [data-room="deep"] { color-scheme: dark; }
+  [data-room="plaster"], [data-room="stone"] { color-scheme: light; }
+  [data-room="dark"], [data-room="plaster"] { --band-bg: var(--bg); }
+  [data-room="deep"], [data-room="stone"] { --band-bg: var(--bg-sunken); }
+  .section.cc-band { padding-block: var(--sp-12); row-gap: var(--sp-4); }
+  footer.section.cc-band { padding-block: var(--sp-6); }
+  /* Two halves that face each other meet in the middle. */
+  .hw-facing { align-items: center; }
+
+  /* Things that read as a person's voice: Alegreya, in italic. */
+  .hw-voice { font-family: var(--font-serif); font-style: italic; }
+  .hw-gold { color: var(--accent); }
+  .hw-quote { margin: 0; }
+  /* The symbol sheet takes no space (core's reset makes every svg a block). */
+  .hw-sprite { position: absolute; width: 0; height: 0; overflow: hidden; }
+  /* A link drawn as a button doesn't underline (core leaves a.button's
+     underline on; a note for Trellis). */
+  a.button { text-decoration: none; }
+  .hw-measure { max-inline-size: var(--prose-measure); }
+
+  /* THE BAR. Floats over the temple, turns solid once the walk is over
+     (decision 4). It is a container, so its links fold into the menu when
+     the bar is narrow, not when the window is. */
+  .hw-bar {
+    color-scheme: dark;
+    position: fixed; inset-block-start: 0; inset-inline: 0;
+    z-index: var(--z-sticky);
+    container-type: inline-size;
+    color: var(--text);
+    transition: background-color var(--dur-in) var(--ease-out), box-shadow var(--dur-in) var(--ease-out);
+  }
+  .hw-bar[data-solid] { background: var(--bg); box-shadow: 0 var(--hair) 0 var(--border-subtle); }
+  .hw-bar-row { display: flex; align-items: center; justify-content: space-between; gap: var(--sp-2); height: var(--sp-6); }
+  .hw-brand { display: inline-flex; align-items: center; gap: var(--sp-1); color: inherit; text-decoration: none; }
+  .hw-brand .t-h6 { margin: 0; }
+  .hw-mark { width: var(--sp-3); height: var(--sp-3); flex: none; fill: var(--accent); }
+  .hw-mark.cc-lg { width: var(--sp-6); height: var(--sp-6); }
+  .hw-nav { display: flex; align-items: center; gap: var(--sp-q); }
+  @container (width < 64rem) { .hw-nav-link { display: none; } }
+
+  /* THE TEMPLE. A tall section; the cover sticks while the scroll walks the
+     camera in (temple.js reads this section's own scroll). home.js writes
+     --walk (0..1) as the words step back. Without WebGL the still stays. */
+  .hero { height: round(up, 240svh, var(--u)); }
+  .hero > .cover {
+    position: sticky; inset-block-start: 0;
+    color-scheme: dark;
+    color: var(--text);
+    --cover-scrim: color-mix(in oklab, var(--bg) 94%, transparent);
+    --cover-pad: var(--sp-12);
+  }
+  .hero .cover-media > :is(img, canvas) { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .hero canvas { opacity: 0; transition: opacity var(--dur-in-slow) var(--ease-out); }
+  .hero.is-ready canvas { opacity: 1; }
+  .hero.is-ready .cover-media > img { visibility: hidden; }
+  .hero .cover-body {
+    opacity: calc(1 - var(--walk, 0));
+    translate: 0 calc(var(--walk, 0) * var(--sp-4) * -1);
+    max-inline-size: calc(var(--u) * 48);
+    --stack-gap: var(--sp-3);
+  }
+  /* The beam is bright where the words sit on a phone: a taller scrim. */
+  .hero .cover-media::after { background: linear-gradient(to top, var(--cover-scrim), color-mix(in oklab, var(--bg) 70%, transparent) 50%, transparent 85%); }
+  .hero .cover-body .t-lg { max-inline-size: calc(var(--u) * 40); }
+
+  /* THE DOOR. The stained-glass room seen through an open door that glows. Its
+     height is whole cells, from its own width. */
+  .hw-door { container-type: inline-size; position: relative; margin: 0; }
+  .hw-door-room {
+    display: block; width: 100%;
+    height: round(nearest, calc(100cqi * 727 / 1090), var(--u));
+    object-fit: cover;
+    mask: radial-gradient(ellipse 52% 60% at 50% 46%, var(--black) 38%, color-mix(in oklab, var(--black) 55%, transparent) 62%, transparent 100%);
+  }
+  .hw-door-outline {
+    position: absolute; inset-block-start: 5.5%; inset-inline-start: 28%;
+    width: 44%;
+    filter: drop-shadow(0 0 var(--sp-2) color-mix(in oklab, var(--text) 35%, transparent));
+  }
+
+  /* ARCHES AND ROUNDELS. The site's geometry. Each sits in a container (a card
+     or .context) and takes its height in whole cells from its width. */
+  .hw-arch {
+    width: 100%;
+    height: round(nearest, calc(100cqi * var(--arch-ratio, 1.25)), var(--u));
+    border-start-start-radius: var(--r-round);
+    border-start-end-radius: var(--r-round);
+    overflow: hidden;
+  }
+  .hw-arch > img, .hw-roundel > img { display: block; width: 100%; height: 100%; object-fit: cover; }
+  .hw-roundel { width: 100%; aspect-ratio: 1; border-radius: var(--r-round); overflow: hidden; }
+  .hw-roundel.cc-art { overflow: visible; }
+
+  /* VALUE GLYPHS. Five lights: line art drawn as a mask in the accent, inside
+     a ring (a circle or a square, as in Figma). The art's file comes in as
+     --glyph from the markup. The ring is an inset shadow: an edge that never
+     changes the box's size. */
+  .hw-glyph {
+    display: grid; place-items: center;
+    width: var(--sp-6); height: var(--sp-6);
+    border-radius: var(--r-round);
+    box-shadow: inset 0 0 0 var(--line) var(--border-strong);
+  }
+  .hw-glyph[data-shape="square"] { border-radius: var(--r-h); }
+  .hw-glyph::before {
+    content: ""; width: var(--sp-4); height: var(--sp-4);
+    background: var(--accent);
+    mask: var(--glyph) center / contain no-repeat;
+  }
+
+  /* The map's links read as places, not underlined text. */
+  .modal-body a { text-decoration: none; }
+
+  /* Five values, two to a row on a phone (17 cells each fills 36 exactly). */
+  .hw-lights { --grid-min: calc(var(--u) * 17); }
+  @container (width < 40rem) { .hw-lights { --grid-min: round(down, calc((100% - var(--sp-2)) / 2), var(--u)); } }
+  /* Three hallways; one column where three won't fit. */
+  .hw-halls { --grid-min: calc(var(--u) * 30); }
+  @container (width < 62rem) { .hw-halls { --grid-min: 100%; } }
+  /* Cards that end on an action keep it at the bottom of the row. */
+  .hw-hall { display: flex; flex-direction: column; }
+  .hw-hall > .stack { flex: 1; }
+  .hw-hall .hw-push { margin-block-start: auto; }
+
+  /* THE WEEK. A day label beside each gathering. */
+  .hw-day { flex: none; width: calc(var(--u) * 10); color: var(--text-secondary); }
+  @container (width < 40rem) { .hw-week .list-item { flex-wrap: wrap; } .hw-day { flex-basis: 100%; } }
+
+  /* The founder's roundel: art, not a photo, so it isn't clipped. */
+  .hw-friar { max-inline-size: calc(var(--u) * 32); }
+
+  /* THE LETTER. Form fields side by side when there is room. */
+  .hw-signup { --cols-gap: var(--sp-1); }
+  @container (width < 36rem) { .hw-signup { --cols: 1; } }
+
+  /* MISSION. A shorter cover over the stained-glass hall. */
+  .hw-mission.cover {
+    --cover-h: round(up, 80svh, var(--u));
+    --cover-scrim: color-mix(in oklab, var(--bg) 88%, transparent);
+    color-scheme: dark; color: var(--text);
+    align-content: center;
+  }
+  .hw-mission .cover-media > img { opacity: .5; }
+
+  /* The footer's columns. */
+  .hw-foot { --grid-min: calc(var(--u) * 16); }
+  .hw-foot a { color: var(--text-secondary); text-decoration: none; }
+  @media (hover: hover) { .hw-foot a:hover { color: var(--text); text-decoration: underline; } }
+
+  /* The draft says what it is. */
+  .hw-draft-note { color: var(--text-tertiary); }
+
+  /* Things fade up once as they arrive; reduced motion shows them at rest. */
+  @media (prefers-reduced-motion: no-preference) {
+    .hw-js [data-reveal] { opacity: 0; translate: 0 var(--sp-2); transition: opacity var(--dur-in-slow) var(--ease-out), translate var(--dur-in-slow) var(--ease-out); }
+    .hw-js [data-reveal].is-in { opacity: 1; translate: 0 0; }
+  }
+}

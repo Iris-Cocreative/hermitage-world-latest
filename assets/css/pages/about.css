@@ -1,0 +1,16 @@
+/* ==========================================================================
+   Hermitage World · the about, community and small pages, on Trellis
+   about/, about/faq/, community/ and its three pages, give/, contact/ and
+   newsletter/. Only what these pages compose that site.css has no part for;
+   tokens and cells only. Loaded after site.css (community/ adds
+   community.css for its ring of seats).
+   ========================================================================== */
+@layer trellis, hw;
+
+@layer hw.page {
+  /* THE LETTER CARD (newsletter/): the words beside the form, a gold
+     hairline between them while they sit side by side. */
+  @container (width >= 36rem) {
+    .hw-letter-side { padding-inline-start: var(--sp-3); border-inline-start: var(--line) solid color-mix(in oklab, var(--accent) 80%, transparent); }
+  }
+}

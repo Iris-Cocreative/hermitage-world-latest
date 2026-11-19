@@ -1,0 +1,29 @@
+/* ==========================================================================
+   Hermitage World · the Friar Justin section's own parts, on Trellis
+   Linked only from friar-justin/ and its pages (library, books-and-media,
+   soul-guide). Tokens and cells only. Load after site.css.
+   ========================================================================== */
+@layer trellis, hw;
+
+@layer hw.page {
+
+  /* GOLD WORDS IN A HEADING. The hero's "is learnable." is a bare <em> (so
+     the heading stays one Site Editor text area): upright, in the same gold
+
+  /* THE PORTRAIT beside the life: an arch capped at thirty cells wide. */
+  .hw-fj-portrait { max-inline-size: calc(var(--u) * 30); }
+
+  /* A CHAPTER ROW: the time needs a short column, not a day's. */
+  .hw-chapter .hw-row-label { inline-size: calc(var(--u) * 6); }
+
+  /* THE SOUL GUIDE'S QUESTION: the field takes the row, the button its own
+     width beside it. */
+  .hw-soul-ask {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: var(--sp-1);
+  }
+
+
+}

@@ -39,16 +39,19 @@
   var KIND = { meditation: 'Meditation', homily: 'Homily', teaching: 'Teaching' };
   var H = window.HW;
 
+  /* A recording is a Trellis list row: a play button that waits for the
+     catalog, the title over its collection, length and media, and at its end
+     the honest "sample" mark and whether it is free. */
   function tile(r) {
     var meta = [r.collection, r.minutes ? r.minutes + ' min' : 'length to come', r.media === 'video' ? 'Video' : 'Audio'].join(' · ');
-    return '<article class="media-tile">' +
-      '<button class="icon-btn media-tile__play" type="button" aria-disabled="true" title="Recordings arrive with the catalog">' +
-        H.icon(r.media === 'video' ? 'video' : 'play') + '<span class="sr-only">Play ' + H.esc(r.title) + ' (arrives with the catalog)</span></button>' +
-      '<div><h3 class="media-tile__title">' + H.esc(r.title) + '</h3><p class="media-tile__meta">' + H.esc(meta) + '</p></div>' +
-      '<div class="media-tile__side">' +
-        (r.known ? '' : '<span class="draft-mark">sample</span>') +
-        '<span class="tag' + (r.access === 'free' ? ' tag--accent' : '') + '">' + (r.access === 'free' ? 'Free' : 'Nominal cost') + '</span>' +
-      '</div></article>';
+    return '<li class="list-item hw-recording">' +
+      '<button class="button icon-button cc-ghost" type="button" aria-disabled="true" title="Recordings arrive with the catalog">' +
+        H.icon(r.media === 'video' ? 'video' : 'play') + '<span class="u-sr-only">Play ' + H.esc(r.title) + ' (arrives with the catalog)</span></button>' +
+      '<div class="list-body"><h3 class="list-title t-h6">' + H.esc(r.title) + '</h3><p class="list-sub t-sm">' + H.esc(meta) + '</p></div>' +
+      '<span class="list-end cluster hw-recording-end">' +
+        (r.known ? '' : '<span class="hw-draft-mark">sample</span>') +
+        '<span class="tag' + (r.access === 'free' ? ' cc-solid' : '') + '"><span class="tag-label">' + (r.access === 'free' ? 'Free' : 'Nominal cost') + '</span></span>' +
+      '</span></li>';
   }
 
   function render(el) {
@@ -65,7 +68,7 @@
       if (q && (r.title + ' ' + r.collection).toLowerCase().indexOf(q) < 0) return false;
       return true;
     }).slice(0, limit);
-    el.innerHTML = list.map(tile).join('') || '<p class="t-muted">Nothing matches yet.</p>';
+    el.innerHTML = list.length ? '<ul class="list">' + list.map(tile).join('') + '</ul>' : '<p class="t-body u-text-secondary">Nothing matches yet.</p>';
     var count = document.querySelector('[data-library-count]');
     if (count) count.textContent = list.length + (list.length === 1 ? ' recording' : ' recordings');
   }

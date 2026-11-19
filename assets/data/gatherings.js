@@ -26,6 +26,7 @@
   var GATHERINGS = [
     {
       id: 'office-hours',
+      short: 'Questions about the Hermitage, and conversation about meditation and spirituality.', // the homepage's line (James, 2026-11-19)
       title: 'Office Hours with Samuel',
       summary: 'Samuel’s open online office: questions about the Hermitage, and conversation about meditation and spirituality.',
       body: [
@@ -41,6 +42,7 @@
     },
     {
       id: 'wisdom-circle',
+      short: 'Sacred texts read together in presence and deep listening.', // the homepage's line (James, 2026-11-19)
       title: 'Wisdom Circle',
       summary: 'Inspired by Friar Justin’s Energy Circle: sacred texts read together in presence, compassion and deep listening.',
       body: [
@@ -56,6 +58,7 @@
     },
     {
       id: 'energy-circle',
+      short: 'Success stories and a guided meditation.', // the homepage's line (James, 2026-11-19)
       title: 'Energy Circle',
       summary: 'Share your success stories and take part in a guided meditation, in person at the Hermitage’s new home.',
       body: [
@@ -71,6 +74,7 @@
     },
     {
       id: 'oneness-celebration',
+      short: 'A celebration of our connection with God, one another and all creation, then a potluck lunch.', // the homepage's line (James, 2026-11-19)
       title: 'Oneness Celebration',
       summary: 'A welcoming gathering in the Christian tradition, celebrating our connection with God, one another and all creation. A potluck lunch follows.',
       body: [
@@ -86,6 +90,7 @@
     },
     {
       id: 'contemplative-unity',
+      short: 'Silent meditation, lightly guided.', // the homepage's line (James, 2026-11-19)
       title: 'Contemplative Unity',
       summary: 'Silent meditation, lightly guided: step out of the noise of the world into sacred stillness. In Indianapolis and on Zoom.',
       body: [
@@ -101,6 +106,7 @@
     },
     {
       id: 'way-between',
+      short: 'Contemplative practice and open-hearted dialogue.', // the homepage's line (James, 2026-11-19)
       title: 'The Way Between',
       summary: 'For those walking the path of spirituality and shared discovery. It begins after the Sunday silent meditation.',
       body: [
@@ -227,11 +233,20 @@
   var H = window.HW || { url: function (p) { return p; }, icon: function () { return ''; }, esc: function (s) { return s; } };
   var esc = H.esc;
   function eventHref(g) { return H.url(g.href || ('gatherings/event/?id=' + g.id)); }
-  function draft(g) { return g.confirmed ? '' : ' <span class="draft-mark">time to confirm</span>'; }
+  function draft(g) { return g.confirmed ? '' : ' <span class="hw-draft-mark">time to confirm</span>'; }
+  // Trellis tags: an icon, then the words in .tag-label
+  function tag(text, icons) { return '<span class="tag">' + (icons || '') + '<span class="tag-label">' + esc(text) + '</span></span>'; }
   function modeTag(g) {
-    if (g.mode === 'hybrid') return '<span class="tag">' + H.icon('online') + H.icon('location') + 'Online and in person</span>';
+    if (g.mode === 'hybrid') return tag('Online and in person', H.icon('online') + H.icon('location'));
     var online = g.mode === 'online';
-    return '<span class="tag">' + H.icon(online ? 'online' : 'location') + (online ? 'Online' : 'In person') + '</span>';
+    return tag(online ? 'Online' : 'In person', H.icon(online ? 'online' : 'location'));
+  }
+  // "Happening now": the gold dot that pulses (site.css .hw-live)
+  function live(text) { return '<span class="hw-live t-sm hw-gold"><span class="dot cc-accent hw-live-dot" aria-hidden="true"></span>' + esc(text) + '</span>'; }
+  // a board row's first column: a label in gold over a quieter line
+  function rowLabel(label, sub) {
+    return '<div class="pair hw-row-label"><p class="t-label hw-gold">' + esc(label) + '</p>' +
+      (sub ? '<p class="t-xs u-text-secondary">' + esc(sub) + '</p>' : '') + '</div>';
   }
   // a hybrid gathering belongs under both the Online and the In person filters
   function matches(g, filter) {
@@ -247,18 +262,18 @@
     });
   }
 
-  // the home page's hairline board
+  // the home page's hairline board: render into a ul.list
   function renderBoard(el) {
     var limit = +el.getAttribute('data-limit') || 99;
     var items = sorted(GATHERINGS.filter(function (g) { return g.kind === 'gathering'; })).slice(0, limit);
     el.innerHTML = items.map(function (x) {
       var g = x.g, o = x.o;
-      return '<div class="board__row">' +
-        '<span class="board__label">' + esc(labelFor(g, o)) + (o ? '<small>' + esc(fmtTime(o.start) + ' ' + fmtZone(o.start)) + ' your time</small>' : '') + '</span>' +
-        '<div><h3 class="board__title">' + esc(g.title) + '</h3><p class="board__text">' + esc(g.summary) + '</p>' +
-          (o && o.live ? '<p class="board__meta"><span class="live">Happening now, until ' + esc(fmtTime(o.end)) + '</span></p>' : '') + '</div>' +
-        '<a class="btn btn--sm board__action' + (o && o.live ? ' btn--solid' : '') + '" href="' + eventHref(g) + '">' + esc(o && o.live ? 'Join now' : g.action) + '</a>' +
-      '</div>';
+      return '<li class="list-item hw-board-row">' +
+        rowLabel(labelFor(g, o), o ? fmtTime(o.start) + ' ' + fmtZone(o.start) + ' your time' : '') +
+        '<div class="list-body"><h3 class="list-title t-h6">' + esc(g.title) + '</h3><p class="list-sub t-sm">' + esc(g.short || g.summary) + '</p>' +
+          (o && o.live ? '<div class="cluster">' + live('Happening now, until ' + fmtTime(o.end)) + '</div>' : '') + '</div>' +
+        '<span class="list-end"><a class="button cc-sm' + (o && o.live ? ' cc-primary' : '') + '" href="' + eventHref(g) + '"><span class="button-label">' + esc(o && o.live ? 'Join now' : g.action) + '</span></a></span>' +
+      '</li>';
     }).join('');
   }
 
@@ -271,15 +286,14 @@
     el.innerHTML = items.map(function (x) {
       var g = x.g, o = x.o;
       var date = o
-        ? '<div class="event__date"><span class="event__dow">' + esc(fmt(o.start, { weekday: 'short' })) + '</span><span class="event__day">' + esc(fmt(o.start, { day: 'numeric' })) + '</span></div>'
-        : '<div class="event__date"><span class="event__dow">' + esc(labelFor(g, o)) + '</span></div>';
-      return '<article class="event' + (o && o.live ? ' is-live' : '') + '">' + date +
-        '<div><h3 class="event__title"><a href="' + eventHref(g) + '">' + esc(g.title) + '</a></h3>' +
-        '<p class="event__when">' + esc(whenText(g, o)) + draft(g) + '</p>' +
-        '<div class="event__meta cluster cluster--tight">' + (o && o.live ? '<span class="live">Happening now</span>' : '') + modeTag(g) +
-          '<span class="tag">' + esc(g.host) + '</span></div></div>' +
+        ? '<div class="hw-date"><span class="t-label hw-gold">' + esc(fmt(o.start, { weekday: 'short' })) + '</span><span class="t-h4">' + esc(fmt(o.start, { day: 'numeric' })) + '</span></div>'
+        : '<div class="hw-date"><span class="t-label hw-gold">' + esc(labelFor(g, o)) + '</span></div>';
+      return '<article class="card hw-event' + (o && o.live ? ' hw-event-live' : '') + '">' + date +
+        '<div class="stack"><h3 class="t-h6"><a class="hw-card-link" href="' + eventHref(g) + '">' + esc(g.title) + '</a></h3>' +
+        '<p class="t-sm u-text-secondary">' + esc(whenText(g, o)) + draft(g) + '</p>' +
+        '<div class="cluster hw-event-meta">' + (o && o.live ? live('Happening now') : '') + modeTag(g) + tag(g.host) + '</div></div>' +
       '</article>';
-    }).join('') || '<p class="t-muted">Nothing here yet.</p>';
+    }).join('') || '<p class="t-body u-text-secondary">Nothing here yet.</p>';
   }
 
   // the upcoming list for /calendar/ — the next N weeks, day by day
@@ -293,17 +307,23 @@
       occurrences(g, from, to).forEach(function (o) { rows.push({ g: g, o: o }); });
     });
     rows.sort(function (a, b) { return a.o.start - b.o.start; });
-    var lastDay = '';
-    el.innerHTML = rows.map(function (x) {
+    // one block per day: its heading, then a list of its rows
+    var days = [];
+    rows.forEach(function (x) {
       var day = fmt(x.o.start, { weekday: 'long', month: 'long', day: 'numeric' });
-      var head = day !== lastDay ? '<h3 class="calendar-day">' + esc(day) + '</h3>' : '';
-      lastDay = day;
-      return head + '<div class="board__row">' +
-        '<span class="board__label">' + esc(fmtTime(x.o.start)) + '<small>' + esc(fmtZone(x.o.start)) + '</small></span>' +
-        '<div><p class="board__title">' + esc(x.g.title) + '</p><div class="board__meta cluster cluster--tight">' +
-          (x.o.live ? '<span class="live">Happening now</span>' : '') + modeTag(x.g) + draft(x.g) + '</div></div>' +
-        '<a class="btn btn--sm board__action" href="' + eventHref(x.g) + '">Details</a></div>';
-    }).join('') || '<p class="t-muted">Nothing scheduled in this view.</p>';
+      if (!days.length || days[days.length - 1].day !== day) days.push({ day: day, rows: [] });
+      days[days.length - 1].rows.push(x);
+    });
+    el.innerHTML = days.map(function (d) {
+      return '<div class="stack hw-cal-day"><h3 class="t-h6 hw-gold">' + esc(d.day) + '</h3><ul class="list">' +
+        d.rows.map(function (x) {
+          return '<li class="list-item hw-board-row">' +
+            rowLabel(fmtTime(x.o.start), fmtZone(x.o.start)) +
+            '<div class="list-body"><p class="list-title t-h6">' + esc(x.g.title) + '</p><div class="cluster">' +
+              (x.o.live ? live('Happening now') : '') + modeTag(x.g) + draft(x.g) + '</div></div>' +
+            '<span class="list-end"><a class="button cc-sm" href="' + eventHref(x.g) + '"><span class="button-label">Details</span></a></span></li>';
+        }).join('') + '</ul></div>';
+    }).join('') || '<p class="t-body u-text-secondary">Nothing scheduled in this view.</p>';
   }
 
   // a month grid for /calendar/ — data-offset="0" is this month
@@ -319,21 +339,22 @@
         (byDay[k] = byDay[k] || []).push({ g: g, o: o });
       });
     });
-    var head = DAYS.map(function (d) { return '<span class="month__dow" aria-hidden="true">' + d.slice(0, 3) + '</span>'; }).join('');
+    var head = DAYS.map(function (d) { return '<span class="t-label hw-gold hw-month-dow" aria-hidden="true">' + d.slice(0, 3) + '</span>'; }).join('');
     var cells = '';
-    for (var i = 0; i < first.getDay(); i++) cells += '<span class="month__cell month__cell--empty"></span>';
+    for (var i = 0; i < first.getDay(); i++) cells += '<span class="hw-month-cell hw-month-empty"></span>';
     for (var d = 1; d <= last.getDate(); d++) {
       var isToday = offset === 0 && d === now.getDate();
       var items = (byDay[d] || []).sort(function (a, b) { return a.o.start - b.o.start; });
-      cells += '<div class="month__cell' + (isToday ? ' is-today' : '') + '"><span class="month__num">' + d + '</span>' +
+      cells += '<div class="hw-month-cell' + (isToday ? ' hw-month-today' : '') + '"><span class="t-sm hw-month-num">' + d + '</span>' +
         items.map(function (x) {
-          return '<a class="month__item" href="' + eventHref(x.g) + '">' + esc(fmtTime(x.o.start)) + ' ' + esc(x.g.title) + '</a>';
+          return '<a class="t-xs hw-month-item" href="' + eventHref(x.g) + '">' + esc(fmtTime(x.o.start)) + ' ' + esc(x.g.title) + '</a>';
         }).join('') + '</div>';
     }
-    el.innerHTML = '<div class="month__bar"><button class="icon-btn" type="button" data-month="-1" aria-label="Previous month">' + H.icon('arrow-left') + '</button>' +
-      '<h2 class="t-h3" aria-live="polite">' + esc(fmt(first, { month: 'long', year: 'numeric' })) + '</h2>' +
-      '<button class="icon-btn" type="button" data-month="1" aria-label="Next month">' + H.icon('arrow-right') + '</button></div>' +
-      '<div class="month__grid">' + head + cells + '</div>';
+    // the bar: previous, the month's name centered in the spare room, next
+    el.innerHTML = '<div class="cluster"><button class="button icon-button cc-ghost" type="button" data-month="-1" aria-label="Previous month">' + H.icon('arrow-left') + '</button>' +
+      '<div class="pair hw-center"><h2 class="t-h5" aria-live="polite">' + esc(fmt(first, { month: 'long', year: 'numeric' })) + '</h2></div>' +
+      '<button class="button icon-button cc-ghost" type="button" data-month="1" aria-label="Next month">' + H.icon('arrow-right') + '</button></div>' +
+      '<div class="hw-month-grid">' + head + cells + '</div>';
     el.querySelectorAll('[data-month]').forEach(function (b) {
       b.addEventListener('click', function () {
         el.setAttribute('data-offset', offset + (+b.getAttribute('data-month')));
@@ -358,7 +379,7 @@
       if (k === 'place') node.textContent = g.place;
       if (k === 'host') node.textContent = g.host;
       if (k === 'mode') node.innerHTML = modeTag(g);
-      if (k === 'live') node.innerHTML = o && o.live ? '<span class="live">Happening now, until ' + esc(fmtTime(o.end)) + '. You are not late.</span>' : '';
+      if (k === 'live') node.innerHTML = o && o.live ? live('Happening now, until ' + fmtTime(o.end) + '. You are not late.') : '';
       if (k === 'ics') { var href = ics(g); if (href) { node.href = href; node.setAttribute('download', g.id + '.ics'); } else node.hidden = true; }
       if (k === 'action') node.textContent = o && o.live ? 'Join now' : g.action;
     });
@@ -375,12 +396,15 @@
       // keep "happening now" honest without a reload
       setInterval(function () { fn(el); }, 60000);
     });
-    // filter chips: [data-gatherings-filter] radios retarget their sibling list
+    // filter tags: a [data-gatherings-filter] group of button.tag[value][aria-pressed]
+    // retargets the list it names; the pressed one is the filter shown
     document.querySelectorAll('[data-gatherings-filter]').forEach(function (group) {
       var target = document.querySelector(group.getAttribute('data-gatherings-filter'));
-      group.addEventListener('change', function (e) {
-        if (!target || !e.target.value) return;
-        target.setAttribute('data-filter', e.target.value);
+      group.addEventListener('click', function (e) {
+        var b = e.target.closest('button[value]');
+        if (!target || !b || !group.contains(b)) return;
+        group.querySelectorAll('button[value]').forEach(function (x) { x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
+        target.setAttribute('data-filter', b.value);
         ({ cards: renderCards, upcoming: renderUpcoming })[target.getAttribute('data-gatherings')](target);
       });
     });

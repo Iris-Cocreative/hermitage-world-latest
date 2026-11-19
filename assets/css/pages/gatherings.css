@@ -1,0 +1,69 @@
+/* ==========================================================================
+   Hermitage World · the gatherings pages, on Trellis
+   gatherings/, gatherings/event/, calendar/ and in-person/. What these
+   pages need that site.css has no part for: the room after a hero, the
+   event page's panel and its rule, and the calendar's month grid
+   (rendered by assets/data/gatherings.js). Tokens and cells only.
+   Load after site.css.
+   ========================================================================== */
+@layer trellis, hw;
+
+@layer hw.page {
+
+  /* AFTER THE HERO. What used to be a second dark section with no top
+     padding (section--flush-top) now sits in the hero's own band, a band's
+     padding below the words. */
+  /* (its distance below the hero is site.css's .hw-hero-after) */
+  .hw-after-hero { --stack-gap: var(--sp-3); }
+
+  /* THE EVENT PANEL (gatherings/event/): when, where, host and the actions,
+     two cells apart, with a hairline under "when". */
+  .hw-event-panel { --stack-gap: var(--sp-2); }
+
+  /* THE UPCOMING LIST (calendar/): a day's heading over its rows. */
+  .hw-cal-day { --stack-gap: var(--sp-1); }
+
+  /* THE MONTH (calendar/): seven columns of days under a gold line, each day
+     its number and its gatherings, each a link with a gold rule at its
+     start. Hidden where seven columns won't fit; the list below has it all. */
+  .hw-month {
+    display: flex; flex-direction: column; gap: var(--sp-2);
+    --hw-month-line: color-mix(in oklab, var(--accent) 80%, transparent);
+    --hw-month-line-subtle: var(--border-subtle);
+  }
+  .hw-month-grid {
+    display: grid;
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    border-block-start: var(--line) solid var(--hw-month-line);
+    border-inline-start: var(--line) solid var(--hw-month-line-subtle);
+  }
+  .hw-month-dow,
+  .hw-month-cell {
+    padding: var(--sp-h);
+    border-inline-end: var(--line) solid var(--hw-month-line-subtle);
+    border-block-end: var(--line) solid var(--hw-month-line-subtle);
+  }
+  .hw-month-cell {
+    display: flex; flex-direction: column; gap: var(--sp-h);
+    min-block-size: calc(var(--u) * 10);
+    min-inline-size: 0;
+  }
+  .hw-month-today { background: color-mix(in oklab, var(--accent) 10%, transparent); }
+  .hw-month-num { font-family: var(--font-heading); color: var(--text-secondary); }
+  .hw-month-today .hw-month-num { color: color-mix(in oklab, var(--accent) 60%, var(--text)); }
+  .hw-month-item {
+    display: block;
+    padding: var(--sp-q) var(--sp-h);
+    border-inline-start: calc(var(--line) * 2) solid var(--accent);
+    border-start-end-radius: var(--r-q);
+    border-end-end-radius: var(--r-q);
+    background: color-mix(in oklab, var(--text) 5%, transparent);
+    color: var(--text);
+    text-decoration: none;
+    overflow-wrap: anywhere;
+  }
+  @media (hover: hover) {
+    .hw-month-item:hover { color: color-mix(in oklab, var(--accent) 60%, var(--text)); }
+  }
+  @container (width < 48rem) { .hw-month { display: none; } }
+}
