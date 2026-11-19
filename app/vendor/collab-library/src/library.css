@@ -1,0 +1,267 @@
+/* ==========================================================================
+   Collab Library · the library's own parts, on Trellis
+   Everything structural is Trellis: field, tag, tabs, rail, list, grid, card,
+   modal, button. This file holds only what is the library's own: the shaped
+   objects (a resource drawn as the thing it is), the shelf they stand on, and
+   the room's arrangement. Every length is a token or cells, every color a
+   role or a mix of roles. Load after core.css and the product layer.
+
+   Knobs a client may set (on .clib, in its own CSS):
+     --clib-hue      the tint of every object (default: the accent); a topic
+                     with a color sets it per object
+     --clib-k        the scale of the objects (default 1)
+   ========================================================================== */
+@layer trellis, clib;
+
+@layer clib {
+
+  .clib { container-type: inline-size; --clib-k: 1; }
+  .clib > * + * { margin-block-start: var(--sp-4); }
+
+  /* THE DESK: search, filters, the view switch. */
+  .clib-desk { --stack-gap: var(--sp-2); }
+  .clib-facets { --stack-gap: var(--sp-1); }
+  .clib-facet { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--sp-h); align-items: baseline; }
+  @container (width > 48rem) {
+    .clib-facet { grid-template-columns: calc(var(--u) * 8) minmax(0, 1fr); gap: var(--sp-1); }
+  }
+  .clib-bar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--sp-1); }
+  .clib-bar > p { display: flex; align-items: center; gap: var(--sp-h); margin: 0; }
+
+  /* SHELVES: one per type, a rail of objects standing on a ledge. */
+  .clib-shelves { --stack-gap: var(--sp-4); }
+  .clib-shelf-head { display: flex; align-items: baseline; gap: var(--sp-1); }
+  .rail.clib-rail { --rail-item: max-content; --rail-gap: var(--sp-2); }
+  .clib-ledge {
+    height: var(--sp-h);
+    border-block-start: var(--line) solid color-mix(in oklab, var(--accent) 45%, transparent);
+    background: linear-gradient(color-mix(in oklab, var(--accent) 12%, transparent), transparent);
+    border-end-start-radius: var(--r-h); border-end-end-radius: var(--r-h);
+  }
+
+  /* An object's link: a column that stands its object on the shelf's floor,
+     with a cell of room above for the lift. */
+  .clib-item {
+    display: flex; flex-direction: column; justify-content: flex-end;
+    padding-block-start: var(--sp-1);
+    color: inherit; text-decoration: none;
+    border-radius: var(--r-1);
+  }
+  .clib-item:focus-visible { outline: calc(var(--line) * 2) solid var(--focus); outline-offset: var(--sp-q); }
+
+  /* THE OBJECTS. --clib-w and --clib-h are counts of cells; each shape sets
+     its own, and .clib-obj-body draws at them, scaled by --clib-k. */
+  .clib-obj {
+    --clib-w: 13; --clib-h: 17;
+    --clib-ink: var(--clib-hue, var(--accent));
+    --clib-tint: color-mix(in oklab, var(--clib-ink) 18%, var(--bg-raised));
+    --clib-tint-2: color-mix(in oklab, var(--clib-ink) 32%, var(--bg-sunken));
+    position: relative;
+    display: flex; flex-direction: column; gap: var(--sp-h);
+    inline-size: calc(var(--u) * var(--clib-w) * var(--clib-k));
+    transition: transform var(--dur-in) var(--ease-out);
+  }
+  .clib-item:hover .clib-obj, .clib-item:focus-visible .clib-obj { transform: translateY(calc(var(--u) * -1)); }
+  .clib-obj-body {
+    position: relative; overflow: hidden; isolation: isolate;
+    display: flex; flex-direction: column; gap: var(--sp-h);
+    inline-size: 100%;
+    block-size: calc(var(--u) * var(--clib-h) * var(--clib-k));
+    padding: var(--sp-1);
+    border: var(--line) solid var(--border-subtle);
+    border-radius: var(--r-1);
+    background: var(--clib-tint);
+    color: var(--text);
+    transition: border-color var(--dur-in) var(--ease-out);
+  }
+  .clib-item:hover .clib-obj-body { border-color: color-mix(in oklab, var(--clib-ink) 70%, transparent); }
+  .clib-obj-cap { display: flex; flex-direction: column; gap: var(--sp-q); min-width: 0; }
+  .clib-obj-name { color: var(--text); }
+  .clib-obj-kick { color: var(--text-secondary); }
+  .clib-obj-title { margin: 0; }
+  .clib-obj-meta { margin-block-start: auto; color: var(--text-secondary); }
+  .clib-obj-excerpt { --lines: 4; color: var(--text-secondary); }
+  .clib-obj-cover { position: absolute; inset: 0; z-index: -1; width: 100%; height: 100%; object-fit: cover; }
+
+  /* The access mark in an object's corner: what this is to the viewer. */
+  .clib-obj-tab {
+    position: absolute; inset-block-start: var(--sp-h); inset-inline-end: var(--sp-h); z-index: 1;
+    padding: var(--sp-q) var(--sp-h);
+    border: var(--line) solid var(--border);
+    border-radius: var(--r-round);
+    background: color-mix(in oklab, var(--bg) 85%, transparent);
+    color: var(--text);
+  }
+  .clib-obj[data-access="yours"] .clib-obj-tab { border-color: var(--accent); }
+  .clib-obj[data-access="soon"] .clib-obj-body { border-style: dashed; }
+  .clib-obj[data-access="soon"] .clib-obj-body > :not(.clib-obj-tab) { opacity: .6; }
+
+  /* Book: a spine, as thick as the book (--clib-thick 1–3). */
+  .clib-obj[data-shape="book"] { --clib-w: 10; --clib-h: 16; }
+  .clib-obj[data-shape="book"] .clib-obj-body {
+    inline-size: calc(var(--u) * (3 + var(--clib-thick, 1)) * var(--clib-k));
+    align-items: center; justify-content: space-between;
+    padding-inline: 0;
+    border-radius: var(--r-q);
+    background: linear-gradient(90deg, var(--clib-tint-2), var(--clib-tint) 22%, var(--clib-tint) 78%, var(--clib-tint-2));
+  }
+  .clib-spine-title, .clib-spine-by { writing-mode: vertical-rl; transform: rotate(180deg); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .clib-spine-title { font-family: var(--font-heading); font-size: var(--fs-control); max-block-size: calc(var(--u) * 11 * var(--clib-k)); }
+  .clib-spine-by { font-size: var(--fs-control-xs); color: var(--text-secondary); max-block-size: calc(var(--u) * 4 * var(--clib-k)); }
+  .clib-obj[data-shape="book"] .clib-obj-tab { display: none; }
+
+  /* Album: a square sleeve, its record showing at the side. */
+  .clib-obj[data-shape="album"] { --clib-w: 16; --clib-h: 13; }
+  .clib-obj[data-shape="album"] .clib-obj-body {
+    z-index: 1;
+    inline-size: calc(var(--u) * 13 * var(--clib-k));
+    justify-content: flex-end;
+    background: linear-gradient(150deg, var(--clib-tint-2), var(--clib-tint));
+    border-radius: var(--r-q);
+  }
+  .clib-disc {
+    position: absolute; z-index: 0;
+    inset-block-start: calc(var(--sp-h) * var(--clib-k)); inset-inline-start: calc(var(--u) * 3 * var(--clib-k));
+    inline-size: calc(var(--u) * 12 * var(--clib-k)); block-size: calc(var(--u) * 12 * var(--clib-k));
+    border-radius: 50%;
+    background: radial-gradient(circle, var(--clib-ink) 0 16%, var(--bg-sunken) 17% 19%, color-mix(in oklab, var(--text) 78%, var(--bg)) 20%);
+    transition: inset-inline-start var(--dur-in) var(--ease-out);
+  }
+  .clib-obj[data-shape="album"] .clib-obj-tab { inset-inline-end: auto; inset-inline-start: var(--sp-h); }
+  .clib-item:hover .clib-disc { inset-inline-start: calc(var(--u) * 4 * var(--clib-k)); }
+
+  /* Audio: a waveform, the same every visit (seeded by the slug). */
+  .clib-obj[data-shape="audio"] { --clib-w: 20; --clib-h: 12; }
+  .clib-wave { display: flex; align-items: center; gap: var(--sp-q); block-size: calc(var(--u) * 5 * var(--clib-k)); margin-block-start: auto; }
+  .clib-wave i { flex: 1; block-size: calc(var(--h) * 100%); border-radius: var(--r-q); background: color-mix(in oklab, var(--text) 55%, transparent); }
+
+  /* Video: a frame, a play mark. */
+  .clib-obj[data-shape="video"] { --clib-w: 21; --clib-h: 12; }
+  .clib-obj[data-shape="video"] .clib-obj-body {
+    justify-content: flex-end;
+    background: radial-gradient(120% 90% at 30% 20%, var(--clib-tint-2), var(--bg-raised));
+  }
+  .clib-play {
+    position: absolute; inset-block-start: 50%; inset-inline-start: 50%;
+    inline-size: var(--sp-4); block-size: var(--sp-4);
+    translate: -50% -50%;
+    border-radius: 50%;
+    border: var(--line) solid color-mix(in oklab, var(--text) 35%, transparent);
+    background: color-mix(in oklab, var(--bg) 60%, transparent);
+  }
+  .clib-play::after {
+    content: ""; position: absolute; inset-block-start: 50%; inset-inline-start: 54%;
+    inline-size: var(--sp-1); block-size: var(--sp-1);
+    translate: -50% -50%;
+    background: var(--text);
+    clip-path: polygon(0 0, 100% 50%, 0 100%);
+  }
+  .clib-obj[data-shape="video"] .clib-obj-meta { align-self: flex-end; }
+
+  /* Course or program: its sessions as ticks. */
+  .clib-obj[data-shape="course"] { --clib-w: 17; --clib-h: 15; }
+  .clib-obj[data-shape="course"] .clib-obj-body { background: linear-gradient(var(--clib-tint-2), var(--bg-raised)); }
+  .clib-ticks { display: flex; gap: var(--sp-q); margin-block-start: auto; }
+  .clib-ticks i { flex: 1; block-size: var(--sp-h); border-radius: var(--r-q); background: color-mix(in oklab, var(--clib-ink) 45%, transparent); }
+
+  /* Practice: an arch with a breath in it. */
+  .clib-obj[data-shape="practice"] { --clib-w: 13; --clib-h: 16; }
+  .clib-obj[data-shape="practice"] .clib-obj-body {
+    align-items: center; justify-content: center;
+    border-start-start-radius: calc(var(--u) * 6.5 * var(--clib-k));
+    border-start-end-radius: calc(var(--u) * 6.5 * var(--clib-k));
+    background: var(--bg-raised);
+  }
+  .clib-breath { position: relative; inline-size: calc(var(--u) * 8 * var(--clib-k)); block-size: calc(var(--u) * 8 * var(--clib-k)); }
+  .clib-breath i { position: absolute; inset: 0; border-radius: 50%; border: var(--line) solid var(--clib-ink); opacity: .5; animation: clib-breathe 8s ease-in-out infinite; }
+  .clib-breath i:nth-child(2) { inset: var(--sp-1); opacity: .7; animation-delay: -1s; }
+  .clib-breath i:nth-child(3) { inset: var(--sp-2); opacity: .9; animation-delay: -2s; background: color-mix(in oklab, var(--clib-ink) 35%, transparent); }
+  .clib-obj[data-shape="practice"] .clib-obj-meta { position: absolute; inset-block-end: var(--sp-1); }
+  @keyframes clib-breathe { 0%, 100% { transform: scale(.86); } 50% { transform: scale(1.04); } }
+
+  /* Article: a page with an edge of color. */
+  .clib-obj[data-shape="article"] { --clib-w: 15; --clib-h: 17; }
+  .clib-obj[data-shape="article"] .clib-obj-body { background: var(--bg-raised); padding-inline-start: var(--sp-1h); }
+  .clib-obj[data-shape="article"] .clib-obj-body::before { content: ""; position: absolute; inset-block: 0; inset-inline-start: 0; inline-size: var(--sp-q); background: var(--clib-ink); }
+
+  /* Stack: a series or a collection, with its count. */
+  .clib-obj[data-shape="stack"] { --clib-w: 16; --clib-h: 14; }
+  .clib-obj[data-shape="stack"] .clib-obj-body {
+    justify-content: flex-end;
+    overflow: visible;
+    margin-block-start: var(--sp-1);
+    box-shadow:
+      0 calc(var(--sp-h) * -1) 0 calc(var(--line) * -1) var(--clib-tint-2),
+      0 calc(var(--sp-1) * -1) 0 calc(var(--sp-q) * -1) color-mix(in oklab, var(--clib-tint-2) 60%, transparent);
+  }
+  .clib-stack-n { margin: 0; font-family: var(--font-heading); color: var(--clib-ink); }
+
+  /* Paper: anything else; a sheet with lines. */
+  .clib-obj[data-shape="paper"] .clib-obj-body { background: var(--bg-raised); border-radius: var(--r-q); }
+  .clib-lines { display: flex; flex-direction: column; gap: var(--sp-h); margin-block-start: auto; }
+  .clib-lines i { block-size: var(--line); background: var(--border-subtle); }
+  .clib-lines i:last-child { inline-size: 60%; }
+
+  /* The detail view's drawing is half again as large. */
+  .clib-obj[data-big] { --clib-k: 1.5; }
+  .clib-obj[data-big] .clib-obj-body { transition: none; }
+
+  /* CATALOG: the list view. */
+  .clib-catalog-type { flex: none; inline-size: calc(var(--u) * 8); display: none; }
+  @container (width > 40rem) { .clib-catalog-type { display: block; } }
+  .tag[data-access="yours"] { --tag-color: var(--accent); }
+  .tag[data-access="soon"] { --tag-color: var(--text-tertiary); }
+
+  /* PATHS. */
+  .grid.clib-paths { --grid-min: calc(var(--u) * 30); }
+  .list.clib-stops { --list-mark-w: var(--sp-2); }
+  .clib-stop-n { color: var(--accent); font-variant-numeric: tabular-nums; }
+  .clib-stops [data-dim] { opacity: .45; }
+
+  /* THE DIALOG, and the resource's own page. */
+  .modal.clib-modal { --modal-w: calc(var(--u) * 66); }
+  .clib-detail { container-type: inline-size; }
+  .clib-detail-grid { display: grid; gap: var(--sp-3); grid-template-columns: minmax(0, 1fr); }
+  @container (width > 44rem) {
+    .clib-detail-grid { grid-template-columns: calc(var(--u) * 24) minmax(0, 1fr); align-items: start; }
+  }
+  .clib-detail-hero {
+    display: grid; place-items: end center;
+    min-block-size: calc(var(--u) * 24);
+    padding: var(--sp-2);
+    border: var(--line) solid var(--border-subtle);
+    border-radius: var(--shape-card);
+    background: linear-gradient(transparent 40%, color-mix(in oklab, var(--accent) 10%, transparent));
+  }
+  .clib-detail-hero .clib-obj { max-inline-size: 100%; }
+  .clib-detail-main { --stack-gap: var(--sp-2); min-width: 0; }
+  .clib-detail-main > .stack { --stack-gap: var(--sp-1); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .clib-obj, .clib-disc, .clib-obj-body { transition: none; }
+    .clib-item:hover .clib-obj, .clib-item:focus-visible .clib-obj { transform: none; }
+    .clib-breath i { animation: none; }
+  }
+}
+
+/* THE EDITORS' FORMS. */
+@layer clib {
+  .clib-form { --stack-gap: var(--sp-3); container-type: inline-size; }
+  .clib-fieldset { --stack-gap: var(--sp-2); margin: 0; padding: 0; border: 0; min-width: 0; }
+  .clib-fieldset > legend { padding: 0; margin-block-end: var(--sp-1); }
+  .cols.clib-form-cols, .cols.clib-form-cols-3, .cols.clib-form-cols-4 { --cols: 1; }
+  @container (width > 36rem) {
+    .cols.clib-form-cols { --cols: 2; }
+    .cols.clib-form-cols-3 { --cols: 3; }
+    .cols.clib-form-cols-4 { --cols: 2; }
+  }
+  @container (width > 60rem) { .cols.clib-form-cols-4 { --cols: 4; } }
+  .clib-check { display: inline-flex; align-items: center; gap: var(--sp-h); cursor: pointer; }
+  .clib-check input { accent-color: var(--accent); inline-size: var(--size-icon-md); block-size: var(--size-icon-md); margin: 0; }
+  .card.clib-form-error { --surface: color-mix(in oklab, var(--alert) 12%, var(--bg-raised)); --card-border: var(--alert); }
+}
+
+@layer clib {
+  .card.clib-access[data-access="yours"], .card.clib-access[data-access="for-sale"], .card.clib-access[data-access="free"] { --card-border: color-mix(in oklab, var(--accent) 55%, transparent); }
+  .card.clib-access[data-access="soon"] { --surface: var(--bg-sunken); }
+}

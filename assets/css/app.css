@@ -1,0 +1,107 @@
+/* ==========================================================================
+   Hermitage World — app pages (shop, account, posts, admin)
+   --------------------------------------------------------------------------
+   Loaded by the app (app/app/layout.tsx) after main.css. Only what the app
+   needs beyond the site's components; everything reads the same tokens and
+   rooms. A pattern used twice here that a static page later needs moves to
+   components.css.
+   ========================================================================== */
+
+@layer pages {
+
+  /* ---------------------------------------------------------------- app nav
+     The thin row under the site header: Shop · Posts · Your library · Admin,
+     and sign in / out on the right. */
+  .app-nav { border-bottom: var(--line-thin) solid var(--line-subtle); background: var(--surface); }
+  .app-nav__inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-xs) var(--space-lg);
+    min-height: 3.6rem;
+    padding-block: var(--space-2xs);
+    font-size: var(--text-sm);
+  }
+  .app-nav__links { --cluster-gap: var(--space-md); }
+  .app-nav a:not(.btn) { padding-block: 0.4em; color: var(--text-muted); transition: color var(--dur-fast); }
+  .app-nav a:not(.btn):hover { color: var(--text-strong); }
+  .app-nav a[aria-current="page"] { color: var(--accent-text); }
+  .app-nav .btn { --btn-h: 2.4rem; }
+  .app-nav form { display: contents; }
+
+  /* ---------------------------------------------------------- page head
+     A quieter top than the site's page hero, for account and admin pages. */
+  .page-head { padding-block: var(--space-xl) var(--space-lg); border-bottom: var(--line-thin) solid var(--line-subtle); }
+  .page-head h1 { font-size: var(--text-3xl); }
+  .page-head .t-lede { margin-top: var(--space-xs); }
+  .page-head__row { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: var(--space-md); }
+
+  /* ------------------------------------------------------------- shop */
+  .product-card { gap: var(--space-xs); }
+  .product-card .cover { margin-bottom: var(--space-xs); }
+  .product-card h3 { font-size: var(--text-lg); }
+  .product-card .price { margin-top: auto; padding-top: var(--space-xs); }
+  .cover {
+    display: block;
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    border-radius: var(--radius-sm);
+    background: var(--surface-raised);
+    border: var(--line-thin) solid var(--line-subtle);
+  }
+  .cover--sm { width: 5.5rem; aspect-ratio: 1; }
+  .price { font-family: var(--font-display); font-size: var(--text-xl); color: var(--heading); }
+  .price--lg { font-size: var(--text-2xl); }
+  .buy { display: flex; flex-direction: column; gap: var(--space-sm); align-items: flex-start; }
+  .product-hero .page-hero__media { max-width: 24rem; }
+
+  /* ----------------------------------------------------------- library
+     A person's purchases and free recordings. */
+  .library-item { gap: var(--space-sm); }
+  .library-item__head { display: flex; gap: var(--space-md); align-items: flex-start; }
+  .library-item__files { border-top: var(--line-thin) solid var(--line-subtle); }
+  .audio { width: 100%; margin-top: var(--space-xs); color-scheme: dark; }
+  [data-room="plaster"] .audio, [data-room="stone"] .audio { color-scheme: light; }
+
+  /* ------------------------------------------------------------- forms */
+  .form-grid { display: grid; gap: var(--space-md); grid-template-columns: repeat(auto-fit, minmax(min(16rem, 100%), 1fr)); align-items: start; }
+  .form-grid .field--wide { grid-column: 1 / -1; }
+  .form-actions { display: flex; flex-wrap: wrap; gap: var(--space-xs); align-items: center; padding-top: var(--space-sm); }
+  .textarea--tall { min-height: 20rem; font-family: ui-monospace, 'Cascadia Mono', Menlo, Consolas, monospace; font-size: var(--text-xs); }
+  .field__help { font-size: var(--text-xs); color: var(--text-subtle); }
+  .input[readonly] { color: var(--text-muted); }
+
+  /* ------------------------------------------------------------- admin */
+  .admin-nav { --cluster-gap: var(--space-md); padding-block: var(--space-sm); border-bottom: var(--line-thin) solid var(--line-subtle); font-size: var(--text-sm); }
+  .admin-nav a { color: var(--text-muted); }
+  .admin-nav a:hover { color: var(--text-strong); }
+  .admin-nav a[aria-current="page"] { color: var(--accent-text); }
+  .board__row--compact { padding-block: var(--space-sm); }
+  .board__row .cover--sm { grid-row: span 2; }
+  .tag--draft { border-style: dashed; color: var(--text-subtle); }
+  .tag--active { color: var(--accent-text); border-color: var(--line); }
+  .tag--archived { opacity: 0.6; }
+  .tag--paid { color: var(--accent-text); border-color: var(--line); }
+  .tag--failed, .tag--canceled { color: var(--glass-madder); border-color: color-mix(in srgb, var(--glass-madder) 50%, transparent); }
+  .stat-row { display: grid; gap: var(--space-lg); grid-template-columns: repeat(auto-fit, minmax(min(11rem, 100%), 1fr)); }
+  .uploader { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-xs); }
+  .uploader input[type="file"] { font-size: var(--text-xs); color: var(--text-muted); max-width: 100%; }
+  .uploader__status { font-size: var(--text-xs); color: var(--text-subtle); }
+  .danger { color: var(--glass-madder); }
+  .btn--danger { border-color: color-mix(in srgb, var(--glass-madder) 60%, transparent); color: var(--text); }
+  .btn--danger:hover { border-color: var(--glass-madder); background: color-mix(in srgb, var(--glass-madder) 12%, transparent); }
+
+  /* ------------------------------------------------------------- posts */
+  .post-list .board__row { grid-template-columns: minmax(7rem, 11rem) minmax(0, 1fr) auto; }
+  .post-body { margin-top: var(--space-xl); }
+  .post-body img { border-radius: var(--radius-sm); }
+
+  /* ------------------------------------------------------------ sign in */
+  .sign-in { max-width: calc(30rem + 2 * var(--gutter)); margin-inline: auto; }
+  .sign-in .card { gap: var(--space-md); }
+  .sign-in details { border-top: var(--line-thin) solid var(--line-subtle); padding-top: var(--space-sm); }
+  .sign-in summary { cursor: pointer; color: var(--text-muted); font-size: var(--text-sm); }
+  .sign-in summary:hover { color: var(--text-strong); }
+}

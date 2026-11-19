@@ -1,0 +1,22 @@
+# dependencies and build output
+node_modules/
+.next/
+out/
+*.tsbuildinfo
+next-env.d.ts
+
+# public/ is generated: scripts/sync-site.mjs copies the static site in
+public/
+
+# secrets
+.env
+.env*.local
+
+# supabase local state
+supabase/.temp/
+supabase/.branches/
+
+# os
+.DS_Store
+Thumbs.db
+
