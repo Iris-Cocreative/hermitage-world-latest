@@ -85,12 +85,15 @@ for (const it of items) {
     free_draft: it.freeDraft === true,
     ...(minutes && it.hours ? { minutes_about: true } : {}),
   };
+  // The old shop's photo, served by the site (assets/img/shop/); the library
+  // draws it where the shape takes a cover (an album's case).
+  const cover = it.img ? '/assets/' + it.img : null;
   rows.push(
-    `  (${q(it.id)}, ${q(type)}, ${q(it.title)}, ${q(it.sub ?? '')}, ${q(it.blurb ?? '')}, ${q(status)}, ${q(url)}, ` +
+    `  (${q(it.id)}, ${q(type)}, ${q(it.title)}, ${q(it.sub ?? '')}, ${q(it.blurb ?? '')}, ${q(status)}, ${q(url)}, ${q(cover)}, ` +
       `${product ? `(select id from public.products where slug = ${q(product)})` : 'null'}, ${n(minutes)}, ${n(it.year)}, ${sort++}, ${q(JSON.stringify(meta))}::jsonb)`,
   );
 }
-out.push(`insert into public.library_resources (slug, type, title, subtitle, blurb, status, url, product_id, minutes, year, sort, meta) values`);
+out.push(`insert into public.library_resources (slug, type, title, subtitle, blurb, status, url, cover_url, product_id, minutes, year, sort, meta) values`);
 out.push(
   rows.join(',\n') +
     `\non conflict (slug) do update set
@@ -98,6 +101,7 @@ out.push(
   blurb = case when public.library_resources.blurb = '' then excluded.blurb else public.library_resources.blurb end,
   product_id = coalesce(public.library_resources.product_id, excluded.product_id),
   url = coalesce(public.library_resources.url, excluded.url),
+  cover_url = coalesce(public.library_resources.cover_url, excluded.cover_url),
   minutes = coalesce(public.library_resources.minutes, excluded.minutes),
   meta = excluded.meta || public.library_resources.meta;\n`,
 );

@@ -90,11 +90,15 @@
 <!-- ============ FIVE LIGHTS ============ -->
 <section class="section cc-band hw-backdrop" id="lights" data-product="hermitage" data-theme="dark" aria-labelledby="lights-title">
   <div class="hw-room-photo" style="--photo-pos: 72% center; --photo-opacity: .5" aria-hidden="true"><img src="assets/img/photo/light-shaft-room.jpg" alt="" loading="lazy"></div>
-  <div class="section-head stack" data-reveal>
+  <div class="section-head hw-head-row" data-reveal>
     <h2 class="t-h2 hw-lights-title" id="lights-title" data-edit="text">Five lights hold this place up</h2>
+    <div class="cluster hw-rail-arrows" data-rail-arrows="lights-rail">
+      <button class="button icon-button" type="button" data-dir="-1" aria-label="Previous lights"><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#arrow-left"/></svg></button>
+      <button class="button icon-button" type="button" data-dir="1" aria-label="Next lights"><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#arrow-right"/></svg></button>
+    </div>
   </div>
   <div class="section-body">
-    <div class="rail hw-values" tabindex="0" role="group" aria-label="Five lights">
+    <div class="rail hw-values" id="lights-rail" tabindex="0" role="group" aria-label="Five lights">
       <article class="hw-value" data-reveal>
         <span class="hw-glyph"><span class="hw-art hw-art-inner-divinity"></span></span>
         <h3 class="t-h4" data-edit="text">Inner<br>Divinity</h3>

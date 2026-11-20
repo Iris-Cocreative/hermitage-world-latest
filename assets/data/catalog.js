@@ -217,6 +217,22 @@
       blurb: 'Eight Thursday evenings, March 19 to May 21, in person at the Hermitage, with the book’s companion guide for group reflection. Facilitated by Peggy Alderman and Samuel.' }
   ];
 
+  /* Covers: the shop's own product photos (hermitageindy.org, read
+     2026-11-20), saved in assets/img/shop/. A track takes its volume's
+     painting; an album, its CD case; a book, its cover. */
+  var COVERS = {
+    'opus-1': 'opus-1.jpg', 'opus-2': 'opus-2.jpg', 'opus-3': 'opus-3.jpg', 'opus-4': 'opus-4.jpg',
+    'opus-5': 'opus-5.jpg', 'opus-6': 'opus-6.jpg', 'opus-7': 'opus-7.jpg', 'opus-8': 'opus-8.jpg',
+    'opus-9': 'opus-9.jpg', 'opus-10': 'opus-10.jpg', 'opus-11': 'opus-11.jpg', 'vol-22': 'vol-22.png',
+    'sfl-album': 'sfl-album.jpg', 'sfl-book': 'book-full-living.jpg', 'sft-book': 'book-full-thinking.jpg',
+    'sfr-book': 'book-full-relating.png', 'trilogy': 'book-trilogy.jpg', 'rohr-book': 'universal-christ.jpg'
+  };
+  ITEMS.forEach(function (r) {
+    var f = COVERS[r.id];
+    if (!f && r.kind === 'track' && r.vol) f = r.vol <= 20 ? 'vol-' + r.vol + '.jpg' : r.vol === 21 ? 'opus-11.jpg' : r.vol === 22 ? 'vol-22.png' : null;
+    if (f) r.img = 'img/shop/' + f;
+  });
+
   // Ordered paths through the library. Notes are drawn from the catalog's
   // own descriptions; who lays each path is for Samuel to confirm.
   var PATHS = [

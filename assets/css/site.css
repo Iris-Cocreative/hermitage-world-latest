@@ -324,7 +324,17 @@
      The five lights: a .rail (it scrolls and snaps, no script), each value a
      glyph, a name and a line. Where there is room, every other glyph sits
      under its words, so the row rises and falls. */
-  .hw-values { --rail-item: calc(var(--u) * 24); --rail-gap: var(--sp-4); }
+  /* --hw-n lights show at once, whole, with none peeking: three wide, two
+     on a tablet, one on a phone. Arrows in the head page them. */
+  .hw-values {
+    --hw-n: 3;
+    --rail-gap: var(--sp-6);
+    --rail-item: calc((100% - (var(--hw-n) - 1) * var(--rail-gap)) / var(--hw-n));
+  }
+  @media (max-width: 62.5rem) { .hw-values { --hw-n: 2; --rail-gap: var(--sp-4); } }
+  @media (max-width: 43.75rem) { .hw-values { --hw-n: 1; } }
+  .hw-head-row { display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: space-between; gap: var(--sp-2); }
+  .hw-rail-arrows[hidden] { display: none; }
   .hw-value { display: flex; flex-direction: column; gap: var(--sp-1); }
   .hw-value > .hw-glyph { margin-block-end: var(--sp-1); }
   @container (width >= 40rem) {

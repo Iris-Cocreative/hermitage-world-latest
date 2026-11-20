@@ -36,6 +36,7 @@
       { label: 'Meditation', href: 'meditation/' },
       { label: 'Gatherings', href: 'gatherings/' },
       { label: 'Programs', href: 'programs/' },
+      { label: 'Library', href: 'library/' },
       { label: 'Friar Justin', href: 'friar-justin/' },
       { label: 'Community', href: 'community/' }
     ],
@@ -329,6 +330,29 @@
       }, { rootMargin: '0px 0px -8% 0px', threshold: 0.06 });
       items.forEach(function (el) { io.observe(el); });
     }
+
+    /* Rail arrows: [data-rail-arrows="id"] holds two buttons (data-dir -1
+       and 1) that page the .rail with that id a screenful at a time; it
+       snaps to whole items. The rail still scrolls by hand; each end
+       disables its arrow, and the pair hides when the rail fits. */
+    document.querySelectorAll('[data-rail-arrows]').forEach(function (box) {
+      var rail = document.getElementById(box.getAttribute('data-rail-arrows'));
+      if (!rail) return;
+      var back = box.querySelector('[data-dir="-1"]'), on = box.querySelector('[data-dir="1"]');
+      function state() {
+        var max = rail.scrollWidth - rail.clientWidth;
+        box.hidden = max <= 1;
+        back.disabled = rail.scrollLeft <= 4;
+        on.disabled = rail.scrollLeft >= max - 4;
+      }
+      box.addEventListener('click', function (e) {
+        var b = e.target.closest('[data-dir]');
+        if (b) rail.scrollBy({ left: +b.getAttribute('data-dir') * rail.clientWidth * 0.9, behavior: reduced ? 'auto' : 'smooth' });
+      });
+      rail.addEventListener('scroll', state, { passive: true });
+      if (window.ResizeObserver) new ResizeObserver(state).observe(rail);
+      state();
+    });
 
     /* Demo forms: nothing is sent anywhere yet, and the button says so. */
     document.querySelectorAll('[data-demo-form]').forEach(function (form) {
