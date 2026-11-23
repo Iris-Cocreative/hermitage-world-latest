@@ -286,10 +286,10 @@
     el.innerHTML = items.map(function (x) {
       var g = x.g, o = x.o;
       var date = o
-        ? '<div class="hw-date"><span class="t-label hw-gold">' + esc(fmt(o.start, { weekday: 'short' })) + '</span><span class="t-h4">' + esc(fmt(o.start, { day: 'numeric' })) + '</span></div>'
-        : '<div class="hw-date"><span class="t-label hw-gold">' + esc(labelFor(g, o)) + '</span></div>';
+        ? '<div class="hw-date"><span class="t-eyebrow hw-gold">' + esc(fmt(o.start, { weekday: 'short' })) + '</span><span class="t-h3">' + esc(fmt(o.start, { day: 'numeric' })) + '</span></div>'
+        : '<div class="hw-date"><span class="t-eyebrow hw-gold">' + esc(labelFor(g, o)) + '</span></div>';
       return '<article class="card hw-event' + (o && o.live ? ' hw-event-live' : '') + '">' + date +
-        '<div class="stack"><h3 class="t-h6"><a class="hw-card-link" href="' + eventHref(g) + '">' + esc(g.title) + '</a></h3>' +
+        '<div class="stack hw-event-body"><h3 class="t-h4 hw-event-title"><a class="hw-card-link" href="' + eventHref(g) + '">' + esc(g.title) + '</a></h3>' +
         '<p class="t-sm u-text-secondary">' + esc(whenText(g, o)) + draft(g) + '</p>' +
         '<div class="cluster hw-event-meta">' + (o && o.live ? live('Happening now') : '') + modeTag(g) + tag(g.host) + '</div></div>' +
       '</article>';
@@ -315,14 +315,14 @@
       days[days.length - 1].rows.push(x);
     });
     el.innerHTML = days.map(function (d) {
-      return '<div class="stack hw-cal-day"><h3 class="t-h6 hw-gold">' + esc(d.day) + '</h3><ul class="list">' +
+      return '<div class="stack hw-cal-day"><h3 class="t-h5 hw-gold">' + esc(d.day) + '</h3><div class="hw-board"><ul class="list">' +
         d.rows.map(function (x) {
           return '<li class="list-item hw-board-row">' +
             rowLabel(fmtTime(x.o.start), fmtZone(x.o.start)) +
-            '<div class="list-body"><p class="list-title t-h6">' + esc(x.g.title) + '</p><div class="cluster">' +
+            '<div class="list-body"><p class="list-title t-h5">' + esc(x.g.title) + '</p><div class="cluster">' +
               (x.o.live ? live('Happening now') : '') + modeTag(x.g) + draft(x.g) + '</div></div>' +
-            '<span class="list-end"><a class="button cc-sm" href="' + eventHref(x.g) + '"><span class="button-label">Details</span></a></span></li>';
-        }).join('') + '</ul></div>';
+            '<span class="list-end hw-board-end"><a class="button cc-sm" href="' + eventHref(x.g) + '"><span class="button-label">Details</span></a></span></li>';
+        }).join('') + '</ul></div></div>';
     }).join('') || '<p class="t-body u-text-secondary">Nothing scheduled in this view.</p>';
   }
 
@@ -339,21 +339,21 @@
         (byDay[k] = byDay[k] || []).push({ g: g, o: o });
       });
     });
-    var head = DAYS.map(function (d) { return '<span class="t-label hw-gold hw-month-dow" aria-hidden="true">' + d.slice(0, 3) + '</span>'; }).join('');
+    var head = DAYS.map(function (d) { return '<span class="t-eyebrow hw-gold hw-month-dow" aria-hidden="true">' + d.slice(0, 3) + '</span>'; }).join('');
     var cells = '';
     for (var i = 0; i < first.getDay(); i++) cells += '<span class="hw-month-cell hw-month-empty"></span>';
     for (var d = 1; d <= last.getDate(); d++) {
       var isToday = offset === 0 && d === now.getDate();
       var items = (byDay[d] || []).sort(function (a, b) { return a.o.start - b.o.start; });
-      cells += '<div class="hw-month-cell' + (isToday ? ' hw-month-today' : '') + '"><span class="t-sm hw-month-num">' + d + '</span>' +
+      cells += '<div class="hw-month-cell' + (isToday ? ' hw-month-today' : '') + '"><span class="hw-month-num">' + d + '</span>' +
         items.map(function (x) {
-          return '<a class="t-xs hw-month-item" href="' + eventHref(x.g) + '">' + esc(fmtTime(x.o.start)) + ' ' + esc(x.g.title) + '</a>';
+          return '<a class="hw-month-item" href="' + eventHref(x.g) + '">' + esc(fmtTime(x.o.start)) + ' ' + esc(x.g.title) + '</a>';
         }).join('') + '</div>';
     }
     // the bar: previous, the month's name centered in the spare room, next
-    el.innerHTML = '<div class="cluster"><button class="button icon-button cc-ghost" type="button" data-month="-1" aria-label="Previous month">' + H.icon('arrow-left') + '</button>' +
-      '<div class="pair hw-center"><h2 class="t-h5" aria-live="polite">' + esc(fmt(first, { month: 'long', year: 'numeric' })) + '</h2></div>' +
-      '<button class="button icon-button cc-ghost" type="button" data-month="1" aria-label="Next month">' + H.icon('arrow-right') + '</button></div>' +
+    el.innerHTML = '<div class="cluster"><button class="button icon-button" type="button" data-month="-1" aria-label="Previous month">' + H.icon('arrow-left') + '</button>' +
+      '<div class="pair hw-center"><h2 class="t-h4" aria-live="polite">' + esc(fmt(first, { month: 'long', year: 'numeric' })) + '</h2></div>' +
+      '<button class="button icon-button" type="button" data-month="1" aria-label="Next month">' + H.icon('arrow-right') + '</button></div>' +
       '<div class="hw-month-grid">' + head + cells + '</div>';
     el.querySelectorAll('[data-month]').forEach(function (b) {
       b.addEventListener('click', function () {

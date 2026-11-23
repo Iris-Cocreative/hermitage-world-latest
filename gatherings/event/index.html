@@ -26,46 +26,50 @@
      marked for the Site Editor). -->
 <main class="frame context" id="main" data-gatherings="event">
 
-<section class="section cc-band hw-room hw-backdrop hw-hero" data-product="hermitage" data-theme="dark">
+<section class="section cc-band hw-room hw-backdrop hw-hero hw-hero-over" data-product="hermitage" data-theme="dark">
   <div class="hw-room-arch" aria-hidden="true"></div>
   <div class="split" style="--split-a: 5; --split-b: 4; --split-gap: var(--sp-4)">
     <div class="stack hw-hero-text" data-reveal>
       <nav aria-label="Breadcrumb"><ol class="crumbs"><li><a href="../">Gatherings</a></li><li aria-current="page" data-g="title">Contemplative Unity</li></ol></nav>
-      <div class="cluster"><span data-g="mode"></span><span data-g="live"></span></div>
+      <div class="cluster" style="--cluster-gap: var(--sp-h)"><span data-g="mode"></span><span data-g="live"></span></div>
       <h1 class="t-h1" data-g="title">Contemplative Unity</h1>
-      <p class="t-lg u-text-secondary" data-g="summary">Silent meditation, lightly guided. In Indianapolis and on Zoom.</p>
+      <p class="t-lg u-text-secondary hw-lede" data-g="summary">Silent meditation, lightly guided. In Indianapolis and on Zoom.</p>
     </div>
     <div class="hw-hero-media" data-reveal>
-      <div class="card" style="--card-pad: var(--sp-3)">
+      <div class="card hw-card-lg hw-g-panel">
         <div class="stack hw-event-panel">
-          <div class="stack"><p class="t-label hw-gold">When, your time</p><p class="t-h6" data-g="when">Sundays</p><p class="t-sm u-text-secondary" data-g="host-time"></p></div>
+          <div class="stack hw-g-fact"><p class="t-eyebrow hw-gold hw-light">When, your time</p><p class="t-h5" data-g="when">Sundays</p><p class="t-sm u-text-secondary" data-g="host-time"></p></div>
           <hr class="hw-rule">
-          <div class="stack"><p class="t-label hw-gold">Where</p><p class="t-body" data-g="place">Indiana Interchurch Center, and on Zoom</p></div>
-          <div class="stack"><p class="t-label hw-gold">Host</p><p class="t-body" data-g="host">The Hermitage</p></div>
-          <div class="stack">
-            <a class="button cc-primary" href="#rsvp" data-g="action">Join</a>
-            <a class="button" href="#" data-g="ics"><svg class="icon" aria-hidden="true"><use href="../../assets/img/icons.svg#calendar"/></svg><span class="button-label">Add to my calendar</span></a>
+          <div class="stack hw-g-fact"><p class="t-eyebrow hw-gold hw-light">Where</p><p class="t-body" data-g="place">Indiana Interchurch Center, and on Zoom</p></div>
+          <div class="stack hw-g-fact"><p class="t-eyebrow hw-gold hw-light">Host</p><p class="t-body" data-g="host">The Hermitage</p></div>
+          <div class="cluster hw-g-panel-actions" style="--cluster-gap: var(--sp-1)">
+            <a class="button cc-primary hw-g-block" href="#rsvp" data-g="action">Join</a>
+            <a class="button hw-g-block" href="#" data-g="ics"><svg class="icon" aria-hidden="true"><use href="../../assets/img/icons.svg#calendar"/></svg><span class="button-label">Add to my calendar</span></a>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <div class="split hw-hero-after hw-after-hero" style="--split-a: 6; --split-b: 5; --split-gap: var(--sp-4)">
-    <div class="stack" style="--stack-gap: var(--sp-2)" data-reveal>
-      <h2 class="t-h5" data-edit="text">What to expect</h2>
+</section>
+
+<!-- What to expect and the sign-up, flush under the hero (the old room--flush-top). -->
+<section class="section cc-band hw-room hw-flush" data-product="hermitage" data-theme="dark">
+  <div class="split" style="--split-a: 6; --split-b: 5; --split-gap: var(--sp-4)">
+    <div class="stack" style="--stack-gap: var(--sp-3)" data-reveal>
+      <h2 class="t-h4" data-edit="text">What to expect</h2>
       <div class="prose" data-g="body"><p>Details to come.</p></div>
     </div>
-    <div id="rsvp" class="card" style="--card-pad: var(--sp-3)" data-reveal>
-      <div class="stack">
-        <h2 class="t-h5" data-edit="text">Save a place</h2>
+    <div id="rsvp" class="card hw-card-lg" data-reveal>
+      <div class="stack" style="--stack-gap: var(--sp-1h)">
+        <h2 class="t-h4" data-edit="text">Save a place</h2>
         <p class="t-body" data-edit="text">We’ll send the link and a reminder before it begins.</p>
-        <form class="stack" action="#" method="post" data-demo-form data-done="You’re in. Watch your inbox.">
+        <form class="stack" style="--stack-gap: var(--sp-1h)" action="#" method="post" data-demo-form data-done="You’re in. Watch your inbox.">
           <div class="field"><label class="field-label u-sr-only" for="rv-name">Name</label>
             <input class="input" id="rv-name" type="text" name="name" placeholder="Name" autocomplete="name"></div>
           <div class="field"><label class="field-label u-sr-only" for="rv-email">Email</label>
             <input class="input" id="rv-email" type="email" name="email" placeholder="Email" autocomplete="email" required></div>
-          <button class="button cc-primary" type="submit"><span class="button-label">Send me the link</span></button>
-          <p class="t-sm u-text-tertiary">Prototype: nothing is sent yet.</p>
+          <div class="cluster"><button class="button cc-primary hw-g-block" type="submit"><span class="button-label">Send me the link</span></button></div>
+          <p class="t-xs u-text-tertiary">Prototype: nothing is sent yet.</p>
         </form>
       </div>
     </div>

@@ -23,41 +23,45 @@
 
 <main class="frame context" id="main">
 
-<section class="section cc-band hw-room hw-backdrop hw-hero" data-product="hermitage" data-theme="dark">
+<section class="section cc-band hw-room hw-backdrop hw-hero hw-hero-over" data-product="hermitage" data-theme="dark">
   <div class="hw-room-arch" aria-hidden="true"></div>
-  <div class="stack hw-hero-text" data-reveal>
+  <div class="stack hw-hero-text hw-hero-solo" data-reveal>
     <h1 class="t-h1" data-edit="text">The week keeps a rhythm</h1>
-    <p class="t-lg u-text-secondary">Join it from anywhere. Everything is free and everything is optional: come once, or come every week. Times are shown in your own time zone, <strong data-viewer-tz>your time zone</strong>.</p>
-    <div class="cluster">
+    <p class="t-lg u-text-secondary hw-lede">Join it from anywhere. Everything is free and everything is optional: come once, or come every week. Times are shown in your own time zone, <strong data-viewer-tz>your time zone</strong>.</p>
+    <div class="cluster hw-g-actions" style="--cluster-gap: var(--sp-1)">
       <a class="button" data-edit="link" href="../calendar/">The full calendar</a>
       <a class="button" data-edit="link" href="../in-person/">In person, Indianapolis</a>
     </div>
   </div>
-  <div class="stack hw-hero-after hw-after-hero">
+</section>
+
+<!-- The week's gatherings, flush under the hero (the old room--flush-top). -->
+<section class="section cc-band hw-room hw-flush" data-product="hermitage" data-theme="dark">
+  <div class="stack hw-after-hero">
     <div class="cluster" role="group" aria-label="Show" data-gatherings-filter="#gathering-cards">
-      <button class="tag" type="button" value="all" aria-pressed="true"><span class="tag-label">Everything</span></button>
-      <button class="tag" type="button" value="online" aria-pressed="false"><span class="tag-label">Online</span></button>
-      <button class="tag" type="button" value="in-person" aria-pressed="false"><span class="tag-label">In person</span></button>
-      <button class="tag" type="button" value="program" aria-pressed="false"><span class="tag-label">Programs</span></button>
+      <button class="tag hw-chip" type="button" value="all" aria-pressed="true"><span class="tag-label">Everything</span></button>
+      <button class="tag hw-chip" type="button" value="online" aria-pressed="false"><span class="tag-label">Online</span></button>
+      <button class="tag hw-chip" type="button" value="in-person" aria-pressed="false"><span class="tag-label">In person</span></button>
+      <button class="tag hw-chip" type="button" value="program" aria-pressed="false"><span class="tag-label">Programs</span></button>
     </div>
-    <div class="cols hw-cols-2" id="gathering-cards" data-gatherings="cards" aria-live="polite">
+    <div class="cols hw-g-cards" id="gathering-cards" data-gatherings="cards" aria-live="polite">
       <noscript><p class="t-body u-text-secondary">Tuesdays: Office Hours with Samuel and Wisdom Circle, online. Wednesdays: Energy Circle, in person. Sundays: Oneness Celebration, in person; Contemplative Unity and The Way Between, online and in person.</p></noscript>
     </div>
   </div>
 </section>
 
 <section class="section cc-band hw-room hw-deep" data-product="hermitage" data-theme="dark">
-  <div class="cols hw-cols-3" style="--cols-gap: var(--sp-4)">
-    <div class="stack" data-reveal>
-      <h2 class="t-h5" data-edit="text">You are never late</h2>
+  <div class="cols hw-cols-3" style="--cols-gap: var(--sp-3)">
+    <div class="stack" style="--stack-gap: var(--sp-1)" data-reveal>
+      <h2 class="t-h4" data-edit="text">You are never late</h2>
       <p class="t-body u-text-secondary" data-edit="text">A gathering shows as happening now until it is actually over, so if you arrive halfway through, the door is still open.</p>
     </div>
-    <div class="stack" data-reveal>
-      <h2 class="t-h5" data-edit="text">How to join</h2>
+    <div class="stack" style="--stack-gap: var(--sp-1)" data-reveal>
+      <h2 class="t-h4" data-edit="text">How to join</h2>
       <p class="t-body u-text-secondary">Zoom links arrive by email when you sign up for a gathering, so the room stays safe for the people in it. <span class="hw-draft-mark">sign-up flow to build</span></p>
     </div>
-    <div class="stack" data-reveal>
-      <h2 class="t-h5" data-edit="text">Hosting a circle</h2>
+    <div class="stack" style="--stack-gap: var(--sp-1)" data-reveal>
+      <h2 class="t-h4" data-edit="text">Hosting a circle</h2>
       <p class="t-body u-text-secondary" data-edit="text">Circles meet in Indianapolis, Australia, Europe and across the United States. If you would like to host one, <a href="../contact/">write to us</a>.</p>
     </div>
   </div>

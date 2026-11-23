@@ -20,8 +20,9 @@
      two cells apart, with a hairline under "when". */
   .hw-event-panel { --stack-gap: var(--sp-2); }
 
-  /* THE UPCOMING LIST (calendar/): a day's heading over its rows. */
-  .hw-cal-day { --stack-gap: var(--sp-1); }
+  /* THE UPCOMING LIST (calendar/): a day's heading in gold over its rows,
+     a board (.hw-board) whose top line underlines the heading. */
+  .hw-cal-day { --stack-gap: var(--sp-h); }
 
   /* THE MONTH (calendar/): seven columns of days under a gold line, each day
      its number and its gatherings, each a link with a gold rule at its
@@ -29,7 +30,7 @@
   .hw-month {
     display: flex; flex-direction: column; gap: var(--sp-2);
     --hw-month-line: color-mix(in oklab, var(--accent) 80%, transparent);
-    --hw-month-line-subtle: var(--border-subtle);
+    --hw-month-line-subtle: color-mix(in oklab, var(--accent) 38%, transparent);
   }
   .hw-month-grid {
     display: grid;
@@ -44,12 +45,12 @@
     border-block-end: var(--line) solid var(--hw-month-line-subtle);
   }
   .hw-month-cell {
-    display: flex; flex-direction: column; gap: var(--sp-h);
-    min-block-size: calc(var(--u) * 10);
+    display: flex; flex-direction: column; gap: var(--sp-q);
+    min-block-size: calc(var(--u) * 9.25);
     min-inline-size: 0;
   }
   .hw-month-today { background: color-mix(in oklab, var(--accent) 10%, transparent); }
-  .hw-month-num { font-family: var(--font-heading); color: var(--text-secondary); }
+  .hw-month-num { font-family: var(--font-heading); font-size: var(--fs-control-lg); color: var(--text-secondary); }
   .hw-month-today .hw-month-num { color: color-mix(in oklab, var(--accent) 60%, var(--text)); }
   .hw-month-item {
     display: block;
@@ -57,13 +58,65 @@
     border-inline-start: calc(var(--line) * 2) solid var(--accent);
     border-start-end-radius: var(--r-q);
     border-end-end-radius: var(--r-q);
-    background: color-mix(in oklab, var(--text) 5%, transparent);
+    background: color-mix(in oklab, var(--bg) 45%, transparent);
     color: var(--text);
+    font-size: var(--fs-control);
+    line-height: var(--lh-label);
     text-decoration: none;
     overflow-wrap: anywhere;
   }
   @media (hover: hover) {
     .hw-month-item:hover { color: color-mix(in oklab, var(--accent) 60%, var(--text)); }
   }
-  @container (width < 48rem) { .hw-month { display: none; } }
+  @container (width < 48rem) { .hw-month, .hw-month-band { display: none; } }
+
+  /* ------------------------------------------------ the adopt-trellis look
+     Matched to the adopt-trellis build (2026-11-23). */
+  /* The hero's buttons a cell further under its words. */
+  .hw-g-actions { margin-block-start: var(--sp-1); }
+
+  /* THE WEEK'S CARDS (gatherings/): three across while each has 32 cells,
+     two, then one; three cells apart. */
+  .cols.hw-g-cards { --cols: 1; --cols-gap: var(--sp-3); }
+  @container (width >= 51rem) { .cols.hw-g-cards { --cols: 2; } }
+  @container (width >= 77rem) { .cols.hw-g-cards { --cols: 3; } }
+
+  /* A GATHERING'S CARD (the old .event): glass in a quiet gold edge that
+     lights on hover, two cells in; the date ring a little smaller. Its tags
+     are quiet outlines. */
+  .card.hw-event {
+    --card-pad: var(--sp-2);
+    --card-radius: var(--r-1h);
+    --card-border: color-mix(in oklab, var(--accent) 38%, transparent);
+    grid-template-columns: calc(var(--u) * 7.25) minmax(0, 1fr);
+  }
+  @media (hover: hover) { .card.hw-event:hover { --card-border: color-mix(in oklab, var(--accent) 80%, transparent); } }
+  .card.hw-event.hw-event-live { --card-border: var(--accent); }
+  .hw-event .hw-date { inline-size: calc(var(--u) * 7.25); block-size: calc(var(--u) * 7.25); }
+  .hw-event-body { --stack-gap: var(--sp-1); }
+  .hw-event-title { margin-block-end: var(--sp-1); }
+  :is(.hw-event, .hw-g-upcoming, .hw-g-panel) .tag {
+    --tag-h: var(--sp-2);
+    --tag-color: var(--text-secondary);
+    --tag-ink: var(--text-secondary);
+    --tag-fill: 0%;
+    --tag-edge: 38%;
+  }
+
+  /* THE EVENT PANEL (gatherings/event/), the old card-lg event-panel: its
+     facts three cells apart, each a cell under its label; the actions span
+     the card. */
+  .hw-g-panel .hw-event-panel { --stack-gap: var(--sp-2); }
+  .hw-g-fact { --stack-gap: var(--sp-1); }
+  .hw-g-panel-actions { margin-block-start: var(--sp-1); }
+  /* A button the width of its row (the old cc-block), in a .cluster. */
+  .hw-g-block { flex: 1 1 100%; }
+
+  /* THE NEW HOME (in-person/): a board whose label column is the old
+     timetable's eight rems, kept beside the words until the column is
+     narrow, where the label takes its own line. */
+  @container (width >= 30rem) {
+    .hw-inp-board .hw-board-row { flex-wrap: nowrap; --list-gap: var(--sp-5); }
+    .hw-inp-board .hw-row-label { inline-size: calc(var(--u) * 10.75); }
+  }
 }

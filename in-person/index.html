@@ -23,44 +23,48 @@
 
 <main class="frame context" id="main">
 
-<section class="section cc-band hw-room hw-backdrop hw-hero" data-product="hermitage" data-theme="dark">
+<section class="section cc-band hw-room hw-backdrop hw-hero hw-hero-over" data-product="hermitage" data-theme="dark">
   <div class="hw-room-arch" aria-hidden="true"></div>
   <div class="split" style="--split-a: 5; --split-b: 4; --split-gap: var(--sp-4)">
     <div class="stack hw-hero-text" data-reveal>
       <nav aria-label="Breadcrumb"><ol class="crumbs"><li><a href="../gatherings/">Gatherings</a></li><li aria-current="page">In Person</li></ol></nav>
       <h1 class="t-h1" data-edit="text">In person, in Indianapolis</h1>
-      <p class="t-lg u-text-secondary" data-edit="text">For forty years a house on Fall Creek held this community. Since September 2026 the Hermitage meets at the Indiana Interchurch Center: real people, in a real room, keeping the practice going for everyone online.</p>
+      <p class="t-lg u-text-secondary hw-lede" data-edit="text">For forty years a house on Fall Creek held this community. Since September 2026 the Hermitage meets at the Indiana Interchurch Center: real people, in a real room, keeping the practice going for everyone online.</p>
     </div>
     <div class="hw-hero-media" data-reveal>
       <div class="hw-arch hw-arch-outline" style="--arch-ratio: 1.282"><div class="hw-pending"><strong>Photographs from the September gatherings</strong>from Samuel and Garry</div></div>
     </div>
   </div>
-  <div class="split hw-hero-after hw-after-hero" style="--split-a: 1; --split-b: 1; --split-gap: var(--sp-4)">
-    <div class="stack" style="--stack-gap: var(--sp-2)" data-reveal>
+</section>
+
+<!-- The new home and what is local, flush under the hero (the old room--flush-top). -->
+<section class="section cc-band hw-room hw-flush" data-product="hermitage" data-theme="dark">
+  <div class="split" style="--split-a: 1; --split-b: 1; --split-gap: var(--sp-5)">
+    <div class="stack" style="--stack-gap: var(--sp-3)" data-reveal>
       <h2 class="t-h2" data-edit="text">The new home</h2>
-      <ul class="list">
-        <li class="list-item hw-board-row"><p class="t-label hw-gold hw-row-label" data-edit="text">Where</p><div class="list-body"><p class="list-title t-h6" data-edit="text">Indiana Interchurch Center</p><p class="list-sub t-sm">1100 West 42nd Street, Suite 350, Indianapolis, IN 46208 <span class="hw-draft-mark">meeting room to confirm</span></p></div></li>
-        <li class="list-item hw-board-row"><p class="t-label hw-gold hw-row-label" data-edit="text">Wednesdays</p><div class="list-body"><p class="list-title t-h6" data-edit="text">Energy Circle</p><p class="list-sub t-sm" data-edit="text">Success stories and a guided meditation, 7 pm. <a href="../gatherings/event/?id=energy-circle">Details</a></p></div></li>
-        <li class="list-item hw-board-row"><p class="t-label hw-gold hw-row-label" data-edit="text">Sundays</p><div class="list-body"><p class="list-title t-h6" data-edit="text">Oneness Celebration, Contemplative Unity, The Way Between</p><p class="list-sub t-sm" data-edit="text">From 10 am, with a potluck lunch between. The two afternoon gatherings are on Zoom too. <a href="../gatherings/">The week</a></p></div></li>
-        <li class="list-item hw-board-row"><p class="t-label hw-gold hw-row-label" data-edit="text">Getting here</p><div class="list-body"><p class="list-sub t-sm">Parking, accessibility and directions will be listed here. <span class="hw-draft-mark">details to come</span></p></div></li>
-      </ul>
+      <div class="hw-board hw-inp-board"><ul class="list">
+        <li class="list-item hw-board-row"><p class="hw-row-day hw-gold hw-row-label" data-edit="text">Where</p><div class="list-body"><p class="list-title t-h5" data-edit="text">Indiana Interchurch Center</p><p class="list-sub t-sm hw-light">1100 West 42nd Street, Suite 350, Indianapolis, IN 46208 <span class="hw-draft-mark">meeting room to confirm</span></p></div></li>
+        <li class="list-item hw-board-row"><p class="hw-row-day hw-gold hw-row-label" data-edit="text">Wednesdays</p><div class="list-body"><p class="list-title t-h5" data-edit="text">Energy Circle</p><p class="list-sub t-sm hw-light" data-edit="text">Success stories and a guided meditation, 7 pm. <a href="../gatherings/event/?id=energy-circle">Details</a></p></div></li>
+        <li class="list-item hw-board-row"><p class="hw-row-day hw-gold hw-row-label" data-edit="text">Sundays</p><div class="list-body"><p class="list-title t-h5" data-edit="text">Oneness Celebration, Contemplative Unity, The Way Between</p><p class="list-sub t-sm hw-light" data-edit="text">From 10 am, with a potluck lunch between. The two afternoon gatherings are on Zoom too. <a href="../gatherings/">The week</a></p></div></li>
+        <li class="list-item hw-board-row"><p class="hw-row-day hw-gold hw-row-label" data-edit="text">Getting here</p><div class="list-body"><p class="list-sub t-sm hw-light">Parking, accessibility and directions will be listed here. <span class="hw-draft-mark">details to come</span></p></div></li>
+      </ul></div>
     </div>
-    <div class="stack" style="--stack-gap: var(--sp-2)" data-reveal>
+    <div class="stack" style="--stack-gap: var(--sp-3)" data-reveal>
       <h2 class="t-h2" data-edit="text">Local gatherings &amp; retreats</h2>
       <p class="t-body u-text-secondary" data-edit="text">Day retreats, weekend retreats, visiting teachers, and the annual day of peace. When dates are set they appear here and on the calendar.</p>
-      <div class="stack" data-gatherings="cards" data-filter="in-person"></div>
-      <div class="cluster"><a class="button" data-edit="link" href="../calendar/">The full calendar</a></div>
+      <div class="stack" style="--stack-gap: var(--sp-1)" data-gatherings="cards" data-filter="in-person"></div>
+      <div class="cluster" style="--cluster-gap: var(--sp-1)"><a class="button" data-edit="link" href="../calendar/">The full calendar</a></div>
     </div>
   </div>
 </section>
 
-<section class="section cc-band hw-room">
-  <div class="stack hw-center" style="--stack-gap: var(--sp-4)">
+<section class="section cc-band hw-room" data-product="stone" data-theme="light">
+  <div class="stack hw-center" style="--stack-gap: var(--sp-3)">
     <blockquote class="hw-quote" data-reveal>
       <p class="t-h4" data-edit="text">“The Hermitage is a quiet space within each human being.”</p>
-      <cite class="t-body">Friar Justin</cite>
+      <cite class="t-lg">Friar Justin</cite>
     </blockquote>
-    <p class="t-lg u-text-secondary hw-measure hw-center" data-reveal data-edit="text">The building was a symbol of that, for people who never set foot in it. The room in Indianapolis keeps a place to stand; the quiet space goes with everyone.</p>
+    <p class="t-lg u-text-secondary hw-lede hw-center" data-reveal data-edit="text">The building was a symbol of that, for people who never set foot in it. The room in Indianapolis keeps a place to stand; the quiet space goes with everyone.</p>
   </div>
 </section>
 

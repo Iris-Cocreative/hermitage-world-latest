@@ -23,26 +23,30 @@
 
 <main class="frame context" id="main">
 
-<section class="section cc-band hw-room hw-backdrop hw-hero" data-product="hermitage" data-theme="dark">
+<section class="section cc-band hw-room hw-backdrop hw-hero hw-hero-over" data-product="hermitage" data-theme="dark">
   <div class="hw-room-arch" aria-hidden="true"></div>
   <div class="stack hw-hero-text" data-reveal>
     <nav aria-label="Breadcrumb"><ol class="crumbs"><li><a href="../gatherings/">Gatherings</a></li><li aria-current="page">Calendar</li></ol></nav>
     <h1 class="t-h1" data-edit="text">Calendar</h1>
-    <p class="t-lg u-text-secondary">Gatherings, programs and retreats in your own time zone (<span data-viewer-tz>your time zone</span>). <span class="hw-draft-mark">times are placeholders until the schedule is confirmed</span></p>
+    <p class="t-lg u-text-secondary hw-lede">Gatherings, programs and retreats in your own time zone (<span data-viewer-tz>your time zone</span>). <span class="hw-draft-mark">times are placeholders until the schedule is confirmed</span></p>
   </div>
-  <div class="hw-hero-after hw-after-hero hw-month" data-gatherings="month"></div>
+</section>
+
+<!-- The month, flush under the hero (the old room--flush-top); not on a phone. -->
+<section class="section cc-band hw-room hw-flush hw-month-band" data-product="hermitage" data-theme="dark">
+  <div class="hw-month" data-gatherings="month"></div>
 </section>
 
 <section class="section cc-band hw-room hw-deep" data-product="hermitage" data-theme="dark">
-  <div class="section-head stack" style="--stack-gap: var(--sp-2)">
+  <div class="hw-room-head">
     <h2 class="t-h2" data-reveal data-edit="text">The next four weeks</h2>
-    <div class="cluster" role="group" aria-label="Show" data-gatherings-filter="#upcoming">
-      <button class="tag" type="button" value="all" aria-pressed="true"><span class="tag-label">Everything</span></button>
-      <button class="tag" type="button" value="online" aria-pressed="false"><span class="tag-label">Online</span></button>
-      <button class="tag" type="button" value="in-person" aria-pressed="false"><span class="tag-label">In person</span></button>
+    <div class="cluster" role="group" aria-label="Show" data-gatherings-filter="#upcoming" style="--cluster-gap: var(--sp-h)">
+      <button class="tag hw-chip" type="button" value="all" aria-pressed="true"><span class="tag-label">Everything</span></button>
+      <button class="tag hw-chip" type="button" value="online" aria-pressed="false"><span class="tag-label">Online</span></button>
+      <button class="tag hw-chip" type="button" value="in-person" aria-pressed="false"><span class="tag-label">In person</span></button>
     </div>
   </div>
-  <div class="section-body stack" style="--stack-gap: var(--sp-3)" id="upcoming" data-gatherings="upcoming" data-weeks="4" aria-live="polite"></div>
+  <div class="section-body stack hw-g-upcoming" style="--stack-gap: var(--sp-3)" id="upcoming" data-gatherings="upcoming" data-weeks="4" aria-live="polite"></div>
 </section>
 
 </main>
