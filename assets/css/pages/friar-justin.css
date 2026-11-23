@@ -46,14 +46,18 @@
   /* THE PLAYER's edge in the full gold line (the old .player). */
   .hw-fj-player { box-shadow: inset 0 0 0 var(--line) var(--hw-line); }
 
-  /* THE SOUL GUIDE'S QUESTION: the field takes the row, the button its own
-     width beside it. */
+  /* THE SOUL GUIDE'S PREVIEW: a narrow column on the middle of the page
+     (the old .hw-narrow), the field taking the row and the button its own
+     width beside it, half a cell apart. Its "phase two" tag small and in
+     the quiet ink. */
+  .hw-fj-narrow { inline-size: 100%; max-inline-size: calc(var(--u) * 72); margin-inline: auto; }
   .hw-soul-ask {
     display: grid;
     grid-template-columns: minmax(0, 1fr) auto;
     align-items: center;
-    gap: var(--sp-1);
+    gap: var(--sp-h);
   }
+  .tag.hw-fj-tag { --tag-h: var(--size-control-sm); --tag-fs: var(--tag-fs-md); --tag-color: var(--text-secondary); --tag-ink: var(--text-secondary); --tag-edge: 38%; }
 
 
   /* A BOOK: its cover, a cell over the title, a cell and a half between
