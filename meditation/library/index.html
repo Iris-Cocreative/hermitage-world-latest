@@ -23,55 +23,55 @@
 
 <main class="frame context" id="main">
 
-<!-- The hero and the library under it: one dark band (the old flush-top section). -->
-<section class="section cc-band hw-room hw-backdrop hw-hero" data-product="hermitage" data-theme="dark">
+<section class="section cc-band hw-room hw-backdrop hw-hero hw-medlib-hero" data-product="hermitage" data-theme="dark">
   <div class="hw-room-arch" aria-hidden="true"></div>
-  <div class="stack" style="--stack-gap: var(--sp-6)">
-    <div class="stack" style="--stack-gap: var(--sp-2)" data-reveal>
-      <nav aria-label="Breadcrumb"><ol class="crumbs"><li><a href="../">Meditation</a></li><li aria-current="page">Library</li></ol></nav>
-      <h1 class="t-h1" data-edit="text">The meditation library</h1>
-      <p class="t-lg u-text-secondary hw-measure" data-edit="text">Forty years of guided meditations, homilies and teachings, gathered in one place. The healing meditations are free, as Justin always kept them; the rest carry a nominal cost that keeps the Hermitage going.</p>
-    </div>
-
-    <div class="stack" style="--stack-gap: var(--sp-2)">
-      <form class="hw-library-filter" data-library-filter="#library-list" role="search" aria-label="Filter the library">
-        <div class="field hw-library-search">
-          <label class="u-sr-only" for="lib-q">Search the library</label>
-          <input class="input" id="lib-q" name="q" type="search" placeholder="Search by title or series">
-        </div>
-        <fieldset class="cluster hw-choices" aria-label="Kind">
-          <label class="tag hw-choice"><input class="u-sr-only" type="radio" name="kind" value="all" checked><span class="tag-label">Everything</span></label>
-          <label class="tag hw-choice"><input class="u-sr-only" type="radio" name="kind" value="meditation"><span class="tag-label">Meditations</span></label>
-          <label class="tag hw-choice"><input class="u-sr-only" type="radio" name="kind" value="homily"><span class="tag-label">Homilies</span></label>
-          <label class="tag hw-choice"><input class="u-sr-only" type="radio" name="kind" value="teaching"><span class="tag-label">Teachings</span></label>
-        </fieldset>
-        <fieldset class="cluster hw-choices" aria-label="Access">
-          <label class="tag hw-choice"><input class="u-sr-only" type="radio" name="access" value="all" checked><span class="tag-label">Free and paid</span></label>
-          <label class="tag hw-choice"><input class="u-sr-only" type="radio" name="access" value="free"><span class="tag-label">Free only</span></label>
-        </fieldset>
-      </form>
-
-      <div class="cluster" style="--cluster-gap: var(--sp-1)">
-        <div class="pair hw-head-main"><p class="t-body u-text-secondary" data-library-count aria-live="polite"></p></div>
-        <span class="hw-draft-mark">catalog with durations arriving from Garry</span>
-      </div>
-      <div id="library-list" data-library="all"></div>
-    </div>
+  <div class="stack" style="--stack-gap: var(--sp-2)" data-reveal>
+    <nav aria-label="Breadcrumb"><ol class="crumbs"><li><a href="../">Meditation</a></li><li aria-current="page">Library</li></ol></nav>
+    <h1 class="t-h1" data-edit="text">The meditation library</h1>
+    <p class="t-lg u-text-secondary hw-lede" data-edit="text">Forty years of guided meditations, homilies and teachings, gathered in one place. The healing meditations are free, as Justin always kept them; the rest carry a nominal cost that keeps the Hermitage going.</p>
   </div>
 </section>
 
-<section class="section cc-band hw-room">
+<!-- The library, flush under the hero (the old room--flush-top). -->
+<section class="section cc-band hw-room hw-medlib-flush" data-product="hermitage" data-theme="dark">
+  <div class="stack hw-medlib-body">
+    <form class="hw-library-filter" data-library-filter="#library-list" role="search" aria-label="Filter the library">
+      <div class="field hw-library-search">
+        <label class="u-sr-only" for="lib-q">Search the library</label>
+        <input class="input" id="lib-q" name="q" type="search" placeholder="Search by title or series">
+      </div>
+      <fieldset class="cluster hw-choices" aria-label="Kind">
+        <label class="tag hw-choice"><input class="u-sr-only" type="radio" name="kind" value="all" checked><span class="tag-label">Everything</span></label>
+        <label class="tag hw-choice"><input class="u-sr-only" type="radio" name="kind" value="meditation"><span class="tag-label">Meditations</span></label>
+        <label class="tag hw-choice"><input class="u-sr-only" type="radio" name="kind" value="homily"><span class="tag-label">Homilies</span></label>
+        <label class="tag hw-choice"><input class="u-sr-only" type="radio" name="kind" value="teaching"><span class="tag-label">Teachings</span></label>
+      </fieldset>
+      <fieldset class="cluster hw-choices" aria-label="Access">
+        <label class="tag hw-choice"><input class="u-sr-only" type="radio" name="access" value="all" checked><span class="tag-label">Free and paid</span></label>
+        <label class="tag hw-choice"><input class="u-sr-only" type="radio" name="access" value="free"><span class="tag-label">Free only</span></label>
+      </fieldset>
+    </form>
+
+    <div class="cluster hw-medlib-count" style="--cluster-gap: var(--sp-1)">
+      <div class="pair hw-head-main"><p class="t-body u-text-secondary" data-library-count aria-live="polite"></p></div>
+      <span class="hw-draft-mark">catalog with durations arriving from Garry</span>
+    </div>
+    <div id="library-list" data-library="all"></div>
+  </div>
+</section>
+
+<section class="section cc-band hw-room" data-product="stone" data-theme="light">
   <div class="cols hw-cols-3">
-    <div class="stack" data-reveal>
-      <h2 class="t-h5" data-edit="text">How to listen</h2>
+    <div class="stack" style="--stack-gap: var(--sp-1)" data-reveal>
+      <h2 class="t-h4" data-edit="text">How to listen</h2>
       <p class="t-body u-text-secondary" data-edit="text">Find a chair you can sit upright in and a time you won’t be interrupted. Headphones help. If you drift off, nothing is lost; begin again another day.</p>
     </div>
-    <div class="stack" data-reveal>
-      <h2 class="t-h5" data-edit="text">Free, and nominal</h2>
+    <div class="stack" style="--stack-gap: var(--sp-1)" data-reveal>
+      <h2 class="t-h4" data-edit="text">Free, and nominal</h2>
       <p class="t-body u-text-secondary" data-edit="text">Healing meditations are free to everyone. Guided series and teachings carry a small cost; members will find them included once membership opens.</p>
     </div>
-    <div class="stack" data-reveal>
-      <h2 class="t-h5" data-edit="text">Ask the library</h2>
+    <div class="stack" style="--stack-gap: var(--sp-1)" data-reveal>
+      <h2 class="t-h4" data-edit="text">Ask the library</h2>
       <p class="t-body u-text-secondary" data-edit="text">A Soul Guide that finds the exact moment in a homily where Justin speaks to your question is being explored. It will quote, never invent. <a href="../../friar-justin/soul-guide/">Read about it</a></p>
     </div>
   </div>

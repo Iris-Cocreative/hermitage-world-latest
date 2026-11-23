@@ -14,11 +14,36 @@
      checked one turns gold, the only interactive accent. */
   .hw-library-filter {
     display: flex; flex-wrap: wrap; align-items: center;
-    gap: var(--sp-1) var(--sp-2);
+    gap: var(--sp-1h) var(--sp-2);
     padding-block: var(--sp-2);
-    border-block: var(--line) solid var(--border-subtle);
+    border-block: var(--line) solid color-mix(in oklab, var(--accent) 38%, transparent);
+    --cluster-gap: var(--sp-h);
   }
   .hw-library-search { flex: 1 1 calc(var(--u) * 24); }
+  /* The choices as the old chips: pills a control tall in a quiet gold
+     edge, the words secondary; hover lights the edge, the chosen one is
+     solid gold. */
+  .hw-library-filter .tag.hw-choice {
+    --tag-h: calc(var(--u) * 3.5);
+    --tag-fs: var(--fs-control-lg);
+    --tag-color: var(--accent);
+    --tag-edge: 38%;
+    --tag-fill: 0%;
+    --tag-ink: var(--text-secondary);
+  }
+  @media (hover: hover) { .hw-library-filter .tag.hw-choice:hover { --tag-edge: 100%; --tag-ink: var(--text); } }
+  .hw-library-filter .tag.hw-choice:has(:checked) { --tag-edge: 100%; --tag-fill: 100%; --tag-ink: var(--accent-ink); }
+
+  /* THE LIBRARY PAGE. The hero clips its arch at its floor, where the
+     library begins: the library's band rises under it (the old
+     room--flush-top) on a wide screen, and the hero sits above so its arch
+     shows. On a phone the two bands simply follow, as they did. */
+  .hw-medlib-hero { z-index: var(--z-raised); }
+  .hw-medlib-flush { --hw-room-top: 0; }
+  @media (min-width: 48rem) { .hw-medlib-flush { margin-block-start: calc(var(--sp-8) * -1); } }
+  /* Five cells from the filter to the count, a cell from the count to the list. */
+  .hw-medlib-body { --stack-gap: var(--sp-1); }
+  .hw-medlib-count { margin-block-start: var(--sp-4); }
 
 
 
