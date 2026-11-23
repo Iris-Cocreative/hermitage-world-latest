@@ -23,7 +23,7 @@
 
 <main class="frame context" id="main">
 
-<section class="section cc-band hw-room hw-backdrop hw-hero hw-medlib-hero" data-product="hermitage" data-theme="dark">
+<section class="section cc-band hw-room hw-backdrop hw-hero hw-hero-over" data-product="hermitage" data-theme="dark">
   <div class="hw-room-arch" aria-hidden="true"></div>
   <div class="stack" style="--stack-gap: var(--sp-2)" data-reveal>
     <nav aria-label="Breadcrumb"><ol class="crumbs"><li><a href="../">Meditation</a></li><li aria-current="page">Library</li></ol></nav>
@@ -33,7 +33,7 @@
 </section>
 
 <!-- The library, flush under the hero (the old room--flush-top). -->
-<section class="section cc-band hw-room hw-medlib-flush" data-product="hermitage" data-theme="dark">
+<section class="section cc-band hw-room hw-flush" data-product="hermitage" data-theme="dark">
   <div class="stack hw-medlib-body">
     <form class="hw-library-filter" data-library-filter="#library-list" role="search" aria-label="Filter the library">
       <div class="field hw-library-search">
@@ -41,14 +41,14 @@
         <input class="input" id="lib-q" name="q" type="search" placeholder="Search by title or series">
       </div>
       <fieldset class="cluster hw-choices" aria-label="Kind">
-        <label class="tag hw-choice"><input class="u-sr-only" type="radio" name="kind" value="all" checked><span class="tag-label">Everything</span></label>
-        <label class="tag hw-choice"><input class="u-sr-only" type="radio" name="kind" value="meditation"><span class="tag-label">Meditations</span></label>
-        <label class="tag hw-choice"><input class="u-sr-only" type="radio" name="kind" value="homily"><span class="tag-label">Homilies</span></label>
-        <label class="tag hw-choice"><input class="u-sr-only" type="radio" name="kind" value="teaching"><span class="tag-label">Teachings</span></label>
+        <label class="tag hw-chip hw-choice"><input class="u-sr-only" type="radio" name="kind" value="all" checked><span class="tag-label">Everything</span></label>
+        <label class="tag hw-chip hw-choice"><input class="u-sr-only" type="radio" name="kind" value="meditation"><span class="tag-label">Meditations</span></label>
+        <label class="tag hw-chip hw-choice"><input class="u-sr-only" type="radio" name="kind" value="homily"><span class="tag-label">Homilies</span></label>
+        <label class="tag hw-chip hw-choice"><input class="u-sr-only" type="radio" name="kind" value="teaching"><span class="tag-label">Teachings</span></label>
       </fieldset>
       <fieldset class="cluster hw-choices" aria-label="Access">
-        <label class="tag hw-choice"><input class="u-sr-only" type="radio" name="access" value="all" checked><span class="tag-label">Free and paid</span></label>
-        <label class="tag hw-choice"><input class="u-sr-only" type="radio" name="access" value="free"><span class="tag-label">Free only</span></label>
+        <label class="tag hw-chip hw-choice"><input class="u-sr-only" type="radio" name="access" value="all" checked><span class="tag-label">Free and paid</span></label>
+        <label class="tag hw-chip hw-choice"><input class="u-sr-only" type="radio" name="access" value="free"><span class="tag-label">Free only</span></label>
       </fieldset>
     </form>
 
