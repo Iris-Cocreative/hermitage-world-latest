@@ -38,3 +38,17 @@ export const POST_KIND_LABEL: Record<string, string> = {
 export function safeNext(raw: string | null | undefined, fallback = '/account/') {
   return raw && raw.startsWith('/') && !raw.startsWith('//') ? raw : fallback
 }
+
+/**
+ * A free address for a new row: the slug typed in, or one made from the
+ * title ("untitled" when the title has no letters or numbers), with -2, -3…
+ * added while another row already has it. `taken` says whether one is in use.
+ */
+export async function freeSlug(wanted: string, taken: (slug: string) => Promise<boolean>) {
+  const base = slugify(wanted) || 'untitled'
+  for (let n = 1; n < 100; n++) {
+    const slug = n === 1 ? base : `${base.slice(0, 76)}-${n}`
+    if (!(await taken(slug))) return slug
+  }
+  return `${base.slice(0, 70)}-${Date.now().toString(36)}`
+}

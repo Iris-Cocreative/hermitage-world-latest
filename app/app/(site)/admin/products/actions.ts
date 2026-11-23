@@ -4,7 +4,7 @@ import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
 import { requireStaff } from '@/lib/auth'
 import { createClient } from '@/lib/supabase/server'
-import { FILE_KINDS, KINDS, slugify, STATUSES } from '@/lib/format'
+import { FILE_KINDS, freeSlug, KINDS, slugify, STATUSES } from '@/lib/format'
 import type { Json } from '@/lib/supabase/database.types'
 
 /**
@@ -37,11 +37,17 @@ export async function createProduct(formData: FormData) {
   const title = str(formData, 'title')
   if (!title) redirect('/admin/products/new/?error=A+title+is+needed')
   const supabase = await createClient()
+  // Only a title is needed: the address is made from it, and kept free of
+  // any other product's (a second "Test" becomes test-2, not an error).
+  const slug = await freeSlug(str(formData, 'slug') || title, async (s) => {
+    const { count } = await supabase.from('products').select('id', { count: 'exact', head: true }).eq('slug', s)
+    return (count ?? 0) > 0
+  })
   const { data, error } = await supabase
     .from('products')
     .insert({
       title,
-      slug: slugify(str(formData, 'slug') || title),
+      slug,
       kind: pick<Kind>(str(formData, 'kind'), KINDS, 'other'),
       price_cents: dollarsToCents(str(formData, 'price')),
     })

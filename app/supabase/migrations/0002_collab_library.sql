@@ -1,4 +1,4 @@
--- Vendored from collab-library/migrations/0001_collab_library.sql at c04df5b, 2026-11-19.
+-- Vendored from collab-library/migrations/0001_collab_library.sql at ab92553, 2026-11-23.
 -- Do not edit here. A later library migration becomes a new numbered file.
 
 -- Collab Library 0001 · the schema · 2026-11-19

@@ -1,2 +1,2 @@
 Vendored from Iris-Cocreative/trellis v0.10.0 at 508f29e, 2026-11-19.
-Copied 2026-11-19 by app/scripts/vendor.mjs. Do not edit: change the source and copy again.
+Copied 2026-11-23 by app/scripts/vendor.mjs. Do not edit: change the source and copy again.

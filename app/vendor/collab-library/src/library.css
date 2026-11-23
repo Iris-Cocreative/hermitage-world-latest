@@ -233,7 +233,12 @@
     border-radius: var(--shape-card);
     background: linear-gradient(transparent 40%, color-mix(in oklab, var(--accent) 10%, transparent));
   }
-  .clib-detail-hero .clib-obj { max-inline-size: 100%; }
+  /* The hero is its own container: the big drawing is half again as large
+     only where it fits (the widest, video, is 21 cells), and plain size in a
+     narrow column, so it never spills out over the title. */
+  .clib-detail-hero { container-type: inline-size; grid-template-columns: minmax(0, 1fr); padding: var(--sp-1); }
+  .clib-detail-hero .clib-obj[data-big] { --clib-k: 1; }
+  @container (width > 26rem) { .clib-detail-hero .clib-obj[data-big] { --clib-k: 1.5; } }
   .clib-detail-main { --stack-gap: var(--sp-2); min-width: 0; }
   .clib-detail-main > .stack { --stack-gap: var(--sp-1); }
 

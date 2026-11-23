@@ -4,7 +4,7 @@ import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
 import { requireStaff } from '@/lib/auth'
 import { createClient } from '@/lib/supabase/server'
-import { POST_KINDS, POST_STATUSES, slugify } from '@/lib/format'
+import { freeSlug, POST_KINDS, POST_STATUSES, slugify } from '@/lib/format'
 
 
 type Kind = (typeof POST_KINDS)[number]
@@ -25,9 +25,14 @@ export async function createPost(formData: FormData) {
   const title = str(formData, 'title')
   if (!title) redirect('/admin/posts/new/?error=A+title+is+needed')
   const supabase = await createClient()
+  // Only a title is needed: the address is made from it and kept free.
+  const slug = await freeSlug(str(formData, 'slug') || title, async (s) => {
+    const { count } = await supabase.from('posts').select('id', { count: 'exact', head: true }).eq('slug', s)
+    return (count ?? 0) > 0
+  })
   const { data, error } = await supabase
     .from('posts')
-    .insert({ title, slug: slugify(str(formData, 'slug') || title), kind: pick<Kind>(str(formData, 'kind'), POST_KINDS, 'post'), author_id: viewer.user.id })
+    .insert({ title, slug, kind: pick<Kind>(str(formData, 'kind'), POST_KINDS, 'post'), author_id: viewer.user.id })
     .select('id')
     .single()
   if (error || !data) redirect(`/admin/posts/new/?error=${encodeURIComponent(error?.message ?? 'Could not save')}`)
