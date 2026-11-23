@@ -105,7 +105,7 @@
   /* ------------------------------------------------------------- objects */
   function obj(r, opts) {
     opts = opts || {};
-    var a = accessOf(r), cls = 'obj obj--' + r.kind + (a.state === 'soon' ? ' is-soon' : ''), body = '', cap = '';
+    var a = accessOf(r), cls = 'obj obj--' + r.kind + (a.state === 'soon' ? ' is-soon' : '') + (r.img ? ' has-cover' : ''), body = '', cap = '';
     var tag = '<span class="obj__tag is-' + a.state + '">' + esc(a.tag) + '</span>';
     var saved = state.persona !== 'guest' && state.saved.indexOf(r.id) > -1 ? '<span class="obj__save" title="On your shelf">' + icon('heart') + '</span>' : '';
     var capT = '<span class="obj__cap"><span class="obj__t">' + esc(r.title) + '</span><span class="obj__by">' + esc(r.kind === 'album' ? r.sub : byLine(r)) + '</span></span>';
@@ -158,8 +158,20 @@
     var label = LABEL[r.kind] + ': ' + r.title + (r.kind === 'album' ? ', ' + r.sub : '') + '. ' + a.long + '.';
     var tagName = opts.static ? 'span' : 'button';
     return '<' + tagName + ' class="' + cls + '"' + (opts.static ? '' : ' type="button" data-open="' + r.id + '" aria-label="' + esc(label) + '"') +
-      ' style="--glass:' + glass(r) + (r.thick ? ';--thick:' + r.thick : '') + '"><span class="obj__body">' + body + saved + '</span>' + (opts.static ? '' : cap) + '</' + tagName + '>';
+      ' style="--glass:' + glass(r) + (r.thick ? ';--thick:' + r.thick : '') + '"' + (r.img ? ' data-cover="' + esc(H.asset(r.img)) + '"' : '') + '><span class="obj__body">' + body + saved + '</span>' + (opts.static ? '' : cap) + '</' + tagName + '>';
   }
+
+  /* Covers: an object names its photo in data-cover, and this sets the
+     --cover variable the stylesheet draws, wherever the object lands. */
+  function covers(root) {
+    (root.querySelectorAll ? root.querySelectorAll('[data-cover]') : []).forEach(function (el) {
+      el.style.setProperty('--cover', 'url("' + el.getAttribute('data-cover') + '")');
+      el.removeAttribute('data-cover');
+    });
+  }
+  new MutationObserver(function (list) {
+    list.forEach(function (m) { m.addedNodes.forEach(function (n) { if (n.nodeType === 1) { covers(n); if (n.hasAttribute('data-cover')) covers(n.parentNode); } }); });
+  }).observe(document.documentElement, { childList: true, subtree: true });
 
   /* ------------------------------------------------------------- shelves */
   function fill(name, html, empty) {

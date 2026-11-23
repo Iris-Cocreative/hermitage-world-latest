@@ -369,6 +369,25 @@
   .lib-who__chip { display: inline-flex; flex-direction: column; padding: 0.4rem 0.9rem; border: var(--line-thin) solid var(--line-subtle); border-radius: var(--radius-sm); font-size: var(--text-sm); color: var(--text-strong); }
   .lib-who__chip small { font-size: var(--text-xs); color: var(--text-subtle); }
 
+  /* ---------------------------------------------------------------- covers
+     The shop's own photos (--cover, set by library-room.js). A track shows
+     its volume's painting under the arch, darkened at its foot so its words
+     read; an album's label is its CD case; a book or the trilogy is its
+     cover, with its words left to the caption. */
+  .obj--track.has-cover .obj__body {
+    background:
+      linear-gradient(to top, color-mix(in oklab, var(--surface) 94%, transparent) 0 34%, color-mix(in oklab, var(--surface) 35%, transparent) 62%, transparent 85%),
+      var(--cover) center / cover no-repeat,
+      var(--surface-raised);
+  }
+  .obj--album.has-cover .disc__label { width: 64%; background: var(--cover) center / 150% no-repeat, var(--surface-raised); }
+  .obj--album.has-cover .disc__name { display: none; }
+  .obj--book.is-face.has-cover .obj__body,
+  .obj--set.has-cover .obj__body { background: var(--cover) center / cover no-repeat, var(--surface-raised); }
+  .obj--book.is-face.has-cover .obj__body::before,
+  .obj--book.is-face.has-cover :is(.cover__t, .cover__s, .cover__a),
+  .obj--set.has-cover :is(.stack__n, .stack__k, .stack__t) { visibility: hidden; }
+
   /* ------------------------------------------------------------ the toast */
   .lib-toast { position: fixed; left: 50%; bottom: var(--space-md); z-index: var(--z-toast); max-width: calc(100vw - 2rem); padding: var(--space-xs) var(--space-md); border: var(--line-thin) solid var(--line); border-radius: var(--radius-pill); background: var(--umber-850); color: var(--plaster-100); font-size: var(--text-sm); opacity: 0; transform: translate(-50%, 1rem); pointer-events: none; transition: opacity var(--dur-base) var(--ease-out), transform var(--dur-base) var(--ease-out); }
   .lib-toast.is-on { opacity: 1; transform: translate(-50%, 0); }
