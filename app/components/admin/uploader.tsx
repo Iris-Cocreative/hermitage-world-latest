@@ -57,12 +57,12 @@ export function Uploader({ bucket, prefix, accept, label, multiple, onUploaded }
   }
 
   return (
-    <div className="uploader">
-      <label className={`btn btn--sm${busy ? ' is-done' : ''}`}>
-        {busy ? 'Working…' : label}
-        <input className="sr-only" type="file" accept={accept} multiple={multiple} disabled={busy} onChange={onChange} />
+    <div className="cluster">
+      <label className="button cc-sm hw-upload-button" aria-disabled={busy || undefined}>
+        <span className="button-label">{busy ? 'Working…' : label}</span>
+        <input className="u-sr-only" type="file" accept={accept} multiple={multiple} disabled={busy} onChange={onChange} />
       </label>
-      {status && <span className="uploader__status" role="status">{status}</span>}
+      {status && <span className="t-sm u-text-secondary" role="status">{status}</span>}
     </div>
   )
 }

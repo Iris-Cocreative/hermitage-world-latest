@@ -10,8 +10,8 @@ Status and decisions live in `../HERMITAGE-WORLD-BUILD.md` (section "The app").
 hermitage-world/            the static site (GitHub Pages serves this today)
   assets/css/app.css        the app's own styles, part of the design system
   app/                      this folder: the Next.js project (Vercel root directory)
-    app/(site)/             routes on the site's main.css: shop, posts, account, sign-in, admin
-    app/(trellis)/          routes on Trellis: library, admin/library (a root layout of its own)
+    app/(site)/             routes on the site's main.css: shop, posts, account, sign-in
+    app/(trellis)/          routes on Trellis: library, all of admin (a root layout of its own)
     app/api, app/auth       route handlers
     components/             app nav, page hero, product files, uploader
     lib/                    Supabase clients, auth, Stripe, markdown, formatting

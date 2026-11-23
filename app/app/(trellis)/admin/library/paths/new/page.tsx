@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import { getLibraryForEditing as getLibrary } from '@/lib/library'
 import { CollectionForm } from '@/vendor/collab-library/src/index.ts'
 import { createPath } from '../../actions'
-import { errorOf } from '../../notice'
+import { errorOf } from '../../../notice'
 
 export const metadata: Metadata = { title: 'New path · Library · Admin' }
 export const dynamic = 'force-dynamic'

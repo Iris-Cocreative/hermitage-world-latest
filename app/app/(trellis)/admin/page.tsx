@@ -1,5 +1,4 @@
 import type { Metadata } from 'next'
-import Link from 'next/link'
 import { createClient } from '@/lib/supabase/server'
 
 export const metadata: Metadata = { title: 'Admin' }
@@ -23,20 +22,25 @@ export default async function AdminHome() {
     { n: members, label: 'people with an account', href: '/admin/orders/' },
   ]
   return (
-    <>
-      <section className="page-head" data-room="dark">
-        <div className="container page-head__row">
-          <div><h1>The team&rsquo;s desk</h1><p className="t-lede">Products, posts and orders.</p></div>
-          <div className="cluster"><Link className="btn btn--solid" href="/admin/products/new/">New product</Link><Link className="btn" href="/admin/posts/new/">New post</Link></div>
+    <div className="stack">
+      <div className="hw-admin-head">
+        <div className="stack hw-page-head">
+          <h1 className="t-h2">The team&rsquo;s desk</h1>
+          <p className="t-body u-text-secondary">Products, posts and orders.</p>
         </div>
-      </section>
-      <section className="section" data-room="plaster">
-        <div className="container stat-row">
-          {stats.map((s) => (
-            <Link key={s.label} href={s.href} className="stat"><span className="stat__num">{s.n}</span><span className="stat__label">{s.label}</span></Link>
-          ))}
+        <div className="cluster">
+          <a className="button cc-primary" href="/admin/products/new/"><span className="button-label">New product</span></a>
+          <a className="button" href="/admin/posts/new/"><span className="button-label">New post</span></a>
         </div>
-      </section>
-    </>
+      </div>
+      <div className="grid">
+        {stats.map((s) => (
+          <a key={s.label} href={s.href} className="card stack hw-admin-stat">
+            <span className="t-h2">{s.n}</span>
+            <span className="t-sm u-text-secondary">{s.label}</span>
+          </a>
+        ))}
+      </div>
+    </div>
   )
 }

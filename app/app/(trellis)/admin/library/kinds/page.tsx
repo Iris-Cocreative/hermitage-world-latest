@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import { getLibraryForEditing as getLibrary } from '@/lib/library'
 import { TypesForm } from '@/vendor/collab-library/src/index.ts'
 import { saveKinds } from '../actions'
-import { Saved, errorOf } from '../notice'
+import { Saved, errorOf } from '../../notice'
 
 export const metadata: Metadata = { title: 'Kinds · Library · Admin' }
 export const dynamic = 'force-dynamic'

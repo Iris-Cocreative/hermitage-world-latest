@@ -2,11 +2,12 @@ import { requireStaff } from '@/lib/auth'
 import { AdminTabs } from './tabs'
 
 /**
- * The library's editor, for the Hermitage team (staff and admin). The first
- * admin pages on Trellis; the rest of /admin moves here page by page.
+ * Everything under /admin, for the Hermitage team (profiles.role staff or
+ * admin): Overview, products, posts, orders and the library's editor, all on
+ * Trellis, under one menu.
  */
-export default async function LibraryAdminLayout({ children }: { children: React.ReactNode }) {
-  await requireStaff('/admin/library/')
+export default async function AdminLayout({ children }: { children: React.ReactNode }) {
+  await requireStaff('/admin/')
   return (
     <>
       <div className="hw-admin-nav hw-deep" data-product="hermitage" data-theme="dark">

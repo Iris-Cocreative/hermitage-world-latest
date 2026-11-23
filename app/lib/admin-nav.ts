@@ -1,7 +1,6 @@
 /**
- * The admin menu, in one place. Both halves of /admin draw it from this list
- * (the pages still on main.css and the library's pages on Trellis), so a
- * signed-in admin sees the same menu, in the same order, on every admin page.
+ * The admin menu, in one place: the tabs every /admin page draws
+ * (app/(trellis)/admin/tabs.tsx), in this order.
  */
 export const ADMIN_TABS: [href: string, label: string][] = [
   ['/admin/', 'Overview'],

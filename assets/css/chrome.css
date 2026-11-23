@@ -18,9 +18,9 @@
      band on the sunken ground, the old site's "deep" room. */
   .hw-deep { --surface: var(--bg-sunken); --band-bg: var(--bg-sunken); }
 
-  /* Notes for Trellis (TRELLIS-LEDGER.md): a link drawn as a button keeps
-     core's underline, and core's reset makes a symbol sheet a block. */
-  a.button { text-decoration: none; }
+  /* Notes for Trellis (TRELLIS-LEDGER.md): a link drawn as a button or a
+     card keeps core's underline, and core's reset makes a symbol sheet a block. */
+  a:is(.button, .card) { text-decoration: none; }
   .hw-sprite { position: absolute; width: 0; height: 0; overflow: hidden; }
 
   /* Skip link: out of sight until focused. */
@@ -86,6 +86,26 @@
   .hw-admin-nav { padding-block: var(--sp-1) 0; }
   .hw-admin-head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: var(--sp-2); }
   .hw-admin-row-meta { display: flex; flex-wrap: wrap; gap: var(--sp-h); align-items: center; }
+  /* The admin's forms: fields a few cells apart, side by side from a tablet up. */
+  .hw-admin-form { --stack-gap: var(--sp-3); }
+  .cols.hw-admin-cols, .cols.hw-admin-cols-3 { --cols: 1; }
+  @media (width >= 48rem) {
+    .cols.hw-admin-cols { --cols: 2; }
+    .cols.hw-admin-cols-3 { --cols: 3; }
+  }
+  /* Long text: more lines, and a corner rather than the product's pill. */
+  textarea.input.hw-admin-mid { --input-rows: 6; --input-radius: var(--r-1h); }
+  textarea.input.hw-admin-tall { --input-rows: 12; --input-radius: var(--r-1h); }
+  .field.hw-admin-short { flex: 0 0 calc(var(--u) * 6); }
+  .field.hw-admin-grow { flex: 1 1 calc(var(--u) * 16); }
+  .card.hw-admin-alert { --surface: color-mix(in oklab, var(--alert) 12%, var(--bg-raised)); --card-border: var(--alert); }
+  /* A cover, and its thumbnail at the start of a row (an empty one keeps the column). */
+  .hw-admin-cover { display: block; inline-size: 100%; max-inline-size: calc(var(--u) * 18); block-size: auto; border-radius: var(--r-h); }
+  .hw-admin-thumb { flex: none; inline-size: var(--sp-3); block-size: var(--sp-3); border-radius: var(--r-h); object-fit: cover; background: var(--bg-sunken); }
+  /* A control in a row that links as a whole sits above the row's link. */
+  .hw-admin-over { position: relative; z-index: var(--z-raised); }
+  /* The uploader is a label drawn as a button around a hidden file input: it takes the focus ring. */
+  .hw-upload-button:has(> input:focus-visible) { outline: calc(var(--line) * 2) solid var(--focus); outline-offset: var(--line); }
 
   @media (prefers-reduced-motion: reduce) {
     .hw-bar { transition: none; }

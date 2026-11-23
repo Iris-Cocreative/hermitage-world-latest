@@ -3,7 +3,7 @@ import { notFound } from 'next/navigation'
 import { getLibraryForEditing as getLibrary } from '@/lib/library'
 import { CollectionForm } from '@/vendor/collab-library/src/index.ts'
 import { removePath, updatePath } from '../../actions'
-import { Saved, errorOf } from '../../notice'
+import { Saved, errorOf } from '../../../notice'
 
 export const metadata: Metadata = { title: 'Edit path · Library · Admin' }
 export const dynamic = 'force-dynamic'

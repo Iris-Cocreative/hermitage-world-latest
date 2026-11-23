@@ -4,7 +4,7 @@ import { AUDIENCES, getLibraryForEditing as getLibrary } from '@/lib/library'
 import { ResourceForm, accessOf, ACCESS_LABEL } from '@/vendor/collab-library/src/index.ts'
 import { removeResource, updateResource } from '../actions'
 import { hostProducts } from '../products'
-import { Saved, errorOf } from '../notice'
+import { Saved, errorOf } from '../../notice'
 
 export const metadata: Metadata = { title: 'Edit · Library · Admin' }
 export const dynamic = 'force-dynamic'

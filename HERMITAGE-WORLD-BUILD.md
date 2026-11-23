@@ -183,7 +183,7 @@ Every live page of the static site moved from `main.css` and `site.js` onto Trel
 
 Verified on 2026-11-19 over http: all 25 pages at 1440 and 390 wide, no console errors (only a headless GPU driver's notes from the temple's WebGL), no horizontal overflow, every marked area holds only what its kind allows; no page loads `main.css` or uses an old class. Clicked through: the homepage's temple walk and the bar turning solid after it, the site map, the gatherings filters, the month view, the ICS link and `?id=`, the library filters and search, the FAQ's one-at-a-time answers. Each section's own CSS and `site.css` pass `check.js` with zero raw values and nothing restyled.
 
-**Still on main.css:** the app's own `(site)` pages (shop, posts, account, sign-in, admin except the library's editor). They move next, then `main.css` and `site.js` can retire to the archive.
+**Still on main.css:** the app's own `(site)` pages (shop, posts, account, sign-in). All of `/admin` moved onto Trellis on 2026-11-23 (Overview, products, posts and orders joined the library's editor under `app/(trellis)/admin/`, one layout and one menu; same URLs). The rest move next, then `main.css` and `site.js` can retire to the archive.
 
 ## Next steps
 

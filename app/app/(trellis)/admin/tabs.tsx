@@ -2,9 +2,7 @@
 import { usePathname } from 'next/navigation'
 import { ADMIN_TABS, currentAdminTab } from '@/lib/admin-nav'
 
-// Overview, Products, Posts and Orders are still on the site's main.css (a
-// full page load away); the library's three are here. The list is shared
-// with the main.css admin (components/admin/admin-nav.tsx).
+/** The admin menu, the same on every admin page (the list is lib/admin-nav.ts). */
 export function AdminTabs() {
   const current = currentAdminTab(usePathname())
   return (
