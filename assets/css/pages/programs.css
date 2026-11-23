@@ -6,7 +6,60 @@
 @layer trellis, hw;
 
 @layer hw.page {
-  /* THE REGISTER CARD: the prose measure, centered in its band. Its name
-     and email are site.css's .hw-fields. */
-  .hw-register { justify-self: center; inline-size: 100%; }
+  /* THE HERO AND ITS FLOOR. What follows the hero in its band (the program
+     cards, At a glance) sits eight cells under the hero, and the band closes
+     twelve cells under it, as a room of its own would. */
+  .hw-prog-hero { --hw-room-end: var(--sp-4); }
+  .hw-prog-hero > .hw-hero-after { margin-block-start: var(--sp-6); }
+  /* The hero's title keeps to eleven ems. */
+  .hw-hero-title { max-inline-size: 11em; }
+  /* The hero's buttons stand three cells under the lede. */
+  .hw-prog-actions { margin-block-start: var(--sp-1); }
+
+  /* TAGS: a gold-edged one for what a program is, a quiet one for its shape;
+     both open, two cells high. */
+  .tag.hw-tag-gold {
+    --tag-h: var(--size-control-sm);
+    --tag-color: var(--accent);
+    --tag-ink: light-dark(var(--accent), color-mix(in oklab, var(--accent) 62%, var(--text)));
+    --tag-fill: 0%;
+    --tag-edge: 80%;
+  }
+  .tag.hw-tag-quiet {
+    --tag-h: var(--size-control-sm);
+    --tag-color: var(--text-secondary);
+    --tag-ink: var(--text-secondary);
+    --tag-fill: 0%;
+    --tag-edge: 38%;
+  }
+
+  /* PROGRAM CARDS: three cells between them; a card's lines a cell and a
+     half apart; its circle link a cell and a half under its words. */
+  .cols.hw-prog-cards { --cols-gap: var(--sp-3); }
+  .hw-prog-body { --stack-gap: var(--sp-1h); }
+  .hw-prog-foot { padding-block-start: var(--sp-1h); }
+
+  /* A ROOM'S TITLE keeps to fourteen ems, and three cells under it before
+     its lede (with the head's gap, four and a half). */
+  .hw-room-title { max-inline-size: 14em; margin-block-end: var(--sp-3); }
+
+  /* THE PATHWAY IN A ROW: seven stages across the frame, each at least
+     fourteen cells, as many as fit, stretched to fill it. A name never
+     breaks inside a word: it may run into the stage's end space. */
+  .hw-path-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(calc(var(--u) * 14), 100%), 1fr));
+    gap: 0;
+  }
+  .hw-path-row .hw-pathway-step {
+    gap: 0;
+    padding: var(--sp-3) var(--sp-2) var(--sp-3) 0;
+    overflow-wrap: normal;
+  }
+  .hw-path-row .hw-pathway-step::before { margin-block-end: calc(var(--u) * 2.5); }
+
+  /* THE REGISTER CARD: seventy-two cells at most, centered in its band; its
+     button runs the card's width. Name and email are site.css's .hw-fields. */
+  .hw-register { justify-self: center; inline-size: 100%; max-inline-size: calc(var(--u) * 72); }
+  .hw-register-go { flex: 1 1 100%; }
 }
