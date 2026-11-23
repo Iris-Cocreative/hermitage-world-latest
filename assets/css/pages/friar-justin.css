@@ -49,6 +49,14 @@
   }
 
 
+  /* A BOOK: its cover, a cell over the title, a cell and a half between
+     the title, its line and its tags (a cell more over the line); the
+     tags small and outlined in the quiet ink (the old .tag). */
+  .hw-book { --stack-gap: var(--sp-1h); }
+  .hw-book > .hw-book-cover { margin-block-end: var(--sp-1); }
+  .hw-book > p { margin-block-start: var(--sp-1); }
+  .hw-book-tags .tag { --tag-h: var(--size-control-sm); --tag-fs: var(--tag-fs-md); --tag-color: var(--text-secondary); --tag-ink: var(--text-secondary); --tag-fill: 0%; --tag-edge: 38%; }
+
   /* A book's cover on a glass plate, whole: an arch would crop its title.
      The covers are the old shop's photos (assets/img/shop/). */
   .hw-book-cover {
