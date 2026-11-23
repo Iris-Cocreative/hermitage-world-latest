@@ -8,10 +8,33 @@
 @layer hw.page {
 
   /* GOLD WORDS IN A HEADING. The hero's "is learnable." is a bare <em> (so
-     the heading stays one Site Editor text area): upright, in the same gold
+     the heading stays one Site Editor text area): upright, in the gold
+     itself (the old .accent-ink), on the stone ground. */
+  .hw-fj-title em { color: var(--accent); }
 
-  /* THE PORTRAIT beside the life: an arch capped at thirty cells wide. */
-  .hw-fj-portrait { max-inline-size: calc(var(--u) * 30); }
+  /* THE QUOTE'S SOURCE: the old small light line under the name. Its own
+     line height, so where it wraps (a phone) its lines don't overlap: in a
+     text role an inline <small> has none (a site.css candidate). */
+  .hw-fj-quote cite small { font-size: var(--fs-control-lg); line-height: var(--lh-body); }
+
+  /* THE PORTRAIT beside the life: an arch capped at the old 22rem. */
+  .hw-fj-portrait { max-inline-size: calc(var(--u) * 29.25); }
+
+  /* THE LIFE'S TIMELINE: the old one's deeper indent (five cells, its dot
+     moved with it), four cells between events, a cell between the year and
+     the event, three before the words, which keep to 53 cells. */
+  .hw-fj-timeline { gap: var(--sp-4); padding-inline-start: var(--sp-5); }
+  .hw-fj-timeline .hw-timeline-dot { inset-inline-start: calc(var(--sp-5) * -1 + var(--sp-h) - var(--dot-size) / 2); }
+  .hw-fj-timeline > li { gap: var(--sp-1); }
+  .hw-fj-timeline > li > * { margin-block: 0; }
+  .hw-fj-timeline > li > :last-child { margin-block-start: var(--sp-2); max-inline-size: calc(var(--u) * 53.25); }
+
+  /* TWO COLUMNS ON THEIR MIDDLE (the old unaligned split). */
+  .hw-fj-mid { align-self: center; }
+
+  /* A CARD'S WORDS: the kicker, the title and the line, two cells apart.
+     The line is .t-lg: inside a card (a container) that is the old 20px. */
+  .hw-fj-card { --stack-gap: var(--sp-2); }
 
   /* A CHAPTER ROW: the time needs a short column, not a day's. */
   .hw-chapter .hw-row-label { inline-size: calc(var(--u) * 6); }
