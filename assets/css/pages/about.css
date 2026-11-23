@@ -7,10 +7,58 @@
    ========================================================================== */
 @layer trellis, hw;
 
+/* ---- about/, about/faq/, contact/, give/, newsletter/ (the adopt-trellis look) ---- */
 @layer hw.page {
-  /* THE LETTER CARD (newsletter/): the words beside the form, a gold
-     hairline between them while they sit side by side. */
-  @container (width >= 36rem) {
-    .hw-letter-side { padding-inline-start: var(--sp-3); border-inline-start: var(--line) solid color-mix(in oklab, var(--accent) 80%, transparent); }
+  /* FIVE LIGHTS (about/). The lights sit five cells under the head. */
+  .hw-values-body { margin-block-start: var(--sp-3); }
+
+  /* OUR STORY (about/). A year a cell over its title, the title's own two
+     cells and a half over its line, the line held to the old measure. */
+  .hw-story-timeline { padding-inline-start: var(--sp-5); }
+  .hw-story-timeline .hw-timeline-dot { inset-inline-start: calc(var(--sp-5) * -1 + var(--sp-h) - var(--dot-size) / 2); }
+  .hw-story-timeline > li { gap: 0; }
+  .hw-story-year { margin-block-end: var(--sp-1); }
+  .hw-story-line { margin-block-start: var(--sp-h); max-inline-size: calc(var(--u) * 53.25); }
+
+  /* STEWARDS (about/). Five cells under the title and over the buttons;
+     a role a cell and a half over its name. */
+  .hw-stewards-body { --stack-gap: var(--sp-5); margin-block-start: var(--sp-3); }
+  .hw-steward { --stack-gap: var(--sp-1h); }
+
+  /* FLUSH UNDER THE HERO (the old room--flush-top): a band that starts
+     right where the hero above it ends, its words the hero's floor away from
+     the hero's. It slides up under the hero by its own top space; the hero
+     (positioned, as a backdrop is) keeps painting over it, arch and all. */
+  .hw-flush-top { margin-block-start: calc(var(--sp-5) * -1); }
+  @media (min-width: 48rem) {
+    .hw-flush-top { --hw-room-top: 0; margin-block-start: calc(var(--sp-8) * -1); }
   }
+
+  /* THE QUESTIONS (about/faq/): a narrow column on the middle of the frame. */
+  .hw-faq { inline-size: 100%; max-inline-size: calc(var(--u) * 72); margin-inline: auto; }
+
+  /* CONTACT. The message box keeps a soft corner, not a pill; the board's
+     labels take eight cells. */
+  .input.hw-msg { --input-radius: var(--r-1h); }
+  .hw-where .hw-row-label { inline-size: calc(var(--u) * 8); }
+  /* On a phone the large card keeps three cells of padding, so its fields
+     keep their width. */
+  @container (width < 40rem) { .card.hw-contact-form { --card-pad: var(--sp-3); } }
+
+  /* GIVE. The choices are the old chips: three and a half cells tall, in
+     the small control type, quiet until chosen (then site.css's gold). */
+  .hw-give-form .hw-choice { --tag-h: calc(var(--u) * 3.5); --tag-fs: var(--fs-control-lg); --tag-pad: var(--sp-1h); }
+  .hw-give-form .hw-choice:not(:has(:checked)) { --tag-color: var(--accent); --tag-fill: 0%; --tag-edge: 35%; --tag-ink: var(--text-secondary); }
+  @media (hover: hover) {
+    .hw-give-form .hw-choice:not(:has(:checked)):hover { --tag-edge: 100%; --tag-ink: var(--text); }
+  }
+  @container (width < 40rem) { .card.hw-give-form { --card-pad: var(--sp-3); } }
+  /* Where it goes: the features five cells under the title. Other ways to
+     give: the board's labels take nine and a quarter cells (the old 7rem). */
+  .hw-goes-body { margin-block-start: var(--sp-3); }
+  .hw-ways .hw-row-label { inline-size: calc(var(--u) * 9.25); }
+
+  /* THE LETTER (newsletter/). The room opens eight cells above its card
+     (the old letter room's own top). */
+  .hw-letter-room { --hw-room-top: 0; }
 }

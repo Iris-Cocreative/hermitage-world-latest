@@ -23,34 +23,32 @@
 
 <main class="frame context" id="main">
 
-<section class="section cc-band hw-room hw-backdrop" data-product="hermitage" data-theme="light">
+<section class="section cc-band hw-room hw-backdrop hw-letter-room" data-product="hermitage" data-theme="light">
   <div class="hw-lineart hw-lineart-vaults" aria-hidden="true"></div>
-  <div class="card" style="--card-pad: var(--sp-4)" data-reveal>
-    <div class="split" style="--split-a: 1; --split-b: 1; --split-gap: var(--sp-4)">
-      <div class="stack">
+  <div class="card hw-card-lg hw-letter-card" data-reveal>
+    <div class="split hw-letter-split" style="--split-a: 1; --split-b: 1.15; --split-gap: var(--sp-5)">
+      <div class="stack" style="--stack-gap: var(--sp-2)">
         <h1 class="t-h2" data-edit="text">The weekly letter</h1>
         <p class="t-lg u-text-secondary" data-edit="text">Once a week: the gatherings coming up, a word to carry with you, and what the community is doing. More than 3,300 seekers already read it.</p>
       </div>
-      <div class="hw-letter-side">
-        <form class="stack" action="#" method="post" data-demo-form data-done="Welcome. Check your inbox.">
-          <h2 class="t-h5">Receive the weekly letter</h2>
-          <div class="hw-fields">
-            <div class="field"><label class="field-label u-sr-only" for="n-name">Name</label><input class="input" id="n-name" type="text" name="name" placeholder="Name" autocomplete="given-name"></div>
-            <div class="field"><label class="field-label u-sr-only" for="n-email">Email</label><input class="input" id="n-email" type="email" name="email" placeholder="Email" autocomplete="email" required></div>
-          </div>
-          <button class="button cc-primary cc-lg" type="submit"><span class="button-label">Join 3,300+ seekers</span></button>
-          <p class="t-sm u-text-tertiary">One email a week. Leave whenever you like. <span class="hw-draft-mark">email platform to connect</span></p>
-        </form>
-      </div>
+      <form class="stack hw-letter-form-card" style="--stack-gap: var(--sp-1h)" action="#" method="post" data-demo-form data-done="Welcome. Check your inbox.">
+        <h2 class="t-h4">Receive the weekly letter</h2>
+        <div class="cols hw-signup">
+          <div class="field"><label class="field-label u-sr-only" for="n-name">Name</label><input class="input" id="n-name" type="text" name="name" placeholder="Name" autocomplete="given-name"></div>
+          <div class="field"><label class="field-label u-sr-only" for="n-email">Email</label><input class="input" id="n-email" type="email" name="email" placeholder="Email" autocomplete="email" required></div>
+        </div>
+        <div class="cluster"><button class="button cc-primary cc-lg hw-fill" type="submit"><span class="button-label">Join 3,300+ seekers</span></button></div>
+        <p class="t-xs u-text-tertiary">One email a week. Leave whenever you like. <span class="hw-draft-mark">email platform to connect</span></p>
+      </form>
     </div>
   </div>
 </section>
 
 <section class="section cc-band hw-room" data-product="hermitage" data-theme="dark">
-  <div class="cols hw-cols-3">
-    <div class="stack hw-feature" data-reveal><span class="hw-feature-mark" aria-hidden="true"><svg class="icon"><use href="../assets/img/icons.svg#calendar"/></svg></span><h3 class="t-h5" data-edit="text">The week ahead</h3><p class="t-sm u-text-secondary" data-edit="text">Every gathering, in your time zone, with the link to join.</p></div>
-    <div class="stack hw-feature" data-reveal><span class="hw-feature-mark" aria-hidden="true"><svg class="icon"><use href="../assets/img/icons.svg#audio"/></svg></span><h3 class="t-h5" data-edit="text">A word to carry</h3><p class="t-sm u-text-secondary" data-edit="text">A homily or meditation from the library, often in Justin’s own voice.</p></div>
-    <div class="stack hw-feature" data-reveal><span class="hw-feature-mark" aria-hidden="true"><svg class="icon"><use href="../assets/img/icons.svg#circle-people"/></svg></span><h3 class="t-h5" data-edit="text">The community</h3><p class="t-sm u-text-secondary" data-edit="text">New programs, visiting teachers, and stories from the circles.</p></div>
+  <div class="cols hw-cols-3" style="--cols-gap: var(--sp-3)">
+    <div class="stack hw-feature" data-reveal><span class="hw-feature-mark" aria-hidden="true"><svg class="icon"><use href="../assets/img/icons.svg#calendar"/></svg></span><h3 class="t-h4" data-edit="text">The week ahead</h3><p class="t-sm u-text-secondary" data-edit="text">Every gathering, in your time zone, with the link to join.</p></div>
+    <div class="stack hw-feature" data-reveal><span class="hw-feature-mark" aria-hidden="true"><svg class="icon"><use href="../assets/img/icons.svg#audio"/></svg></span><h3 class="t-h4" data-edit="text">A word to carry</h3><p class="t-sm u-text-secondary" data-edit="text">A homily or meditation from the library, often in Justin’s own voice.</p></div>
+    <div class="stack hw-feature" data-reveal><span class="hw-feature-mark" aria-hidden="true"><svg class="icon"><use href="../assets/img/icons.svg#circle-people"/></svg></span><h3 class="t-h4" data-edit="text">The community</h3><p class="t-sm u-text-secondary" data-edit="text">New programs, visiting teachers, and stories from the circles.</p></div>
   </div>
 </section>
 
