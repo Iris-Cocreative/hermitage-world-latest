@@ -47,10 +47,10 @@
     return '<li class="list-item hw-recording">' +
       '<button class="button icon-button cc-ghost" type="button" aria-disabled="true" title="Recordings arrive with the catalog">' +
         H.icon(r.media === 'video' ? 'video' : 'play') + '<span class="u-sr-only">Play ' + H.esc(r.title) + ' (arrives with the catalog)</span></button>' +
-      '<div class="list-body"><h3 class="list-title t-h6">' + H.esc(r.title) + '</h3><p class="list-sub t-sm">' + H.esc(meta) + '</p></div>' +
+      '<div class="list-body"><h3 class="list-title t-h5">' + H.esc(r.title) + '</h3><p class="list-sub t-sm u-text-tertiary">' + H.esc(meta) + '</p></div>' +
       '<span class="list-end cluster hw-recording-end">' +
         (r.known ? '' : '<span class="hw-draft-mark">sample</span>') +
-        '<span class="tag' + (r.access === 'free' ? ' cc-solid' : '') + '"><span class="tag-label">' + (r.access === 'free' ? 'Free' : 'Nominal cost') + '</span></span>' +
+        '<span class="tag' + (r.access === 'free' ? ' hw-tag-gold' : '') + '"><span class="tag-label">' + (r.access === 'free' ? 'Free' : 'Nominal cost') + '</span></span>' +
       '</span></li>';
   }
 
@@ -68,7 +68,7 @@
       if (q && (r.title + ' ' + r.collection).toLowerCase().indexOf(q) < 0) return false;
       return true;
     }).slice(0, limit);
-    el.innerHTML = list.length ? '<ul class="list">' + list.map(tile).join('') + '</ul>' : '<p class="t-body u-text-secondary">Nothing matches yet.</p>';
+    el.innerHTML = list.length ? '<ul class="list hw-recordings">' + list.map(tile).join('') + '</ul>' : '<p class="t-body u-text-secondary">Nothing matches yet.</p>';
     var count = document.querySelector('[data-library-count]');
     if (count) count.textContent = list.length + (list.length === 1 ? ' recording' : ' recordings');
   }

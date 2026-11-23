@@ -21,4 +21,31 @@
   .hw-library-search { flex: 1 1 calc(var(--u) * 24); }
 
 
+
+  /* ------------------------------------------------------ the meditation page
+     Matched to the adopt-trellis build (2026-11-23). */
+  /* Two cards (and two quotes) side by side, three cells apart. */
+  .cols.hw-med-pair { --cols-gap: var(--sp-3); }
+  /* The practices: eight cells from the cards to the closing line. */
+  .hw-med-practices { --stack-gap: var(--sp-8); }
+  /* A practice card's words two cells apart; its quote three under them. */
+  .hw-med-card { --stack-gap: var(--sp-2); }
+  .hw-med-foot { padding-block-start: var(--sp-1); }
+  /* A first sitting: the note five cells under the steps. */
+  .hw-med-sitting { --stack-gap: var(--sp-5); }
+  /* The steps' words: the old pathway's small line, three cells apart. */
+  .hw-med-sitting .hw-pathway-step { row-gap: var(--sp-h); }
+  /* Justin's words: the centered title five cells over the quotes. */
+  .hw-med-words-head { margin-block-end: var(--sp-3); }
+
+  /* THE NOTE as the adopt-trellis build draws it: a glass box in a quiet
+     gold hairline, its start edge a gold bar. (Only this page has one; a
+     candidate for site.css's .hw-note.) */
+  .hw-note {
+    padding: var(--sp-2);
+    border: var(--line) solid color-mix(in oklab, var(--accent) 38%, transparent);
+    border-inline-start: var(--sp-q) solid var(--accent);
+    border-radius: var(--r-1);
+    background: color-mix(in oklab, var(--bg) 45%, transparent);
+  }
 }
