@@ -36,8 +36,15 @@
      The line is .t-lg: inside a card (a container) that is the old 20px. */
   .hw-fj-card { --stack-gap: var(--sp-2); }
 
-  /* A CHAPTER ROW: the time needs a short column, not a day's. */
-  .hw-chapter .hw-row-label { inline-size: calc(var(--u) * 6); }
+  /* A CHAPTER ROW on the board: the time needs a short column, not a
+     day's (the old 4rem), and it stays beside its words on a phone. */
+  .hw-board .hw-chapter .hw-row-label { inline-size: calc(var(--u) * 5.25); min-inline-size: max-content; }
+  @container (width < 60rem) {
+    .hw-board .hw-board-row.hw-chapter { flex-wrap: nowrap; --list-gap: var(--sp-2); }
+  }
+
+  /* THE PLAYER's edge in the full gold line (the old .player). */
+  .hw-fj-player { box-shadow: inset 0 0 0 var(--line) var(--hw-line); }
 
   /* THE SOUL GUIDE'S QUESTION: the field takes the row, the button its own
      width beside it. */
