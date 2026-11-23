@@ -243,7 +243,7 @@
     font-weight: var(--fw-label);
   }
   .hw-quote cite::before { content: ""; inline-size: var(--sp-2); block-size: calc(var(--line) * 2); background: currentColor; }
-  .hw-quote cite small { font-weight: var(--fw-body); color: var(--text-secondary); }
+  .hw-quote cite small { font-weight: var(--fw-body); color: var(--text-secondary); line-height: var(--lh-body); }
   .hw-quote-start { align-items: flex-start; margin-inline: 0; text-align: start; }
   .hw-quote-start cite { justify-content: flex-start; }
 
@@ -483,7 +483,7 @@
     border-radius: var(--r-1h);
     --icon-size: var(--size-icon-md);
     background: radial-gradient(ellipse at 50% 40%, var(--bg-raised), var(--bg-sunken) 70%);
-    box-shadow: inset 0 0 0 var(--line) var(--hw-line-subtle);
+    box-shadow: inset 0 0 0 var(--line) var(--hw-line);
     overflow: hidden;
   }
   .hw-player-label { position: absolute; inset-inline: var(--sp-2); inset-block-end: var(--sp-2); color: var(--text-secondary); }
@@ -682,6 +682,8 @@
   }
   .hw-room-head-text { --stack-gap: var(--sp-1h); max-inline-size: calc(var(--u) * 70); }
   .hw-lede { max-inline-size: 34em; }
+  /* A room title with a lede under it: fourteen ems, three cells over the lede. */
+  .hw-room-title { max-inline-size: 14em; margin-block-end: var(--sp-3); }
 
   /* QUIET WORDS: Alegreya Sans light, for a timetable's lines and labels. */
   .hw-light { font-weight: 300; }
@@ -693,7 +695,6 @@
   .hw-board { border-block: var(--line) solid var(--hw-line); }
   .hw-board > .list { --list-pad-y: var(--sp-2); --list-gap: var(--sp-5); --list-rule: var(--hw-line); --list-align: center; }
   .hw-board .hw-row-label { inline-size: calc(var(--u) * 24); }
-  .hw-board .list-sub { max-inline-size: calc(var(--u) * 53); }
   .hw-row-day { font-size: var(--fs-control-lg); font-weight: 300; letter-spacing: var(--label-tracking); text-transform: uppercase; }
   /* On a narrow container a row is one column: the day, the words, then
      its action (.hw-board-end on the .list-end). */
@@ -744,4 +745,61 @@
     .hw-acc::details-content { block-size: 0; overflow: clip; transition: block-size var(--dur-in-slow) var(--ease-out), content-visibility var(--dur-in-slow) allow-discrete; }
     .hw-acc[open]::details-content { block-size: auto; }
   }
+}
+
+/* ==========================================================================
+   MEDITATION · GATHERINGS GROUP (2026-11-23): shared parts matched to the
+   adopt-trellis build. Variables only.
+   ========================================================================== */
+@layer hw.site {
+  /* THE RECORDINGS (assets/data/library.js; the old .media-tile): rows two
+     cells tall between quiet gold hairlines, each centered on its play ring;
+     the access tags outlined, Free in gold. */
+  .list.hw-recordings { --list-pad-y: var(--sp-2); --list-gap: var(--sp-2); --list-rule: color-mix(in oklab, var(--accent) 38%, transparent); --list-align: center; }
+  .hw-recordings .button.icon-button { --btn-h: calc(var(--u) * 4); --icon-size: var(--size-icon-md); }
+  .hw-recordings .list-body { --stack-gap: var(--sp-2); }
+  .hw-recordings .tag { --tag-color: var(--text-secondary); --tag-ink: var(--text-secondary); --tag-fill: 0%; --tag-edge: 38%; }
+  .hw-recordings .tag.hw-tag-gold { --tag-color: var(--accent); --tag-ink: light-dark(var(--accent), color-mix(in oklab, var(--accent) 62%, var(--text))); --tag-edge: 80%; }
+
+  /* CHIPS (the old .chip): a filter's choices as pills a control tall in a
+     quiet gold edge, the words secondary; hover lights the edge, the chosen
+     one (a checked radio inside, or aria-pressed) is solid gold. */
+  .tag.hw-chip {
+    --tag-h: calc(var(--u) * 3.5);
+    --tag-fs: var(--fs-control-lg);
+    --tag-color: var(--accent);
+    --tag-edge: 38%;
+    --tag-fill: 0%;
+    --tag-ink: var(--text-secondary);
+  }
+  @media (hover: hover) { .tag.hw-chip:hover { --tag-edge: 100%; --tag-ink: var(--text); } }
+  .tag.hw-chip:is(:has(:checked), [aria-pressed="true"]) { --tag-edge: 100%; --tag-fill: 100%; --tag-ink: var(--accent-ink); }
+
+  /* A BAND FLUSH UNDER THE HERO (the old room--flush-top): on a wide screen
+     it rises under the hero (.hw-hero-over, which sits above so its arch
+     shows to its floor) and its words start at the hero's floor. On a phone
+     the two bands simply follow. */
+  .hw-hero-over { z-index: var(--z-raised); }
+  .hw-flush { --hw-room-top: 0; }
+  @media (min-width: 48rem) { .hw-flush { margin-block-start: calc(var(--sp-8) * -1); } }
+}
+
+/* ---- about group (about/, about/faq/, contact/, give/, newsletter/) ---- */
+@layer hw.site {
+  /* A FULL-WIDTH BUTTON in a .cluster (the old cc-block); was home.css only. */
+  .hw-fill { flex: 1 1 100%; }
+
+  /* THE LETTER CARD (the old .letter__card; the homepage and newsletter/;
+     was home.css only). Held to the old card's width, its ground the room's;
+     on a wide card the form sits beside the words behind a gold hairline.
+     Name and email side by side while they fit.
+     <div class="card hw-card-lg hw-letter-card"><div class="split
+     hw-letter-split"> words | <form class="stack hw-letter-form-card">. */
+  .hw-letter-card { --surface: transparent; inline-size: 100%; max-inline-size: calc(var(--u) * 108); margin-inline: auto; }
+  @container (width >= 54rem) {
+    .hw-letter-split { padding-block: var(--sp-3); }
+    .hw-letter-form-card { align-self: center; border-inline-start: var(--line) solid color-mix(in oklab, var(--accent) 80%, transparent); padding-inline-start: var(--sp-5); }
+  }
+  .hw-signup { --cols-gap: var(--sp-1); }
+  @container (width < 30rem) { .hw-signup { --cols: 1; } }
 }

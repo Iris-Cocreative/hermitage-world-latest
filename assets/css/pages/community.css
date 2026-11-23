@@ -56,9 +56,6 @@
   /* A card's action sits a little below its words (the old card__foot). */
   .hw-card-foot { margin-block-start: var(--sp-1h); }
 
-  /* A story's frame takes the gold hairline. */
-  .hw-player { box-shadow: inset 0 0 0 var(--line) var(--hw-line); }
-
   /* A textarea keeps a card's corner (the fields are pills). */
   .hw-textarea { --input-radius: var(--r-1h); }
 

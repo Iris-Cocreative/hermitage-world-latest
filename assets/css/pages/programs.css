@@ -41,7 +41,6 @@
 
   /* A ROOM'S TITLE keeps to fourteen ems, and three cells under it before
      its lede (with the head's gap, four and a half). */
-  .hw-room-title { max-inline-size: 14em; margin-block-end: var(--sp-3); }
 
   /* THE PATHWAY IN A ROW: seven stages across the frame, each at least
      fourteen cells, as many as fit, stretched to fill it. A name never

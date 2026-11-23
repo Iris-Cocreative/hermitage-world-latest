@@ -122,17 +122,7 @@
   .hw-founded-art { max-inline-size: calc(var(--u) * 43); }
   .hw-founded-title em { font-style: normal; color: var(--accent); }
 
-  /* THE LETTER CARD. Held to the old card's width; on a wide card the form
-     sits beside the words behind a hairline. Name and email side by side
-     while they fit. */
-  .hw-letter-card { --surface: transparent; inline-size: 100%; max-inline-size: calc(var(--u) * 108); margin-inline: auto; }
-  @container (width >= 54rem) {
-    .hw-letter-split { padding-block: var(--sp-3); align-items: center; }
-    .hw-letter-form-card { border-inline-start: var(--line) solid color-mix(in oklab, var(--accent) 80%, transparent); padding-inline-start: var(--sp-5); }
-  }
-  .hw-fill { flex: 1 1 100%; }
-  .hw-signup { --cols-gap: var(--sp-1); }
-  @container (width < 30rem) { .hw-signup { --cols: 1; } }
+  /* THE LETTER CARD: site.css's .hw-letter-card (newsletter/ has it too). */
 
   /* THE MISSION. A taller room than a band, its words centered. */
   .hw-mission { --hw-room-top: calc(var(--u) * 10); }
