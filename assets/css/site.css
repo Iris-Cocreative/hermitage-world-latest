@@ -36,7 +36,8 @@
      and a quieter one, worked out on each part that draws them so a part in
      a dark band takes the dark band's gold. */
   :where(.hw-arch, .hw-arch-window, .hw-roundel, .hw-room-arch, .hw-timeline,
-         .hw-pathway, .hw-date, .hw-event, .hw-player, .hw-pending) {
+         .hw-pathway, .hw-date, .hw-event, .hw-player, .hw-pending, .hw-board,
+         .hw-acc) {
     --hw-line: color-mix(in oklab, var(--accent) 80%, transparent);
     --hw-line-subtle: color-mix(in oklab, var(--accent) 35%, transparent);
   }
@@ -44,7 +45,7 @@
   /* GOLD TEXT. Gold as ink for small words (a role, a year, a kicker): the
      accent drawn toward the text, so it keeps 4.5:1 on every ground, where
      the accent alone is only promised 3:1. */
-  .hw-gold { color: color-mix(in oklab, var(--accent) 60%, var(--text)); }
+  .hw-gold { color: light-dark(var(--accent), color-mix(in oklab, var(--accent) 62%, var(--text))); }
 
   /* CENTERED. The old .center and .ta-center: words set on the middle of
      their column, and a stack's items with them. */
@@ -58,9 +59,9 @@
   .hw-card-link::after { content: ""; position: absolute; inset: 0; border-radius: var(--card-radius); }
   @media (hover: hover) { .card:has(.hw-card-link):hover { --card-border: color-mix(in oklab, var(--accent) 80%, transparent); } }
 
-  /* THE VOICE. Alegreya italic, only for a person speaking (brand: the Voice
-     Rule). In running text, or on a quote's words. */
-  .hw-voice, .hw-quote > p { font-family: var(--font-serif); font-style: italic; }
+  /* THE VOICE. Alegreya italic, only for a person speaking inside running
+     text (brand: the Voice Rule). A quote's words are the display face. */
+  .hw-voice { font-family: var(--font-serif); font-style: italic; }
 
   /* ------------------------------------------------------------------ arch
      A round-headed arch over shoulders with a small foot radius. Its height
@@ -214,7 +215,7 @@
      scope) with .hw-backdrop and a room arch, holding a .split of the words
      (.stack: crumbs, title, lede, actions) and the media (a roundel or the
      friar). Both halves sit on the band's floor. */
-  .hw-hero { --room-arch-top: var(--sp-4); --room-arch-opacity: .55; }
+  .hw-hero { --room-arch-top: var(--sp-5); --room-arch-opacity: .55; --hw-room-top: var(--sp-1h); --hw-room-end: 0; }
   .hw-hero-text { --stack-gap: var(--sp-2); align-self: end; }
   .hw-hero-media {
     container-type: inline-size;
@@ -225,7 +226,7 @@
   }
 
   /* ----------------------------------------------------------------- quote
-     A person's words in the voice, and a dash-and-name cite. Centered by
+     A person's words in the display face, and a dash-and-name cite. Centered by
      default; .hw-quote-start sets it at the start of its column. The words
      take a type role in the markup (t-h4; t-h5 for a smaller quote). */
   .hw-quote {
@@ -336,20 +337,24 @@
   .hw-head-row { display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: space-between; gap: var(--sp-2); }
   .hw-rail-arrows[hidden] { display: none; }
   .hw-value { display: flex; flex-direction: column; gap: var(--sp-1); }
-  .hw-value > .hw-glyph { margin-block-end: var(--sp-1); }
+  .hw-value > .hw-glyph { --glyph-size: calc(var(--u) * 20.75); margin-block-end: var(--sp-2); }
   @container (width >= 40rem) {
-    .hw-value:nth-child(even) > .hw-glyph { order: 3; margin-block: var(--sp-1) 0; }
+    .hw-value:nth-child(even) > .hw-glyph { order: 3; margin-block: var(--sp-2) 0; }
   }
 
   /* ----------------------------------------------------------------- halls
-     A hallway: a .card holding an arched photo that links on, a kicker, a
-     title, a line and an action kept at the card's foot. Three across in a
-     .cols, one where three won't fit. */
-  .hw-halls { --cols: 3; }
-  @container (width < 62rem) { .hw-halls { --cols: 1; } }
-  .hw-hall { display: flex; flex-direction: column; }
+     A hallway: an arched photo that links on, in a gold hairline, over an
+     accordion (.hw-acc) that names it and opens to a line and a link. No
+     card: only the accordion is boxed. Three across in a .cols, two and then
+     one as the container narrows. (.hw-hall-body and .hw-hall-action are the
+     older card form, still used by the meditation page.) */
+  .hw-hall { display: flex; flex-direction: column; gap: var(--sp-2); }   /* its photo sits in a .context, whose width it measures */
+  .hw-hall-photo { --arch-ratio: 1.3394; --arch-edge: var(--line); --arch-edge-color: var(--hw-line); }
   .hw-hall-body { flex: 1; }
   .hw-hall-action { margin-block-start: auto; }
+  .cols.hw-halls { --cols: 3; --cols-gap: var(--sp-3); }
+  @container (width < 62rem) { .cols.hw-halls { --cols: 2; } }
+  @container (width < 40rem) { .cols.hw-halls { --cols: 1; } }
   .hw-hall-photo > img { transition: scale calc(var(--dur-in-slow) * 4) var(--ease-out); }
   .hw-hall-photo { transition: translate calc(var(--dur-in-slow) * 2) var(--ease-out); }
   @media (hover: hover) and (prefers-reduced-motion: no-preference) {
@@ -359,8 +364,9 @@
   /* The round arrow on the photo, over a scrim of its own. */
   .hw-hall-go {
     position: absolute; z-index: 1;
-    inset-inline-end: var(--sp-2);
-    inset-block-end: var(--sp-2);
+    inset-inline-end: var(--sp-1h);
+    inset-block-end: var(--sp-1h);
+    --btn-h: calc(var(--u) * 3.75);
     --btn-bg: color-mix(in oklab, var(--black) 35%, transparent);
     --btn-ink: var(--white);
     --btn-border: color-mix(in oklab, var(--white) 45%, transparent);
@@ -617,4 +623,125 @@
 
   /* A HAIRLINE RULE outside .prose (core styles an hr only inside prose). */
   .hw-rule { block-size: var(--line); margin: 0; border: 0; background: var(--border-subtle); }
+}
+
+/* ==========================================================================
+   THE ADOPT-TRELLIS LOOK (2026-11-23). The site's measure, rhythm and the
+   way its primitives are dressed, matched to the adopt-trellis build: a
+   120-cell frame, rooms with twelve cells above and below their words, gold
+   hairlines on buttons, cards and fields, glass cards. Variables only.
+   ========================================================================== */
+@layer hw.site {
+  /* THE FRAME: 120 cells at the widest (the old 1460px container). This pin
+     of Trellis has no --frame-max-n knob, so the frame takes the measure. */
+  .frame { --frame-max: calc(var(--u) * 120); }
+
+  /* THE ROOM'S RHYTHM. A band pads six cells; a room on a wide screen has
+     twelve above and below its words (<section class="section cc-band
+     hw-room">). The band's grid takes a spacer box at each end (its own row,
+     across every column), so the band's padding stays as core draws it (see
+     TRELLIS-LEDGER.md: a --band-pad variable). --hw-room-top and
+     --hw-room-end are the spacers' heights: each adds that and a row gap
+     (two cells) to the band's six. */
+  @media (min-width: 48rem) {
+    .hw-room::before,
+    .hw-room::after {
+      content: "";
+      grid-column: 1 / -1;
+      block-size: var(--hw-room-top, var(--sp-4));
+    }
+    .hw-room::after { block-size: var(--hw-room-end, var(--sp-4)); }
+  }
+
+  /* GOLD HAIRLINES. A button is a gold-edged pill, .cc-primary the gold
+     fill; a small one is the old 42px pill. Cards, fields and tags take the
+     gold line too. The chrome (the bar, the map, the footer) keeps its own. */
+  main .button:not(.cc-primary, .cc-ghost, :disabled, [aria-disabled="true"], [aria-pressed="true"]) {
+    --btn-border: color-mix(in oklab, var(--accent) 80%, transparent);
+  }
+  main .button.cc-sm { --btn-h: calc(var(--u) * 3.5); --btn-fs: var(--fs-control); }
+  main .button.cc-lg { --btn-h: calc(var(--u) * 5); }
+  main .button.icon-button:not(.cc-primary) { --btn-border: color-mix(in oklab, var(--text) 45%, transparent); }
+  /* The ink button: a pill in the text's color (Meet Friar Justin). */
+  main .button.hw-btn-ink { --btn-border: var(--text); --btn-ink: var(--text); }
+
+  main .card { --card-border: color-mix(in oklab, var(--accent) 80%, transparent); --card-pad: var(--sp-3); }
+  /* The glass ground: a top-level card lets the room show through. */
+  main .card:not(:is(.card, .modal-inner, .float) .card) { --surface: color-mix(in oklab, var(--bg) 45%, transparent); }
+  main .card.hw-card-lg { --card-pad: var(--sp-5); --card-radius: var(--r-2); }
+
+  main .input { --input-border: color-mix(in oklab, var(--accent) 80%, transparent); --input-bg: transparent; --input-pad: var(--sp-2); }
+
+  /* A ROOM'S HEAD: its words (a kicker, the title, a lede) at the start and
+     what it offers (a link, arrows) at the end, on the words' floor; five
+     cells over what follows. The title keeps to fourteen ems. */
+  .hw-room-head {
+    display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between;
+    gap: var(--sp-2) var(--sp-5);
+    margin-block-end: var(--sp-3);   /* with the section's row gap, five cells */
+  }
+  .hw-room-head-text { --stack-gap: var(--sp-1h); max-inline-size: calc(var(--u) * 70); }
+  .hw-lede { max-inline-size: 34em; }
+
+  /* QUIET WORDS: Alegreya Sans light, for a timetable's lines and labels. */
+  .hw-light { font-weight: 300; }
+
+  /* THE BOARD: hairline rows between gold lines (the old .timetable), a
+     .list inside: <div class="hw-board"><ul class="list">…hw-board-row. A
+     row's day is set in light capitals; its words take two cells above and
+     below; the label column is 24 cells wide. */
+  .hw-board { border-block: var(--line) solid var(--hw-line); }
+  .hw-board > .list { --list-pad-y: var(--sp-2); --list-gap: var(--sp-5); --list-rule: var(--hw-line); --list-align: center; }
+  .hw-board .hw-row-label { inline-size: calc(var(--u) * 24); }
+  .hw-board .list-sub { max-inline-size: calc(var(--u) * 53); }
+  .hw-row-day { font-size: var(--fs-control-lg); font-weight: 300; letter-spacing: var(--label-tracking); text-transform: uppercase; }
+  /* On a narrow container a row is one column: the day, the words, then
+     its action (.hw-board-end on the .list-end). */
+  @container (width < 60rem) {
+    .hw-board .hw-board-row { flex-wrap: wrap; --list-gap: var(--sp-1); }
+    .hw-board .hw-row-label, .hw-board .hw-board-end { inline-size: 100%; }
+  }
+
+  /* THE ACCORDION (the old .accordion): a gold-edged glass box whose summary
+     names it (a title, a quieter line, a gold chevron) and opens to a few
+     lines and a link. <details class="hw-acc" name="…"> keeps one open in
+     its group without script. */
+  .hw-acc {
+    border: var(--line) solid var(--hw-line);
+    border-radius: var(--r-1h);
+    background: color-mix(in oklab, var(--bg) 45%, transparent);
+  }
+  .hw-acc > summary {
+    position: relative;
+    display: flex; flex-direction: column; gap: var(--sp-h);
+    padding: var(--sp-2) calc(var(--sp-2) + var(--sp-3)) var(--sp-2) var(--sp-2);
+    border-radius: inherit;
+    list-style: none;
+    cursor: pointer;
+  }
+  .hw-acc > summary::-webkit-details-marker { display: none; }
+  .hw-acc > summary:focus-visible { outline: calc(var(--line) * 2) solid var(--focus); outline-offset: calc(var(--line) * 2); }
+  .hw-acc-sub { font-size: var(--fs-control-lg); font-weight: 300; color: var(--text-secondary); }
+  .hw-acc-chev {
+    position: absolute;
+    inset-inline-end: var(--sp-2);
+    inset-block-start: calc(var(--sp-2) + var(--sp-q));
+    --icon-size: var(--size-icon-md);
+    color: var(--accent);
+    transition: rotate var(--dur-in-slow) var(--ease-out);
+  }
+  .hw-acc[open] .hw-acc-chev { rotate: 180deg; }
+  .hw-acc-body {
+    --stack-gap: var(--sp-1);
+    padding: 0 var(--sp-2) var(--sp-2);
+    font-size: var(--fs-control-lg);
+    font-weight: 300;
+  }
+  .hw-acc-body a { color: light-dark(var(--accent), color-mix(in oklab, var(--accent) 62%, var(--text))); text-decoration: underline; text-decoration-thickness: var(--line); text-underline-offset: .2em; }
+  @media (hover: hover) { .hw-acc-body a:hover { color: var(--text); } }
+  @media (prefers-reduced-motion: no-preference) {
+    .hw-acc { interpolate-size: allow-keywords; }
+    .hw-acc::details-content { block-size: 0; overflow: clip; transition: block-size var(--dur-in-slow) var(--ease-out), content-visibility var(--dur-in-slow) allow-discrete; }
+    .hw-acc[open]::details-content { block-size: auto; }
+  }
 }

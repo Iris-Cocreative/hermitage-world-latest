@@ -22,6 +22,8 @@
     --cover-scrim: var(--surface);
     --cover-pad: round(up, 22svh, var(--u));
   }
+  /* On a wide screen the words sit nearer the middle of the stage. */
+  @container (width >= 52rem) { .hw-temple-cover { --cover-pad: round(up, 32svh, var(--u)); } }
   /* The still shows until the scene is ready, then the canvas fades in over it. */
   .hw-temple-gl { position: absolute; inset: 0; inline-size: 100%; block-size: 100%; opacity: 0; }
   .hw-temple.is-ready .hw-temple-gl { opacity: 1; }
@@ -48,6 +50,16 @@
   }
   .hw-beats { display: grid; }
   .hw-beat { grid-area: 1 / 1; --stack-gap: var(--sp-3); }
+  /* The opening line: the display face, larger than a heading on a phone
+     and a little under the H1 on a wide screen, as the temple's words were. */
+  .hw-temple-title {
+    max-inline-size: 9em;
+    font-family: var(--font-heading);
+    font-size: calc(var(--u) * 6.5);
+    line-height: 1;
+  }
+  @container (width < 75rem) { .hw-temple-title { font-size: calc(var(--u) * 5); } }
+  @container (width < 40rem) { .hw-temple-title { font-size: calc(var(--u) * 3.75); } }
   .hw-beat-a { opacity: var(--beat-a, 1); }
   .hw-temple-lede { max-inline-size: calc(var(--u) * 38); opacity: var(--beat-lede, 1); }
   .hw-beat-b { opacity: var(--beat-b, 0); pointer-events: none; }
@@ -72,8 +84,8 @@
 
   /* THE THRESHOLD. The door, its line and the way on, centered under the
      big hairline arch, a little lower than a band's own padding. */
-  .hw-threshold { --room-arch-top: var(--sp-4); }
-  .hw-threshold-body { --stack-gap: var(--sp-4); padding-block-start: var(--sp-4); }
+  .hw-threshold { --room-arch-top: var(--sp-5); --hw-room-top: var(--sp-6); }
+  .hw-threshold-body { --stack-gap: var(--sp-5); inline-size: 100%; }
   /* The door: the stained-glass room seen through an open door that glows.
      The room fades into the dark at its edges. Height in whole cells, from
      its own width and the photo's crop (1090 × 727). */
@@ -95,11 +107,15 @@
   }
 
   /* THE OCULUS. A large roundel on the middle of its column, over its quote. */
-  .hw-oculus-body { --stack-gap: var(--sp-4); }
-  .hw-oculus-art .hw-roundel { --roundel-size: calc(var(--u) * 56); --roundel-pos: center 42%; margin-inline: auto; }
+  .hw-oculus-body { --stack-gap: var(--sp-6); }
+  .hw-oculus-art .hw-roundel { --roundel-size: calc(var(--u) * 60); --roundel-pos: center 42%; margin-inline: auto; }
 
   /* FIVE LIGHTS. The title keeps to two lines. */
   .hw-lights-title { max-inline-size: calc(var(--u) * 45); }
+  .hw-lights-body { margin-block-start: var(--sp-3); }
+
+  /* THE WEEK. The closing line sits five cells under the board. */
+  .hw-calendar-body { --stack-gap: var(--sp-5); }
 
   /* FOUNDED. The friar at the size of the old art; the title's last words
      in gold, upright (the old em). */
@@ -109,13 +125,17 @@
   /* THE LETTER CARD. Held to the old card's width; on a wide card the form
      sits beside the words behind a hairline. Name and email side by side
      while they fit. */
-  .hw-letter-card { inline-size: 100%; max-inline-size: calc(var(--u) * 108); margin-inline: auto; }
-  @container (width >= 36rem) {
-    .hw-letter-form-card { border-inline-start: var(--line) solid var(--border-subtle); padding-inline-start: var(--sp-3); }
+  .hw-letter-card { --surface: transparent; inline-size: 100%; max-inline-size: calc(var(--u) * 108); margin-inline: auto; }
+  @container (width >= 54rem) {
+    .hw-letter-split { padding-block: var(--sp-3); align-items: center; }
+    .hw-letter-form-card { border-inline-start: var(--line) solid color-mix(in oklab, var(--accent) 80%, transparent); padding-inline-start: var(--sp-5); }
   }
+  .hw-fill { flex: 1 1 100%; }
   .hw-signup { --cols-gap: var(--sp-1); }
   @container (width < 30rem) { .hw-signup { --cols: 1; } }
 
   /* THE MISSION. A taller room than a band, its words centered. */
-  .hw-mission-body { --stack-gap: var(--sp-3); padding-block: var(--sp-6); }
+  .hw-mission { --hw-room-top: calc(var(--u) * 10); }
+  .hw-mission-body { --stack-gap: var(--sp-3); }
+  .hw-mission-kicker { font-weight: var(--fw-label); }
 }

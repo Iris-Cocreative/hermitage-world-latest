@@ -7,7 +7,11 @@
    these seeds by core.css.
    Load after core.css, with data-product="hermitage" on <html>.
    The one product layer: the app's Trellis pages load it from here, and
-   the static site will when its pages move onto Trellis.
+   the static site's pages do.
+   Values follow the adopt-trellis build of the site (hermitage.product.css
+   there), so both read as one: the umber night at Figma's umber-900, gold-700
+   by day and gold-500 by night, the open ratio. (Its 120-cell frame is not
+   a knob in this pin of Trellis: site.css sets it on .frame.)
    ========================================================================== */
 @layer trellis.product {
   :root[data-product="hermitage"] {
@@ -16,53 +20,58 @@
     --font-sans: "Alegreya Sans", "Segoe UI", system-ui, sans-serif;
     --font-serif: "Alegreya", Georgia, serif;
     --font-heading: "Marcellus", "Times New Roman", Georgia, serif;
-    --fw-body: 400;
     --fw-heading: 400;
-    --fw-label: 500;
-    --fw-label-text: 500;
-    --fw-strong: 700;
+    --fw-strong: 500;
     --fw-serif: 400;
-    --heading-tracking: 0;
-    --label-tracking: .18em;
+    --heading-tracking: -.01em;
+    --label-tracking: .2em;
     --label-case: uppercase;
 
-    /* The ratio: a minor third opening to a perfect fourth, from a large H1.
-       Body is a step larger than core's, for older eyes. */
-    --h1-min: 2.5;     --h1-max: 6;
-    --rh-min: 1.2;     --rh-max: 1.333;
-    --body-min: 1.0625; --body-max: 1.25;
-    --rp-min: 1.125;   --rp-max: 1.2;
-    --label-min: .75;  --label-max: .8125;
-    --lh-h1: 1.05;     --lh-h-step: .05;
-    --lh-body: 1.55;   --lh-p-step: .03;
+    /* The ratio: core's (1.26 narrow, 1.414 wide), from a large H1. Body
+       tops out a step larger than core's, for older eyes. */
+    --h1-max: 6;
+    --body-max: 1.25;
+    --lh-body: 1.5;
 
-    /* Palette. Neutral: umber's hue at plaster's warmth, so the light theme is
-       plaster and the dark theme is umber. Accent: Figma's gold (#a68140);
-       its ink resolves to umber (decision 7 in the build log). Tags read as
-       stone and gold, never blue: glass colors stay light, never UI. */
-    --seed-neutral: oklch(.55 .024 80);
-    --seed-accent: oklch(.625 .095 79.7);
+    /* Palette. Gold is the only interactive accent; umber the night ground.
+       By day the gold that passes AA on plaster (gold-700); by night Figma's
+       gold-500 exactly, not a lift. Tags read as stone and gold, never blue:
+       glass colors stay light, never UI. */
+    --seed-accent: oklch(.460 .074 79.5);          /* gold-700 */
+    --seed-accent-night: oklch(.625 .095 79.7);    /* gold-500 */
+    --seed-neutral: oklch(.55 .025 78);            /* umber/stone hue, warm */
+    --seed-night: oklch(.20 .032 74.3);            /* umber: the night ground's hue and chroma */
+    --night-lift: .025;                            /* lifts core's night (.176) to umber-900 (.201), the
+                                                      color temple.js clears its canvas to */
+    --day-depth: .032;                             /* plaster-200 (.941), never pure white */
     --seed-topic: oklch(.46 .074 79.5);
     --seed-event: oklch(.46 .074 79.5);
     --seed-person: oklch(.544 .086 80.1);
     --seed-group: oklch(.46 .05 80);
     --seed-course: oklch(.46 .05 80);
     /* Success is a green of its own: core derives it at the accent's
-       lightness, which on plaster is under 3:1 for gold's .625. */
+       lightness, which on plaster is under 3:1. */
     --seed-ok: oklch(.52 .1 150);
-    --color-lift: .17;
-    --ink-flip: .58;
+
+    /* Cards sit on the frame's edge; they don't step out into the gutter. */
+    --outset: 0;
 
     /* Shape: arch, circle and pill. */
-    --shape-card: var(--r-2);
+    --shape-card: var(--r-1h);
     --shape-control: var(--r-round);
     --shape-input: var(--r-round);
     --shape-float: var(--r-1);
+    /* Density: generous pills (the site's buttons were 53px, its fields 59px) */
     --density-card-pad: var(--sp-2);
     --density-control-h: var(--size-control-xl);
     --density-control-fs: var(--fs-control-lg);
-    --prose-measure: calc(var(--u) * 52);
     --tag-default-h: var(--size-control-md);
     --tag-default-fs: var(--tag-fs-lg);
+  }
+
+  /* A stone room: plaster under raking light, a step darker
+     (data-product="stone" data-theme="light" on the room). */
+  [data-product="stone"] {
+    --day-depth: .073;
   }
 }

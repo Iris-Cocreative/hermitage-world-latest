@@ -245,7 +245,7 @@
   function live(text) { return '<span class="hw-live t-sm hw-gold"><span class="dot cc-accent hw-live-dot" aria-hidden="true"></span>' + esc(text) + '</span>'; }
   // a board row's first column: a label in gold over a quieter line
   function rowLabel(label, sub) {
-    return '<div class="pair hw-row-label"><p class="t-label hw-gold">' + esc(label) + '</p>' +
+    return '<div class="pair hw-row-label"><p class="hw-row-day hw-gold">' + esc(label) + '</p>' +
       (sub ? '<p class="t-xs u-text-secondary">' + esc(sub) + '</p>' : '') + '</div>';
   }
   // a hybrid gathering belongs under both the Online and the In person filters
@@ -270,9 +270,9 @@
       var g = x.g, o = x.o;
       return '<li class="list-item hw-board-row">' +
         rowLabel(labelFor(g, o), o ? fmtTime(o.start) + ' ' + fmtZone(o.start) + ' your time' : '') +
-        '<div class="list-body"><h3 class="list-title t-h6">' + esc(g.title) + '</h3><p class="list-sub t-sm">' + esc(g.short || g.summary) + '</p>' +
+        '<div class="list-body"><h3 class="list-title t-h5">' + esc(g.title) + '</h3><p class="list-sub t-sm hw-light">' + esc(g.short || g.summary) + '</p>' +
           (o && o.live ? '<div class="cluster">' + live('Happening now, until ' + fmtTime(o.end)) + '</div>' : '') + '</div>' +
-        '<span class="list-end"><a class="button cc-sm' + (o && o.live ? ' cc-primary' : '') + '" href="' + eventHref(g) + '"><span class="button-label">' + esc(o && o.live ? 'Join now' : g.action) + '</span></a></span>' +
+        '<span class="list-end hw-board-end"><a class="button cc-sm' + (o && o.live ? ' cc-primary' : '') + '" href="' + eventHref(g) + '"><span class="button-label">' + esc(o && o.live ? 'Join now' : g.action) + '</span></a></span>' +
       '</li>';
     }).join('');
   }

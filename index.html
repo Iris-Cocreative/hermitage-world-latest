@@ -39,7 +39,7 @@
       <div class="cover-body hw-temple-copy">
         <div class="hw-beats">
           <div class="stack hw-beat hw-beat-a">
-            <h1 class="t-h1" id="hero-title" data-edit="text">You are not alone in your longing</h1>
+            <h1 class="hw-temple-title" id="hero-title" data-edit="text">You are not alone in your longing</h1>
             <p class="t-lg hw-temple-lede" data-edit="text">Hermitage World is a worldwide community of seekers learning to find the quiet space within, through meditation, simplicity, and companions on the way. Whatever tradition you come from, or none at all: the door is open.</p>
           </div>
           <div class="stack hw-beat hw-beat-b" aria-hidden="true">
@@ -59,7 +59,7 @@
 </section>
 
 <!-- ============ THRESHOLD · the door ============ -->
-<section class="section cc-band hw-backdrop hw-threshold" id="threshold" data-product="hermitage" data-theme="dark" aria-labelledby="threshold-title">
+<section class="section cc-band hw-room hw-backdrop hw-threshold" id="threshold" data-product="hermitage" data-theme="dark" aria-labelledby="threshold-title">
   <div class="hw-room-arch" aria-hidden="true"></div>
   <div class="stack hw-center hw-threshold-body">
     <figure class="hw-door" data-reveal>
@@ -74,7 +74,7 @@
 </section>
 
 <!-- ============ OCULUS · the quiet space within ============ -->
-<section class="section cc-band hw-backdrop" id="oculus" data-product="hermitage" data-theme="light" aria-label="Friar Justin on the Hermitage">
+<section class="section cc-band hw-room hw-backdrop" id="oculus" data-product="hermitage" data-theme="light" aria-label="Friar Justin on the Hermitage">
   <div class="hw-lineart hw-lineart-arches" aria-hidden="true"></div>
   <div class="stack hw-oculus-body">
     <div class="context hw-oculus-art" data-reveal>
@@ -82,13 +82,13 @@
     </div>
     <blockquote class="hw-quote" data-reveal>
       <p class="t-h4" data-edit="text">“The Hermitage is a quiet space within each human being. Meditation is a means by which a person can discover and use it to achieve a full life.”</p>
-      <cite class="t-body">Friar Justin</cite>
+      <cite class="t-lg">Friar Justin</cite>
     </blockquote>
   </div>
 </section>
 
 <!-- ============ FIVE LIGHTS ============ -->
-<section class="section cc-band hw-backdrop" id="lights" data-product="hermitage" data-theme="dark" aria-labelledby="lights-title">
+<section class="section cc-band hw-room hw-backdrop" id="lights" data-product="hermitage" data-theme="dark" aria-labelledby="lights-title">
   <div class="hw-room-photo" style="--photo-pos: 72% center; --photo-opacity: .5" aria-hidden="true"><img src="assets/img/photo/light-shaft-room.jpg" alt="" loading="lazy"></div>
   <div class="section-head hw-head-row" data-reveal>
     <h2 class="t-h2 hw-lights-title" id="lights-title" data-edit="text">Five lights hold this place up</h2>
@@ -97,7 +97,7 @@
       <button class="button icon-button" type="button" data-dir="1" aria-label="Next lights"><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#arrow-right"/></svg></button>
     </div>
   </div>
-  <div class="section-body">
+  <div class="section-body hw-lights-body">
     <div class="rail hw-values" id="lights-rail" tabindex="0" role="group" aria-label="Five lights">
       <article class="hw-value" data-reveal>
         <span class="hw-glyph"><span class="hw-art hw-art-inner-divinity"></span></span>
@@ -128,131 +128,154 @@
   </div>
 </section>
 
-<!-- ============ HALLWAYS ============ -->
-<section class="section cc-band hw-deep" id="hallways" data-product="hermitage" data-theme="dark" aria-labelledby="hallways-title">
-  <div class="section-head stack" data-reveal>
-    <h2 class="t-h2" id="hallways-title" data-edit="text">From this room, three hallways</h2>
-    <p class="t-lg u-text-secondary hw-measure" data-edit="text">Meditation is the practice. Spiritual transformation is the journey. Cherished belonging is the community. Everyone arrives differently, so each hallway starts somewhere real, and each one turns.</p>
+<!-- ============ HALLWAYS ============
+     Three hallways: an arched photo over an accordion that names it. One
+     open at a time (<details name>); Deepen opens first. -->
+<section class="section cc-band hw-room hw-deep" id="hallways" data-product="hermitage" data-theme="dark" aria-labelledby="hallways-title">
+  <div class="hw-room-head">
+    <div class="stack hw-room-head-text" data-reveal>
+      <h2 class="t-h2" id="hallways-title" data-edit="text">From this room, three hallways</h2>
+      <p class="t-lg u-text-secondary hw-lede" data-edit="text">Meditation is the practice. Spiritual transformation is the journey. Cherished belonging is the community. Everyone arrives differently, so each hallway starts somewhere real, and each one turns.</p>
+    </div>
   </div>
-  <div class="section-body">
-    <div class="cols hw-halls">
-      <article class="card hw-hall" data-reveal>
-        <div class="stack hw-hall-body">
+  <div class="cols hw-halls">
+      <article class="hw-hall" data-reveal>
+        <div class="context">
           <a class="hw-arch hw-hall-photo" href="programs/train-your-mind/" aria-label="Begin: Train Your Mind">
             <img data-edit="image" src="assets/img/photo/hall-begin.jpg" alt="" loading="lazy" width="1000" height="1280">
-            <span class="button icon-button cc-sm hw-hall-go" aria-hidden="true"><svg class="icon"><use href="assets/img/icons.svg#arrow"/></svg></span>
+            <span class="button icon-button hw-hall-go" aria-hidden="true"><svg class="icon"><use href="assets/img/icons.svg#arrow"/></svg></span>
           </a>
-          <p class="t-eyebrow hw-gold" data-edit="text">Begin</p>
-          <h3 class="t-h5" data-edit="text">Train Your Mind: Meditation Foundations</h3>
-          <p class="t-body u-text-secondary" data-edit="text">A rotating class exploring meditation through modern science and ancient contemplative wisdom. No experience needed; no tradition required.</p>
-          <div class="cluster hw-hall-action"><a class="button cc-primary" data-edit="link" href="programs/train-your-mind/">Start here</a></div>
         </div>
+        <details class="hw-acc" name="hallways">
+          <summary>
+            <span class="t-h4" data-edit="text">Begin</span>
+            <span class="hw-acc-sub" data-edit="text">Train Your Mind: Meditation Foundations</span>
+            <svg class="icon hw-acc-chev" aria-hidden="true"><use href="assets/img/icons.svg#chevron-down"/></svg>
+          </summary>
+          <div class="stack hw-acc-body">
+            <p data-edit="text">A rotating class exploring meditation through modern science and ancient contemplative wisdom. No experience needed; no tradition required.</p>
+            <p><a data-edit="link" href="programs/train-your-mind/">Start here</a></p>
+          </div>
+        </details>
       </article>
-      <article class="card hw-hall" data-reveal>
-        <div class="stack hw-hall-body">
+      <article class="hw-hall" data-reveal>
+        <div class="context">
           <a class="hw-arch hw-hall-photo" href="programs/success-full-living/" aria-label="Deepen: Success: Full Living">
             <img data-edit="image" src="assets/img/photo/hall-deepen.jpg" alt="" loading="lazy" width="1046" height="596">
-            <span class="button icon-button cc-sm hw-hall-go" aria-hidden="true"><svg class="icon"><use href="assets/img/icons.svg#arrow"/></svg></span>
+            <span class="button icon-button hw-hall-go" aria-hidden="true"><svg class="icon"><use href="assets/img/icons.svg#arrow"/></svg></span>
           </a>
-          <p class="t-eyebrow hw-gold" data-edit="text">Deepen</p>
-          <h3 class="t-h5" data-edit="text">Full living &amp; the practice space</h3>
-          <p class="t-body u-text-secondary" data-edit="text">Friar Justin's flagship program joins practical tools for managing a life with meditation and direct spirituality. Around it: silent sits, discussion circles, retreats, and visiting teachers.</p>
-          <div class="cluster hw-hall-action"><a class="button" data-edit="link" href="programs/">See all programs</a></div>
         </div>
+        <details class="hw-acc" name="hallways" open>
+          <summary>
+            <span class="t-h4" data-edit="text">Deepen</span>
+            <span class="hw-acc-sub" data-edit="text">Full living &amp; the practice space</span>
+            <svg class="icon hw-acc-chev" aria-hidden="true"><use href="assets/img/icons.svg#chevron-down"/></svg>
+          </summary>
+          <div class="stack hw-acc-body">
+            <p data-edit="text">Friar Justin's flagship program joins practical tools for managing a life with meditation and direct spirituality. Around it: silent sits, discussion circles, retreats, and visiting teachers.</p>
+            <p><a data-edit="link" href="programs/">See all programs</a></p>
+          </div>
+        </details>
       </article>
-      <article class="card hw-hall" data-reveal>
-        <div class="stack hw-hall-body">
+      <article class="hw-hall" data-reveal>
+        <div class="context">
           <a class="hw-arch hw-hall-photo" href="friar-justin/library/" aria-label="Remember: Friar Justin and the Library">
             <img data-edit="image" src="assets/img/photo/hall-remember.jpg" alt="" loading="lazy" width="802" height="1086">
-            <span class="button icon-button cc-sm hw-hall-go" aria-hidden="true"><svg class="icon"><use href="assets/img/icons.svg#arrow"/></svg></span>
+            <span class="button icon-button hw-hall-go" aria-hidden="true"><svg class="icon"><use href="assets/img/icons.svg#arrow"/></svg></span>
           </a>
-          <p class="t-eyebrow hw-gold" data-edit="text">Remember</p>
-          <h3 class="t-h5" data-edit="text">Friar Justin &amp; the Library</h3>
-          <p class="t-body u-text-secondary" data-edit="text">The founder's voice, kept working: some twenty-five hours of homilies and teachings, and the meditations he always gave freely.</p>
-          <div class="cluster hw-hall-action"><a class="button" data-edit="link" href="friar-justin/library/">Open the Library</a></div>
         </div>
+        <details class="hw-acc" name="hallways">
+          <summary>
+            <span class="t-h4" data-edit="text">Remember</span>
+            <span class="hw-acc-sub" data-edit="text">Friar Justin &amp; the Library</span>
+            <svg class="icon hw-acc-chev" aria-hidden="true"><use href="assets/img/icons.svg#chevron-down"/></svg>
+          </summary>
+          <div class="stack hw-acc-body">
+            <p data-edit="text">The founder's voice, kept working: some twenty-five hours of homilies and teachings, and the meditations he always gave freely.</p>
+            <p><a data-edit="link" href="friar-justin/library/">Open the Library</a></p>
+          </div>
+        </details>
       </article>
-    </div>
   </div>
 </section>
 
 <!-- ============ THE WEEK ============
      The six weekly gatherings, as in assets/data/gatherings.js (Samuel's
      Oct 26 schedule). Days only: times live on each gathering's page. -->
-<section class="section cc-band hw-deep" id="calendar" data-product="hermitage" data-theme="dark" aria-labelledby="calendar-title">
-  <div class="section-head stack" data-reveal>
-    <p class="t-eyebrow hw-gold" data-edit="text">Calendar</p>
-    <h2 class="t-h2" id="calendar-title" data-edit="text">The week keeps a rhythm,<br>Join it from anywhere.</h2>
-    <div class="cluster">
-      <a class="hw-circle-link hw-circle-link-sm" href="gatherings/">
-        <span class="hw-ring"><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#arrow"/></svg></span>
-        <span class="t-body">All gatherings</span>
-      </a>
+<section class="section cc-band hw-room hw-deep" id="calendar" data-product="hermitage" data-theme="dark" aria-labelledby="calendar-title">
+  <div class="hw-room-head">
+    <div class="stack hw-room-head-text" data-reveal>
+      <p class="t-lg hw-gold" data-edit="text">Calendar</p>
+      <h2 class="t-h2" id="calendar-title" data-edit="text">The week keeps a rhythm,<br>Join it from anywhere.</h2>
     </div>
+    <a class="hw-circle-link hw-circle-link-sm" href="gatherings/" data-reveal>
+      <span class="hw-ring"><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#arrow"/></svg></span>
+      <span class="t-sm">All gatherings</span>
+    </a>
   </div>
-  <div class="section-body stack context">
+  <div class="section-body stack context hw-calendar-body">
     <!-- Rendered from assets/data/gatherings.js in the visitor's own time zone.
          The rows below are the no-JavaScript fallback. -->
-    <ul class="list" data-gatherings="board" data-limit="6" data-reveal>
+    <div class="hw-board" data-reveal><ul class="list" data-gatherings="board" data-limit="6">
       <li class="list-item hw-board-row">
-        <p class="t-label hw-gold hw-row-label">Tuesdays</p>
-        <div class="list-body"><h3 class="list-title t-h6">Office Hours with Samuel</h3><p class="list-sub t-sm">Questions about the Hermitage, and conversation about meditation and spirituality. Online.</p></div>
-        <span class="list-end"><a class="button cc-sm" href="gatherings/event/?id=office-hours"><span class="button-label">Join on Zoom</span></a></span>
+        <div class="pair hw-row-label"><p class="hw-row-day hw-gold">Tuesdays</p></div>
+        <div class="list-body"><h3 class="list-title t-h5">Office Hours with Samuel</h3><p class="list-sub t-sm hw-light">Questions about the Hermitage, and conversation about meditation and spirituality. Online.</p></div>
+        <span class="list-end hw-board-end"><a class="button cc-sm" href="gatherings/event/?id=office-hours"><span class="button-label">Join on Zoom</span></a></span>
       </li>
       <li class="list-item hw-board-row">
-        <p class="t-label hw-gold hw-row-label">Tuesdays</p>
-        <div class="list-body"><h3 class="list-title t-h6">Wisdom Circle</h3><p class="list-sub t-sm">Sacred texts read together in presence and deep listening. Online.</p></div>
-        <span class="list-end"><a class="button cc-sm" href="gatherings/event/?id=wisdom-circle"><span class="button-label">Join on Zoom</span></a></span>
+        <div class="pair hw-row-label"><p class="hw-row-day hw-gold">Tuesdays</p></div>
+        <div class="list-body"><h3 class="list-title t-h5">Wisdom Circle</h3><p class="list-sub t-sm hw-light">Sacred texts read together in presence and deep listening. Online.</p></div>
+        <span class="list-end hw-board-end"><a class="button cc-sm" href="gatherings/event/?id=wisdom-circle"><span class="button-label">Join on Zoom</span></a></span>
       </li>
       <li class="list-item hw-board-row">
-        <p class="t-label hw-gold hw-row-label">Wednesdays</p>
-        <div class="list-body"><h3 class="list-title t-h6">Energy Circle</h3><p class="list-sub t-sm">Success stories and a guided meditation. In person.</p></div>
-        <span class="list-end"><a class="button cc-sm" href="gatherings/event/?id=energy-circle"><span class="button-label">Come in person</span></a></span>
+        <div class="pair hw-row-label"><p class="hw-row-day hw-gold">Wednesdays</p></div>
+        <div class="list-body"><h3 class="list-title t-h5">Energy Circle</h3><p class="list-sub t-sm hw-light">Success stories and a guided meditation. In person.</p></div>
+        <span class="list-end hw-board-end"><a class="button cc-sm" href="gatherings/event/?id=energy-circle"><span class="button-label">Come in person</span></a></span>
       </li>
       <li class="list-item hw-board-row">
-        <p class="t-label hw-gold hw-row-label">Sundays</p>
-        <div class="list-body"><h3 class="list-title t-h6">Oneness Celebration</h3><p class="list-sub t-sm">A celebration of our connection with God, one another and all creation, then a potluck lunch. In person.</p></div>
-        <span class="list-end"><a class="button cc-sm" href="gatherings/event/?id=oneness-celebration"><span class="button-label">Come in person</span></a></span>
+        <div class="pair hw-row-label"><p class="hw-row-day hw-gold">Sundays</p></div>
+        <div class="list-body"><h3 class="list-title t-h5">Oneness Celebration</h3><p class="list-sub t-sm hw-light">A celebration of our connection with God, one another and all creation, then a potluck lunch. In person.</p></div>
+        <span class="list-end hw-board-end"><a class="button cc-sm" href="gatherings/event/?id=oneness-celebration"><span class="button-label">Come in person</span></a></span>
       </li>
       <li class="list-item hw-board-row">
-        <p class="t-label hw-gold hw-row-label">Sundays</p>
-        <div class="list-body"><h3 class="list-title t-h6">Contemplative Unity</h3><p class="list-sub t-sm">Silent meditation, lightly guided. Online and in person.</p></div>
-        <span class="list-end"><a class="button cc-sm" href="gatherings/event/?id=contemplative-unity"><span class="button-label">Sit with us</span></a></span>
+        <div class="pair hw-row-label"><p class="hw-row-day hw-gold">Sundays</p></div>
+        <div class="list-body"><h3 class="list-title t-h5">Contemplative Unity</h3><p class="list-sub t-sm hw-light">Silent meditation, lightly guided. Online and in person.</p></div>
+        <span class="list-end hw-board-end"><a class="button cc-sm" href="gatherings/event/?id=contemplative-unity"><span class="button-label">Sit with us</span></a></span>
       </li>
       <li class="list-item hw-board-row">
-        <p class="t-label hw-gold hw-row-label">Sundays</p>
-        <div class="list-body"><h3 class="list-title t-h6">The Way Between</h3><p class="list-sub t-sm">Contemplative practice and open-hearted dialogue. Online and in person.</p></div>
-        <span class="list-end"><a class="button cc-sm" href="gatherings/event/?id=way-between"><span class="button-label">Join us</span></a></span>
+        <div class="pair hw-row-label"><p class="hw-row-day hw-gold">Sundays</p></div>
+        <div class="list-body"><h3 class="list-title t-h5">The Way Between</h3><p class="list-sub t-sm hw-light">Contemplative practice and open-hearted dialogue. Online and in person.</p></div>
+        <span class="list-end hw-board-end"><a class="button cc-sm" href="gatherings/event/?id=way-between"><span class="button-label">Join us</span></a></span>
       </li>
-    </ul>
-    <p class="t-lg u-text-secondary" data-reveal data-edit="text">All weekly gatherings are free, and everything is optional. Come once, or come every week.</p>
+    </ul></div>
+    <p class="t-lg u-text-secondary hw-lede" data-reveal data-edit="text">All weekly gatherings are free, and everything is optional. Come once, or come every week.</p>
   </div>
 </section>
 
 <!-- ============ FOUNDED ============ -->
-<section class="section cc-band" id="founded" aria-labelledby="founded-title">
-  <div class="split hw-founded" style="--split-a: 9; --split-b: 11; --split-gap: var(--sp-4)">
+<section class="section cc-band hw-room" id="founded" data-product="stone" data-theme="light" aria-labelledby="founded-title">
+  <div class="split hw-founded" style="--split-a: 9; --split-b: 11; --split-gap: var(--sp-5)">
     <div class="context hw-founded-art" data-reveal><span class="hw-art hw-art-friar" aria-hidden="true"></span></div>
-    <div class="stack hw-founded-body" style="--stack-gap: var(--sp-2)" data-reveal>
+    <div class="stack hw-founded-body" style="--stack-gap: var(--sp-3)" data-reveal>
       <h2 class="t-h2 hw-founded-title" id="founded-title" data-edit="text">Founded on a Friar’s conviction that peace <em>is learnable.</em></h2>
       <p class="t-lg u-text-secondary" data-edit="text">Justin Belitz was a Franciscan friar who taught meditation across the United States, Europe, and Australia for four decades, and believed every person could awaken to the divine energy within. This is not a memorial to him. It is his work, continuing.</p>
-      <div class="cluster"><a class="button" data-edit="link" href="friar-justin/">Meet Friar Justin</a></div>
+      <div class="cluster"><a class="button hw-btn-ink" data-edit="link" href="friar-justin/">Meet Friar Justin</a></div>
     </div>
   </div>
 </section>
 
 <!-- ============ NEVER THE BUILDING · the weekly letter ============
      The letter's own card, so the page has no <hw-letter> strip. -->
-<section class="section cc-band hw-backdrop" id="newsletter" data-product="hermitage" data-theme="light" aria-labelledby="newsletter-title">
+<section class="section cc-band hw-room hw-backdrop" id="newsletter" data-product="hermitage" data-theme="light" aria-labelledby="newsletter-title">
   <div class="hw-lineart hw-lineart-vaults" aria-hidden="true"></div>
-  <div class="card hw-letter-card" style="--card-pad: var(--sp-3)" data-reveal>
-    <div class="split hw-letter-split" style="--split-a: 7; --split-b: 8; --split-gap: var(--sp-3)">
+  <div class="card hw-card-lg hw-letter-card" data-reveal>
+    <div class="split hw-letter-split" style="--split-a: 1; --split-b: 1.15; --split-gap: var(--sp-5)">
       <div class="stack" style="--stack-gap: var(--sp-2)">
-        <h2 class="t-h3" id="newsletter-title" data-edit="text">The Hermitage was never the building.</h2>
+        <h2 class="t-h2" id="newsletter-title" data-edit="text">The Hermitage was never the building.</h2>
         <p class="t-lg u-text-secondary" data-edit="text">For forty years, a house in Indianapolis held this community. What Friar Justin actually built keeps going: people in the United States, Australia, and Europe who found the quiet space within, and found each other.</p>
       </div>
-      <form class="stack hw-letter-form-card" style="--stack-gap: var(--sp-2)" action="#" method="post" data-demo-form data-done="Welcome. Check your inbox.">
-        <h3 class="t-h5">Receive the weekly letter</h3>
+      <form class="stack hw-letter-form-card" style="--stack-gap: var(--sp-1h)" action="#" method="post" data-demo-form data-done="Welcome. Check your inbox.">
+        <h3 class="t-h4">Receive the weekly letter</h3>
         <div class="cols hw-signup">
           <div class="field">
             <label class="field-label u-sr-only" for="nl-name">Name</label>
@@ -263,17 +286,17 @@
             <input class="input" id="nl-email" type="email" name="email" placeholder="Email" autocomplete="email" required>
           </div>
         </div>
-        <button class="button cc-primary cc-lg" type="submit"><span class="button-label">Join 3,300+ seekers</span></button>
+        <div class="cluster"><button class="button cc-primary cc-lg hw-fill" type="submit"><span class="button-label">Join 3,300+ seekers</span></button></div>
       </form>
     </div>
   </div>
 </section>
 
 <!-- ============ MISSION ============ -->
-<section class="section cc-band hw-backdrop hw-mission" id="mission" data-product="hermitage" data-theme="dark" aria-labelledby="mission-title">
+<section class="section cc-band hw-room hw-backdrop hw-mission" id="mission" data-product="hermitage" data-theme="dark" aria-labelledby="mission-title">
   <div class="hw-room-photo" style="--photo-opacity: .32" aria-hidden="true"><img src="assets/img/photo/stained-glass-hall.jpg" alt="" loading="lazy"></div>
   <div class="stack hw-center hw-mission-body">
-    <p class="t-eyebrow hw-gold" id="mission-title" data-reveal data-edit="text">The mission of Hermitage World</p>
+    <p class="t-lg hw-mission-kicker" id="mission-title" data-reveal data-edit="text">The mission of Hermitage World</p>
     <blockquote class="hw-quote" data-reveal>
       <p class="t-h4" data-edit="text">“The Hermitage exists to help every person awaken to the divine energy within, so that through meditation, simplicity, and community, we may each live with greater love, peace, and purpose.”</p>
     </blockquote>
