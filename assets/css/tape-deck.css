@@ -1,117 +1,104 @@
 /* ==========================================================================
    The tape deck (<hw-tape-deck>, assets/js/tape-deck.js).
-   A cassette sits in the deck's bay: a paper label with the title, a window
-   with two reels. The script writes --hw-deck-p, 0 to 1, as the track plays;
-   the tape winds from the left reel's pack to the right's, and the hubs turn
-   while it plays ([data-playing]) and fast while it winds ([data-winding]).
-   The reels size from the deck's width, rounded to whole cells.
+   A cassette, drawn as an SVG to a real one's proportions, sits behind the
+   deck's smoked door; under it the display (a counter, what's playing, the
+   time left) and four keys; under those the paper insert listing the tracks.
+   The deck is always night (data-theme="dark" on .hw-deck), on a day page too.
+   The script writes --hw-pack-l and --hw-pack-r, how full each reel is; the
+   hubs turn while it plays ([data-playing]) and fast while it winds.
    ========================================================================== */
 @layer trellis, hw;
 
 @layer hw.tape {
-  hw-tape-deck { display: block; }
+  hw-tape-deck { display: block; container-type: inline-size; }
 
   .hw-deck {
-    --hw-deck-p: 0;
-    container-type: inline-size;
+    --hw-pack-l: 1; --hw-pack-r: .36;
+    --hw-shell: color-mix(in oklab, var(--accent) 38%, var(--bg-sunken));
+    --hw-paper: color-mix(in oklab, var(--text) 94%, var(--accent));
+    --hw-ink: var(--bg-sunken);
     display: flex; flex-direction: column; gap: var(--sp-2);
-    max-inline-size: calc(var(--u) * 48);
+    max-inline-size: calc(var(--u) * 56);
+    margin-inline: auto;
+    padding: var(--sp-2);
+    border: var(--line) solid var(--border);
+    border-radius: var(--r-1h);
+    background: linear-gradient(var(--bg-raised), var(--bg-sunken));
+    color: var(--text);
+  }
+
+  /* The door: a smoked window onto the cassette. */
+  .hw-deck-door {
     padding: var(--sp-2);
     border: var(--line) solid var(--border-subtle);
-    border-radius: var(--r-1h);
-    background: var(--bg-raised);
-  }
-
-  /* The bay the cassette sits in. */
-  .hw-deck-bay {
-    padding: var(--sp-1h);
-    border: var(--line) solid var(--border-subtle);
     border-radius: var(--r-1);
-    background: var(--bg-sunken);
+    background: radial-gradient(120% 90% at 30% 10%, color-mix(in oklab, var(--text) 8%, var(--bg-sunken)), var(--bg-sunken));
   }
+  .hw-deck-cassette { display: block; inline-size: 100%; block-size: auto; }
 
-  /* The cassette. */
-  .hw-deck-tape {
-    --hw-reel: round(down, min(calc(var(--u) * 8), 18cqi), var(--u));
-    display: grid; gap: var(--sp-1);
-    padding: var(--sp-1);
-    border: var(--line) solid var(--border);
-    border-radius: var(--r-h);
-    background: linear-gradient(175deg,
-      color-mix(in oklab, var(--accent) 34%, var(--bg-raised)),
-      color-mix(in oklab, var(--accent) 14%, var(--bg-raised)));
+  /* The cassette's parts. */
+  .hw-cs-shell { fill: var(--hw-shell); stroke: color-mix(in oklab, var(--hw-shell) 60%, var(--text)); stroke-width: 1.5; }
+  .hw-cs-screw circle { fill: color-mix(in oklab, var(--hw-shell) 55%, var(--text)); }
+  .hw-cs-screw path { stroke: var(--hw-ink); stroke-width: 1.5; }
+  .hw-cs-label { fill: var(--hw-paper); }
+  .hw-cs-band { fill: var(--accent); }
+  .hw-cs-band-thin { fill: color-mix(in oklab, var(--accent) 60%, var(--hw-paper)); }
+  .hw-cs-title { fill: var(--hw-ink); font-family: var(--font-heading); }
+  .hw-cs-side { fill: var(--accent); font-family: var(--font-heading); }
+  .hw-cs-note { fill: color-mix(in oklab, var(--hw-ink) 65%, var(--hw-paper)); font-family: var(--font-sans); letter-spacing: .08em; }
+  .hw-cs-window { fill: color-mix(in oklab, var(--bg-sunken) 85%, var(--hw-shell)); stroke: color-mix(in oklab, var(--hw-ink) 70%, var(--hw-paper)); stroke-width: 2; }
+  .hw-cs-glass { fill: color-mix(in oklab, var(--text) 6%, transparent); pointer-events: none; }
+  /* The tape on each reel: a dark brown pack, as wide as what it holds. */
+  .hw-cs-pack {
+    fill: color-mix(in oklab, var(--accent) 22%, var(--bg-sunken));
+    stroke: color-mix(in oklab, var(--accent) 40%, var(--bg-sunken)); stroke-width: 1;
+    transform-box: fill-box; transform-origin: center;
+    transform: scale(var(--hw-pack-l));
+    transition: transform var(--dur-in) linear;
   }
-  .hw-deck-label {
-    display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: baseline; gap: var(--sp-1);
-    padding: var(--sp-h) var(--sp-1);
-    border-radius: var(--r-q);
-    border-block-end: calc(var(--line) * 3) solid var(--accent);
-    background: color-mix(in oklab, var(--text) 92%, var(--accent));
-    color: var(--bg);
-  }
-  .hw-deck-side { color: inherit; }
-  .hw-deck-title { margin: 0; color: inherit; }
-  .hw-deck-note { color: color-mix(in oklab, var(--bg) 70%, var(--text)); }
-
-  .hw-deck-window {
-    display: flex; justify-content: space-between; align-items: center;
-    inline-size: calc(var(--hw-reel) * 3);
-    margin-inline: auto;
-    padding: var(--sp-h) calc(var(--hw-reel) / 4);
-    border: var(--line) solid var(--border);
-    border-radius: var(--r-round);
-    background: color-mix(in oklab, var(--text) 14%, var(--bg-sunken));
-  }
-  .hw-deck-reel {
-    --pack: calc(1 - var(--hw-deck-p));
-    position: relative;
-    display: grid; place-items: center;
-    inline-size: var(--hw-reel); block-size: var(--hw-reel);
-  }
-  .hw-deck-reel[data-reel="right"] { --pack: var(--hw-deck-p); }
-  /* The tape wound on the reel: the more there is, the wider the pack. */
-  .hw-deck-reel::before {
-    content: ""; position: absolute;
-    inline-size: calc(var(--hw-reel) * (.36 + .64 * var(--pack)));
-    block-size: calc(var(--hw-reel) * (.36 + .64 * var(--pack)));
-    border-radius: 50%;
-    background: radial-gradient(circle,
-      var(--bg-sunken) 0 70%,
-      color-mix(in oklab, var(--accent) 30%, var(--bg-sunken)) 72%);
-  }
-  /* The hub, with its spokes. */
-  .hw-deck-reel i {
-    position: relative;
-    inline-size: calc(var(--hw-reel) * .32); block-size: calc(var(--hw-reel) * .32);
-    border-radius: 50%;
-    background:
-      radial-gradient(circle, var(--bg-sunken) 0 26%, transparent 28%),
-      repeating-conic-gradient(var(--text-secondary) 0 12deg, var(--bg-raised) 12deg 60deg);
-    animation: hw-deck-spin calc(var(--dur-out) * 12) linear infinite paused;
-  }
-  .hw-deck[data-playing] .hw-deck-reel i { animation-play-state: running; }
-  .hw-deck[data-winding] .hw-deck-reel i { animation-duration: calc(var(--dur-out) * 2); animation-play-state: running; }
-  .hw-deck[data-winding="back"] .hw-deck-reel i { animation-direction: reverse; }
+  .hw-cs-pack[data-reel="right"] { transform: scale(var(--hw-pack-r)); }
+  .hw-cs-hub { fill: var(--hw-paper); animation: hw-deck-spin calc(var(--dur-out) * 14) linear infinite paused; }
+  .hw-cs-hub .hw-cs-tooth { fill: var(--hw-shell); }
+  .hw-cs-hub .hw-cs-hole { fill: color-mix(in oklab, var(--bg-sunken) 85%, var(--hw-shell)); }
+  .hw-cs-foot { fill: color-mix(in oklab, var(--hw-shell) 80%, var(--bg-sunken)); }
+  .hw-cs-hole { fill: var(--hw-ink); }
+  .hw-cs-tape { stroke: color-mix(in oklab, var(--accent) 22%, var(--bg-sunken)); stroke-width: 3; }
+  .hw-deck[data-playing] .hw-cs-hub { animation-play-state: running; }
+  .hw-deck[data-winding] .hw-cs-hub { animation-duration: calc(var(--dur-out) * 2); animation-play-state: running; }
+  .hw-deck[data-winding="back"] .hw-cs-hub { animation-direction: reverse; }
   @keyframes hw-deck-spin { to { transform: rotate(1turn); } }
 
-  .hw-deck-now { margin: 0; text-align: center; }
-
-  /* The keys, between the two counters. */
-  .hw-deck-keys { display: flex; justify-content: space-between; align-items: center; gap: var(--sp-1); }
-  .hw-deck-transport { --cluster-gap: var(--sp-1); flex-wrap: nowrap; }
-  .hw-deck-transport .icon { --icon-size: var(--size-icon-md); }
-  .hw-deck-counter {
-    padding: var(--sp-q) var(--sp-h);
+  /* The panel: the display, then the keys. */
+  .hw-deck-panel { display: flex; flex-direction: column; align-items: center; gap: var(--sp-2); }
+  .hw-deck-display {
+    display: flex; align-items: center; gap: var(--sp-1);
+    align-self: stretch; min-width: 0;
+    padding: var(--sp-h) var(--sp-1);
     border: var(--line) solid var(--border-subtle);
-    border-radius: var(--r-q);
+    border-radius: var(--r-h);
     background: var(--bg-sunken);
+  }
+  .hw-deck-count {
     color: var(--accent);
-    font-family: var(--font-mono);
+    font-family: var(--font-mono); font-size: var(--fs-control-lg);
     font-variant-numeric: tabular-nums;
   }
+  .hw-deck-now { flex: 1 1 0; min-width: 0; color: var(--text); }
+  .hw-deck-left { color: var(--text-secondary); font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+  .hw-deck-keys { display: flex; gap: var(--sp-h); }
+  .hw-deck-key .icon { --icon-size: var(--size-icon-md); }
 
-  /* The tracks: the one in the deck is marked. */
-  .hw-deck-tracks { --list-mark-w: var(--sp-2); }
+  /* The insert: the tracks, on paper. */
+  .hw-deck-jcard {
+    display: flex; flex-direction: column; gap: var(--sp-h);
+    padding: var(--sp-1) var(--sp-1h);
+    border-radius: var(--r-h);
+    border-block-start: calc(var(--line) * 4) solid var(--accent);
+    background: var(--hw-paper);
+    color: var(--hw-ink);
+  }
+  .hw-deck-jcard-head { margin: 0; color: color-mix(in oklab, var(--hw-ink) 65%, var(--hw-paper)); }
+  .hw-deck-tracks { --list-mark-w: var(--sp-2); --list-rule: color-mix(in oklab, var(--hw-ink) 20%, var(--hw-paper)); }
   .hw-deck-pick {
     padding: 0; border: 0; background: none;
     color: inherit; font: inherit; text-align: start;
@@ -119,17 +106,18 @@
   }
   .hw-deck-pick:hover { color: var(--accent); }
   .hw-deck-pick:focus-visible { outline: calc(var(--line) * 2) solid var(--focus); outline-offset: var(--sp-q); }
-  .hw-deck-mark { color: var(--text-secondary); font-family: var(--font-mono); }
-  .hw-deck-tracks [aria-current] .hw-deck-pick,
-  .hw-deck-tracks [aria-current] .hw-deck-mark { color: var(--accent); }
+  .hw-deck-mark, .hw-deck-len { color: color-mix(in oklab, var(--hw-ink) 55%, var(--hw-paper)); font-family: var(--font-mono); }
+  .hw-deck-tracks [aria-current] .hw-deck-pick, .hw-deck-tracks [aria-current] .hw-deck-mark { color: var(--accent); }
 
-  /* A narrow deck: smaller keys, so the counters keep their room. */
-  @container (width < 30rem) {
-    .hw-deck-transport .button { --btn-h: var(--size-control-lg); }
-    .hw-deck-transport { --cluster-gap: var(--sp-h); }
+  /* A narrow deck: the keys keep their marks and drop their words. */
+  @container (width < 34rem) {
+    .hw-deck { padding: var(--sp-1h); }
+    .hw-deck-door { padding: var(--sp-1); }
+    .hw-deck-key .button-label { display: none; }
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .hw-deck-reel i, .hw-deck[data-playing] .hw-deck-reel i, .hw-deck[data-winding] .hw-deck-reel i { animation: none; }
+    .hw-cs-hub, .hw-deck[data-playing] .hw-cs-hub, .hw-deck[data-winding] .hw-cs-hub { animation: none; }
+    .hw-cs-pack { transition: none; }
   }
 }
