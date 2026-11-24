@@ -130,6 +130,42 @@
   .clib-obj[data-shape="album"] .clib-obj-tab { inset-inline-end: auto; inset-inline-start: var(--sp-h); }
   .clib-item:hover .clib-disc { inset-inline-start: calc(var(--u) * 4 * var(--clib-k)); }
 
+  /* Tape: a cassette. The label carries the title; the window shows the two
+     reels, which turn while the object is hovered. */
+  .clib-obj[data-shape="tape"] { --clib-w: 19; --clib-h: 12; }
+  .clib-obj[data-shape="tape"] .clib-obj-body {
+    gap: var(--sp-1);
+    border-radius: var(--r-h);
+    background: linear-gradient(170deg, var(--clib-tint-2), var(--clib-tint));
+  }
+  .clib-obj[data-shape="tape"] .clib-obj-tab { inset-block-start: auto; inset-block-end: var(--sp-h); }
+  .clib-tape-label {
+    display: flex; align-items: center;
+    min-block-size: calc(var(--u) * 3 * var(--clib-k));
+    padding-inline: var(--sp-h);
+    border-radius: var(--r-q);
+    background: color-mix(in oklab, var(--bg-raised) 88%, var(--clib-ink));
+    border-block-end: calc(var(--line) * 2) solid var(--clib-ink);
+  }
+  .clib-tape-window {
+    display: flex; justify-content: space-between; align-items: center;
+    align-self: center;
+    inline-size: 70%;
+    padding: var(--sp-h) var(--sp-1);
+    border-radius: var(--r-round);
+    background: color-mix(in oklab, var(--bg-sunken) 80%, var(--text));
+  }
+  .clib-tape-window i {
+    inline-size: calc(var(--u) * 3 * var(--clib-k)); block-size: calc(var(--u) * 3 * var(--clib-k));
+    border-radius: 50%;
+    background:
+      radial-gradient(circle, var(--bg-sunken) 0 22%, transparent 23%),
+      repeating-conic-gradient(var(--clib-ink) 0 10deg, var(--bg-raised) 10deg 60deg);
+    box-shadow: 0 0 0 var(--line) var(--border);
+  }
+  .clib-item:hover .clib-tape-window i { animation: clib-reel calc(var(--dur-out) * 8) linear infinite; }
+  @keyframes clib-reel { to { transform: rotate(-1turn); } }
+
   /* Audio: a waveform, the same every visit (seeded by the slug). */
   .clib-obj[data-shape="audio"] { --clib-w: 20; --clib-h: 12; }
   .clib-wave { display: flex; align-items: center; gap: var(--sp-q); block-size: calc(var(--u) * 5 * var(--clib-k)); margin-block-start: auto; }
@@ -245,7 +281,7 @@
   @media (prefers-reduced-motion: reduce) {
     .clib-obj, .clib-disc, .clib-obj-body { transition: none; }
     .clib-item:hover .clib-obj, .clib-item:focus-visible .clib-obj { transform: none; }
-    .clib-breath i { animation: none; }
+    .clib-breath i, .clib-item:hover .clib-tape-window i { animation: none; }
   }
 }
 

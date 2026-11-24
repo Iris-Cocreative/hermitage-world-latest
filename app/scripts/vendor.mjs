@@ -76,3 +76,12 @@ const schema = readFileSync(join(libraryDir, 'migrations', '0001_collab_library.
 const header = `-- Vendored from collab-library/migrations/0001_collab_library.sql at ${source(libraryDir)}.\n-- Do not edit here. A later library migration becomes a new numbered file.\n\n`;
 writeFileSync(migration, header + schema);
 console.log(`vendor: Collab Library (${source(libraryDir)}) → vendor/collab-library/ and supabase/migrations/0002_collab_library.sql`);
+// The library's later migrations, each at the number it took in this app's sequence.
+const LATER = { '0002_tape_shape.sql': '0004_collab_library_tape_shape.sql' };
+for (const [from, to] of Object.entries(LATER)) {
+  const src = join(libraryDir, 'migrations', from);
+  if (!existsSync(src)) continue;
+  const head = `-- Vendored from collab-library/migrations/${from} at ${source(libraryDir)}.\n-- Do not edit here.\n\n`;
+  writeFileSync(join(appDir, 'supabase', 'migrations', to), head + readFileSync(src, 'utf8'));
+  console.log(`vendor: collab-library/migrations/${from} → supabase/migrations/${to}`);
+}

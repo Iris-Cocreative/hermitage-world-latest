@@ -43,7 +43,9 @@ export default async function TrellisLayout({ children }: { children: React.Reac
         <link rel="stylesheet" href={FONTS} />
         <link rel="stylesheet" href="/assets/css/hermitage.css" />
         <link rel="stylesheet" href="/assets/css/chrome.css" />
+        <link rel="stylesheet" href="/assets/css/tape-deck.css" />
         <script src="/assets/js/hw.js" />
+        <script src="/assets/js/tape-deck.js" />
       </head>
       <body>
         <hw-bar data-account={account} dangerouslySetInnerHTML={{ __html: '' }} suppressHydrationWarning />

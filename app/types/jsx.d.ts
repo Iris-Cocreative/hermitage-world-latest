@@ -18,6 +18,7 @@ declare module 'react' {
       'hw-bar': HW & { variant?: 'overlay'; 'data-account'?: 'none' | 'member' | 'staff' }
       'hw-letter': HW
       'hw-foot': HW
+      'hw-tape-deck': HW & { label?: string; note?: string }
     }
   }
 }

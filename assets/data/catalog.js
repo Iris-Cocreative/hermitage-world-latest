@@ -227,6 +227,41 @@
     'sfl-album': 'sfl-album.jpg', 'sfl-book': 'book-full-living.jpg', 'sft-book': 'book-full-thinking.jpg',
     'sfr-book': 'book-full-relating.png', 'trilogy': 'book-trilogy.jpg', 'rohr-book': 'universal-christ.jpg'
   };
+  /* Volumes: each Opus CD holds two of the original tape volumes (Opus I is
+     Vols. 1 and 7). James's recommendation (2026-11-19): the library keeps
+     each volume on its own, as the tape it was, and the CD stays an album.
+     Names come from the volume's own tracks. A volume has no price of its
+     own yet: it is a way into its tracks, and pricing one is the team's call.
+     Vols. 21 and 22 are each a whole album already, so they stay as they are.
+     Kept apart from ITEMS so the shop and the static prototype don't change;
+     the app's library reads them (scripts/seed-library.mjs). */
+  var VOLUME_NAMES = {
+    1: 'Universal Meditations', 2: 'Christian Meditations', 3: 'Contemplative Prayer', 4: 'Creating and Maintaining Ideal Weight',
+    5: 'Healing Relationships', 6: 'Healing Self', 7: 'Basic Relaxation', 8: 'The Prayer of St. Francis and the Lord’s Prayer',
+    9: 'Healing Others', 10: 'Positive Self Image', 11: 'My Friend the Sea', 12: 'Centering Prayer',
+    13: 'Children’s Meditations', 14: 'Meditation for World Peace', 15: 'Music for Meditation: Flute and Harp',
+    16: 'Controlling the Smoking Habit', 17: 'Music for Meditation: Clarinet and Synthesizer', 18: 'Angels Among Us',
+    19: 'Learning (made fast and easy)', 20: 'Teaching (made efficient and effective)'
+  };
+  var VOLUMES = Object.keys(VOLUME_NAMES).map(Number).map(function (n) {
+    var tracks = ITEMS.filter(function (r) { return r.kind === 'track' && r.vol === n; });
+    var id = 'volume-' + n;
+    var uniq = function (list) { return list.filter(function (x, i) { return list.indexOf(x) === i; }); };
+    tracks.forEach(function (t) { t.volume = id; });
+    var free = tracks.every(function (t) { return t.access === 'free'; });
+    return {
+      id: id, kind: 'volume', album: tracks[0].album, vol: n,
+      title: VOLUME_NAMES[n],
+      sub: 'Vol. ' + n + ' · ' + tracks.length + (tracks.length === 1 ? ' meditation' : ' meditations'),
+      by: uniq([].concat.apply([], tracks.map(function (t) { return t.by; }))),
+      voice: tracks[0].voice,
+      occasion: uniq([].concat.apply([], tracks.map(function (t) { return t.occasion; }))),
+      access: free ? 'free' : 'price', freeDraft: free ? tracks.some(function (t) { return t.freeDraft; }) : undefined,
+      blurb: tracks.map(function (t) { return t.title; }).join(' · '),
+      img: 'img/shop/vol-' + n + '.jpg'
+    };
+  });
+
   ITEMS.forEach(function (r) {
     var f = COVERS[r.id];
     if (!f && r.kind === 'track' && r.vol) f = r.vol <= 20 ? 'vol-' + r.vol + '.jpg' : r.vol === 21 ? 'opus-11.jpg' : r.vol === 22 ? 'vol-22.png' : null;
@@ -276,5 +311,5 @@
       ] }
   ];
 
-  window.HWCatalog = { people: PEOPLE, occasions: OCCASIONS, glass: GLASS, items: ITEMS, paths: PATHS };
+  window.HWCatalog = { people: PEOPLE, occasions: OCCASIONS, glass: GLASS, items: ITEMS, volumes: VOLUMES, paths: PATHS };
 })();

@@ -9,7 +9,7 @@
  */
 import type { Collection, LibraryData, Resource, Shape } from '../types.ts'
 
-const SHAPES: Shape[] = ['book', 'article', 'video', 'audio', 'album', 'course', 'practice', 'stack', 'paper']
+const SHAPES: Shape[] = ['book', 'article', 'video', 'audio', 'album', 'tape', 'course', 'practice', 'stack', 'paper']
 
 export interface HostProduct {
   id: string

@@ -54,6 +54,14 @@ export function Shape({ r, type, topics, access, count, big = false }: {
           </>
         )}
         {shape === 'album' && !cover && <span className="clib-obj-title t-h6">{r.title}</span>}
+        {shape === 'tape' && (
+          <>
+            <span className="clib-tape-label">
+              <span className="clib-obj-title t-sm u-truncate">{r.title}</span>
+            </span>
+            <span className="clib-tape-window"><i /><i /></span>
+          </>
+        )}
         {shape === 'audio' && (
           <>
             <span className="clib-obj-kick t-label">{kick}</span>

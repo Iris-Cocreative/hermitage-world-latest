@@ -5,7 +5,7 @@
  * `LibraryData`.
  */
 
-export type Shape = 'book' | 'article' | 'video' | 'audio' | 'album' | 'course' | 'practice' | 'stack' | 'paper'
+export type Shape = 'book' | 'article' | 'video' | 'audio' | 'album' | 'tape' | 'course' | 'practice' | 'stack' | 'paper'
 
 export type Status = 'draft' | 'published' | 'archived'
 export type Stage = 'seedling' | 'budding' | 'evergreen'

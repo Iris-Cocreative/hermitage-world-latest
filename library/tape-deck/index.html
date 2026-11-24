@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" data-product="hermitage">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tape Deck · Hermitage World</title>
+<meta name="description" content="A study for the Hermitage's player: each volume plays as the tape it first was.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#1f1405">
+<link rel="icon" href="../../assets/img/brand/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Marcellus&family=Alegreya+Sans:ital,wght@0,300;0,400;0,500;0,700;1,400&family=Alegreya:ital@0;1&display=swap">
+<link rel="stylesheet" href="../../assets/vendor/trellis/core.css?v=202611242117">
+<link rel="stylesheet" href="../../assets/css/hermitage.css?v=202611242117">
+<link rel="stylesheet" href="../../assets/css/chrome.css?v=202611242117">
+<link rel="stylesheet" href="../../assets/css/site.css?v=202611242117">
+<link rel="stylesheet" href="../../assets/css/tape-deck.css?v=202611242117">
+<script src="../../assets/vendor/trellis/settle.js?v=202611242117" defer></script>
+<script src="../../assets/js/hw.js?v=202611242117"></script>
+</head>
+<body>
+<hw-bar></hw-bar>
+
+<main class="frame context" id="main">
+
+<section class="section cc-band hw-room hw-backdrop hw-hero hw-hero-over" data-product="hermitage" data-theme="dark">
+  <div class="hw-room-arch" aria-hidden="true"></div>
+  <div class="stack" style="--stack-gap: var(--sp-2)">
+    <p class="t-eyebrow u-text-secondary">A study for the library</p>
+    <h1 class="t-h1">Play it as a tape</h1>
+    <p class="t-lg u-text-secondary hw-lede">The meditations were first recorded and sold on tape. In the library, each volume plays as the tape it was: the reels turn, the tape winds across, and the counter keeps time.</p>
+  </div>
+</section>
+
+<section class="section cc-band hw-room hw-flush" data-product="hermitage" data-theme="dark">
+  <div class="split" style="--split-a: 13; --split-b: 10; --split-gap: var(--sp-5)">
+    <hw-tape-deck label="Universal Meditations" note="Vol. 1">
+      <audio data-sample="morning" title="A Universal Morning Meditation"></audio>
+      <audio data-sample="evening" title="A Universal Evening Meditation"></audio>
+    </hw-tape-deck>
+    <div class="stack" style="--stack-gap: var(--sp-2)">
+      <h2 class="t-h4">How it would work</h2>
+      <p class="t-body u-text-secondary">Each Opus CD holds two of the original volumes. The library now keeps every volume on its own, drawn as a cassette on the shelf, and the CD stays as the album that holds them.</p>
+      <p class="t-body u-text-secondary">Opening a volume you own puts it in the deck, with its meditations as the tracks on side A. A single meditation plays the same way, on its own.</p>
+      <p class="note"><span>The sound here is a sample bowl, made in the page, while the Hermitage's recordings are being prepared.</span></p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<hw-foot></hw-foot>
+
+<script>
+/* Two short sample tracks, a singing bowl struck every few seconds, made here
+   as WAV files so the study needs no recording. */
+(function () {
+  function bowl(base, seconds) {
+    var rate = 16000, n = rate * seconds, data = new Int16Array(n);
+    var partials = [[1, 1], [2.71, .45], [5.15, .2]];
+    for (var i = 0; i < n; i++) {
+      var t = i / rate, since = t % 8, v = 0;
+      partials.forEach(function (p) { v += p[1] * Math.sin(2 * Math.PI * base * p[0] * t) * Math.exp(-since * (0.45 + p[0] * 0.12)); });
+      v *= Math.min(1, since * 200) * 0.28;
+      data[i] = Math.max(-1, Math.min(1, v)) * 32767;
+    }
+    var buf = new ArrayBuffer(44 + n * 2), d = new DataView(buf);
+    function s(o, str) { for (var k = 0; k < str.length; k++) d.setUint8(o + k, str.charCodeAt(k)); }
+    s(0, 'RIFF'); d.setUint32(4, 36 + n * 2, true); s(8, 'WAVE'); s(12, 'fmt ');
+    d.setUint32(16, 16, true); d.setUint16(20, 1, true); d.setUint16(22, 1, true);
+    d.setUint32(24, rate, true); d.setUint32(28, rate * 2, true); d.setUint16(32, 2, true); d.setUint16(34, 16, true);
+    s(36, 'data'); d.setUint32(40, n * 2, true);
+    new Int16Array(buf, 44).set(data);
+    return URL.createObjectURL(new Blob([buf], { type: 'audio/wav' }));
+  }
+  var tones = { morning: [220, 40], evening: [174.6, 40] };
+  document.querySelectorAll('audio[data-sample]').forEach(function (a) {
+    var t = tones[a.getAttribute('data-sample')];
+    a.setAttribute('src', bowl(t[0], t[1]));
+  });
+})();
+</script>
+<script src="../../assets/js/tape-deck.js?v=202611242117"></script>
+</body>
+</html>

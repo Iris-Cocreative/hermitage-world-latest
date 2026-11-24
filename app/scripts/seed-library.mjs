@@ -10,7 +10,8 @@
  *   resources  one per item, published, except where publishing would say
  *              something untrue (a past circle; a book we don't sell and have
  *              no link for): those are drafts for the team to finish
- *   relations  an album holds its tracks; rel.partOf, companion, reads, form
+ *   relations  an album holds its volumes, a volume its tracks (an album
+ *              with no volumes holds its tracks); rel.partOf, companion, reads, form
  *   paths      PATHS, as published collections
  *
  * Run `npm run seed:library`, then `npm run db:reset`. It upserts on slug and
@@ -27,10 +28,12 @@ const outPath = resolve(here, '../supabase/seed-library.sql');
 
 const sandbox = { window: {} };
 vm.runInNewContext(readFileSync(catalogPath, 'utf8'), sandbox);
-const { items, people, occasions, paths } = sandbox.window.HWCatalog;
+const { items: catalogItems, volumes = [], people, occasions, paths } = sandbox.window.HWCatalog;
+// Each volume sits right after its album, so the editors' order keeps them together.
+const items = catalogItems.flatMap((it) => [it, ...volumes.filter((v) => v.album === it.id)]);
 
 // The catalog's kinds, as the library types the Hermitage keeps (0003_library_host.sql).
-const TYPE = { track: 'meditation', album: 'album', book: 'book', set: 'set', video: 'video', series: 'series', program: 'program', circle: 'circle' };
+const TYPE = { track: 'meditation', album: 'album', volume: 'volume', book: 'book', set: 'set', video: 'video', series: 'series', program: 'program', circle: 'circle' };
 const REL = { partOf: 'part-of', companion: 'companion', reads: 'reads', form: 'other-form' };
 
 const q = (s) => (s === null || s === undefined ? 'null' : "'" + String(s).replace(/'/g, "''") + "'");
@@ -65,7 +68,8 @@ let sort = 0;
 for (const it of items) {
   const type = TYPE[it.kind] ?? 'meditation';
   let status = 'published';
-  let product = it.access === 'elsewhere' || it.kind === 'program' || it.kind === 'circle' ? null : it.id;
+  // A volume has no product of its own yet: it is a way into its tracks.
+  let product = it.access === 'elsewhere' || it.kind === 'program' || it.kind === 'circle' || it.kind === 'volume' ? null : it.id;
   let url = it.href ? '/' + it.href.replace(/^\/+/, '') : null;
   // A book the Hermitage read but does not sell, with no link to send anyone to.
   if (it.access === 'elsewhere' && !url) status = 'draft';
@@ -132,7 +136,8 @@ on conflict do nothing;\n`);
 const rels = [];
 const ids = new Set(items.map((i) => i.id));
 for (const it of items) {
-  if (it.album && ids.has(it.album)) rels.push([it.id, it.album, 'part-of']);
+  const holder = it.volume && ids.has(it.volume) ? it.volume : it.album;
+  if (holder && ids.has(holder)) rels.push([it.id, holder, 'part-of']);
   for (const [key, kind] of Object.entries(REL)) for (const to of it.rel?.[key] ?? []) if (ids.has(to)) rels.push([it.id, to, kind]);
 }
 const uniq = [...new Map(rels.map((r) => [r.join('|'), r])).values()];
@@ -142,7 +147,14 @@ ${uniq.map(([a, b, k], i) => `  (${q(a)}, ${q(b)}, ${q(k)}, ${i})`).join(',\n')}
 ) as v (a, b, kind, sort)
 join public.library_resources a on a.slug = v.a
 join public.library_resources b on b.slug = v.b
-on conflict do nothing;\n`);
+on conflict do nothing;
+-- A meditation that sits in a volume no longer sits straight in the album
+-- (a database seeded before volumes had it there).
+delete from public.library_relations x
+using public.library_resources t, public.library_resources a
+where x.kind = 'part-of' and x.from_id = t.id and x.to_id = a.id and a.type = 'album'
+  and exists (select 1 from public.library_relations y join public.library_resources v on v.id = y.to_id
+              where y.from_id = t.id and y.kind = 'part-of' and v.type = 'volume');\n`);
 
 // paths
 out.push(`insert into public.library_collections (slug, title, blurb, by_line, time_line, status, sort) values`);

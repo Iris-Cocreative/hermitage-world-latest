@@ -4,6 +4,7 @@ import { getViewer } from '@/lib/auth'
 import { getLibrary, libraryHost, LIBRARY_BASE } from '@/lib/library'
 import { renderMarkdown } from '@/lib/markdown'
 import { Detail } from '@/vendor/collab-library/src/components/Detail.tsx'
+import { TapeDeck } from '@/components/tape-deck'
 
 export const dynamic = 'force-dynamic'
 
@@ -27,6 +28,7 @@ export default async function ResourcePage({ params }: Props) {
       <div className="stack">
         <p className="t-sm"><a className="hw-back" href={LIBRARY_BASE}>← The Library</a></p>
         <Detail r={r} data={data} host={libraryHost(!!viewer)} bodyHtml={r.body.trim() ? renderMarkdown(r.body) : ''} headingLevel={1} />
+        {viewer && <TapeDeck r={r} data={data} />}
       </div>
     </div>
   )

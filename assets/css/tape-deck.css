@@ -1,0 +1,135 @@
+/* ==========================================================================
+   The tape deck (<hw-tape-deck>, assets/js/tape-deck.js).
+   A cassette sits in the deck's bay: a paper label with the title, a window
+   with two reels. The script writes --hw-deck-p, 0 to 1, as the track plays;
+   the tape winds from the left reel's pack to the right's, and the hubs turn
+   while it plays ([data-playing]) and fast while it winds ([data-winding]).
+   The reels size from the deck's width, rounded to whole cells.
+   ========================================================================== */
+@layer trellis, hw;
+
+@layer hw.tape {
+  hw-tape-deck { display: block; }
+
+  .hw-deck {
+    --hw-deck-p: 0;
+    container-type: inline-size;
+    display: flex; flex-direction: column; gap: var(--sp-2);
+    max-inline-size: calc(var(--u) * 48);
+    padding: var(--sp-2);
+    border: var(--line) solid var(--border-subtle);
+    border-radius: var(--r-1h);
+    background: var(--bg-raised);
+  }
+
+  /* The bay the cassette sits in. */
+  .hw-deck-bay {
+    padding: var(--sp-1h);
+    border: var(--line) solid var(--border-subtle);
+    border-radius: var(--r-1);
+    background: var(--bg-sunken);
+  }
+
+  /* The cassette. */
+  .hw-deck-tape {
+    --hw-reel: round(down, min(calc(var(--u) * 8), 18cqi), var(--u));
+    display: grid; gap: var(--sp-1);
+    padding: var(--sp-1);
+    border: var(--line) solid var(--border);
+    border-radius: var(--r-h);
+    background: linear-gradient(175deg,
+      color-mix(in oklab, var(--accent) 34%, var(--bg-raised)),
+      color-mix(in oklab, var(--accent) 14%, var(--bg-raised)));
+  }
+  .hw-deck-label {
+    display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: baseline; gap: var(--sp-1);
+    padding: var(--sp-h) var(--sp-1);
+    border-radius: var(--r-q);
+    border-block-end: calc(var(--line) * 3) solid var(--accent);
+    background: color-mix(in oklab, var(--text) 92%, var(--accent));
+    color: var(--bg);
+  }
+  .hw-deck-side { color: inherit; }
+  .hw-deck-title { margin: 0; color: inherit; }
+  .hw-deck-note { color: color-mix(in oklab, var(--bg) 70%, var(--text)); }
+
+  .hw-deck-window {
+    display: flex; justify-content: space-between; align-items: center;
+    inline-size: calc(var(--hw-reel) * 3);
+    margin-inline: auto;
+    padding: var(--sp-h) calc(var(--hw-reel) / 4);
+    border: var(--line) solid var(--border);
+    border-radius: var(--r-round);
+    background: color-mix(in oklab, var(--text) 14%, var(--bg-sunken));
+  }
+  .hw-deck-reel {
+    --pack: calc(1 - var(--hw-deck-p));
+    position: relative;
+    display: grid; place-items: center;
+    inline-size: var(--hw-reel); block-size: var(--hw-reel);
+  }
+  .hw-deck-reel[data-reel="right"] { --pack: var(--hw-deck-p); }
+  /* The tape wound on the reel: the more there is, the wider the pack. */
+  .hw-deck-reel::before {
+    content: ""; position: absolute;
+    inline-size: calc(var(--hw-reel) * (.36 + .64 * var(--pack)));
+    block-size: calc(var(--hw-reel) * (.36 + .64 * var(--pack)));
+    border-radius: 50%;
+    background: radial-gradient(circle,
+      var(--bg-sunken) 0 70%,
+      color-mix(in oklab, var(--accent) 30%, var(--bg-sunken)) 72%);
+  }
+  /* The hub, with its spokes. */
+  .hw-deck-reel i {
+    position: relative;
+    inline-size: calc(var(--hw-reel) * .32); block-size: calc(var(--hw-reel) * .32);
+    border-radius: 50%;
+    background:
+      radial-gradient(circle, var(--bg-sunken) 0 26%, transparent 28%),
+      repeating-conic-gradient(var(--text-secondary) 0 12deg, var(--bg-raised) 12deg 60deg);
+    animation: hw-deck-spin calc(var(--dur-out) * 12) linear infinite paused;
+  }
+  .hw-deck[data-playing] .hw-deck-reel i { animation-play-state: running; }
+  .hw-deck[data-winding] .hw-deck-reel i { animation-duration: calc(var(--dur-out) * 2); animation-play-state: running; }
+  .hw-deck[data-winding="back"] .hw-deck-reel i { animation-direction: reverse; }
+  @keyframes hw-deck-spin { to { transform: rotate(1turn); } }
+
+  .hw-deck-now { margin: 0; text-align: center; }
+
+  /* The keys, between the two counters. */
+  .hw-deck-keys { display: flex; justify-content: space-between; align-items: center; gap: var(--sp-1); }
+  .hw-deck-transport { --cluster-gap: var(--sp-1); flex-wrap: nowrap; }
+  .hw-deck-transport .icon { --icon-size: var(--size-icon-md); }
+  .hw-deck-counter {
+    padding: var(--sp-q) var(--sp-h);
+    border: var(--line) solid var(--border-subtle);
+    border-radius: var(--r-q);
+    background: var(--bg-sunken);
+    color: var(--accent);
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* The tracks: the one in the deck is marked. */
+  .hw-deck-tracks { --list-mark-w: var(--sp-2); }
+  .hw-deck-pick {
+    padding: 0; border: 0; background: none;
+    color: inherit; font: inherit; text-align: start;
+    cursor: pointer;
+  }
+  .hw-deck-pick:hover { color: var(--accent); }
+  .hw-deck-pick:focus-visible { outline: calc(var(--line) * 2) solid var(--focus); outline-offset: var(--sp-q); }
+  .hw-deck-mark { color: var(--text-secondary); font-family: var(--font-mono); }
+  .hw-deck-tracks [aria-current] .hw-deck-pick,
+  .hw-deck-tracks [aria-current] .hw-deck-mark { color: var(--accent); }
+
+  /* A narrow deck: smaller keys, so the counters keep their room. */
+  @container (width < 30rem) {
+    .hw-deck-transport .button { --btn-h: var(--size-control-lg); }
+    .hw-deck-transport { --cluster-gap: var(--sp-h); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hw-deck-reel i, .hw-deck[data-playing] .hw-deck-reel i, .hw-deck[data-winding] .hw-deck-reel i { animation: none; }
+  }
+}
