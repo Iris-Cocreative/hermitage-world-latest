@@ -10,13 +10,14 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Marcellus&family=Alegreya+Sans:ital,wght@0,300;0,400;0,500;0,700;1,400&family=Alegreya:ital@0;1&display=swap">
-<link rel="stylesheet" href="assets/vendor/trellis/core.css?v=202611242128">
-<link rel="stylesheet" href="assets/css/hermitage.css?v=202611242128">
-<link rel="stylesheet" href="assets/css/chrome.css?v=202611242128">
-<link rel="stylesheet" href="assets/css/site.css?v=202611242128">
-<link rel="stylesheet" href="assets/css/pages/home.css?v=202611242128">
-<script src="assets/vendor/trellis/settle.js?v=202611242128" defer></script>
-<script src="assets/js/hw.js?v=202611242128"></script>
+<link rel="stylesheet" href="assets/vendor/trellis/core.css?v=202611250345">
+<link rel="stylesheet" href="assets/css/hermitage.css?v=202611250345">
+<link rel="stylesheet" href="assets/css/chrome.css?v=202611250345">
+<link rel="stylesheet" href="assets/css/site.css?v=202611250345">
+<link rel="stylesheet" href="assets/css/pages/home.css?v=202611250345">
+<link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/three@0.170.0/+esm" crossorigin fetchpriority="low">
+<script src="assets/vendor/trellis/settle.js?v=202611250345" defer></script>
+<script src="assets/js/hw.js?v=202611250345"></script>
 </head>
 <body>
 <hw-bar variant="overlay"></hw-bar>
@@ -32,7 +33,7 @@
   <div class="hw-temple-stage">
     <div class="cover hw-temple-cover">
       <div class="cover-media" aria-hidden="true">
-        <img class="hw-temple-still" src="assets/img/photo/temple-still.jpg" alt="">
+        <img class="hw-temple-still" src="assets/img/photo/temple-still.webp" alt="" fetchpriority="high">
         <canvas class="hw-temple-gl" id="hero-gl"></canvas>
         <div class="hw-temple-scrim"></div>
       </div>
@@ -63,7 +64,7 @@
   <div class="hw-room-arch" aria-hidden="true"></div>
   <div class="stack hw-center hw-threshold-body">
     <figure class="hw-door" data-reveal>
-      <img class="hw-door-room" data-edit="image" src="assets/img/photo/stained-glass-hall.jpg" alt="Morning sun pouring through a tall stained-glass window onto a stone floor" width="1536" height="1024">
+      <img class="hw-door-room" data-edit="image" src="assets/img/photo/stained-glass-hall.jpg" alt="Morning sun pouring through a tall stained-glass window onto a stone floor" loading="lazy" width="1536" height="1024">
       <img class="hw-door-outline" src="assets/img/art/door-outline.svg" alt="" aria-hidden="true">
     </figure>
     <h2 class="t-h2" id="threshold-title" data-reveal data-edit="text">The door has no lock<br>and it never has</h2>
@@ -312,8 +313,8 @@
 </main>
 <hw-foot></hw-foot>
 
-<script src="assets/data/gatherings.js?v=202611242128"></script>
-<script src="assets/js/home.js?v=202611242128"></script>
-<script type="module" src="assets/js/temple.js?v=202611242128"></script>
+<script src="assets/data/gatherings.js?v=202611250345"></script>
+<script src="assets/js/home.js?v=202611250345"></script>
+<script type="module" src="assets/js/temple.js?v=202611250345"></script>
 </body>
 </html>

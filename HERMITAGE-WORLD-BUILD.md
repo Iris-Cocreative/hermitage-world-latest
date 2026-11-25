@@ -190,6 +190,10 @@ Verified on 2026-11-19 over http: all 25 pages at 1440 and 390 wide, no console 
 
 **Still on main.css:** the app's own `(site)` pages (shop, posts, account, sign-in). All of `/admin` moved onto Trellis on 2026-11-23 (Overview, products, posts and orders joined the library's editor under `app/(trellis)/admin/`, one layout and one menu; same URLs). The rest move next, then `main.css` and `site.js` can retire to the archive.
 
+## Homepage first load (2026-11-24)
+
+The homepage was slow only on a first visit: the temple's stone shaders (big MeshStandardMaterial programs with seven fbm calls each) took about 2 s apiece to compile on Windows (ANGLE/D3D11), seven of them in one blocking call, so the page froze for about 10 s until the browser had cached them. Now stones that differ only in uniforms share a program (four instead of seven), the scene compiles with `compileAsync` for the composer's buffer (in parallel, page usable, the still shows meanwhile), the loop waits for that boot, and the build yields between stages. Also: the still is `temple-still.webp` (63 KB, was a 117 KB jpg) with `fetchpriority="high"`, the threshold's door photo is lazy, and three.js gets a low-priority `modulepreload`. Measured cold in Chrome (1440 wide, fresh GPU shader cache): main thread's longest task 9.8 s → 0.4 s, temple ready 10 s → 3.5 s; with 4× CPU and a 1.6 Mbps / 150 ms network, temple ready 14 s → 6.5 s, total blocking 10.6 s → 2 s, 783 KB → 481 KB. Not done: the remaining startup cost is Trellis style and layout passes (100 ms each unthrottled) and `settle.js`.
+
 ## Next steps
 
 1. Review with Garry and Samuel; collect the content above through Collab OS.

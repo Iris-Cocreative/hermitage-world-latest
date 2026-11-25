@@ -35,6 +35,10 @@ const RM     = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const MOBILE = matchMedia('(max-width: 820px)').matches;
 const HOVER  = matchMedia('(hover: hover) and (pointer: fine)').matches;
 
+// building the room is a few hundred ms of script on a slow phone: hand the
+// main thread back between stages so the page answers input meanwhile
+const breathe = () => new Promise((r) => setTimeout(r, 0));
+
 /* ---------------------------------------------------------------- tuning -- */
 const P = {
   room:      { radius: 18, wallH: 6.6, domeH: 7.4, bays: 16, coffers: 28, cofferRows: 5 },
@@ -248,7 +252,9 @@ function stoneMaterial({ displaced = false, color = P.colors.stone, rough = 0.82
       }` : ''}
     `);
   };
-  mat.customProgramCacheKey = () => 'stone' + (displaced ? 'D' : 'S') + bump + grit + (deco || '');
+  // bump and grit are uniforms, so stones that differ only in them share one
+  // program: each program is a big compile on a first visit
+  mat.customProgramCacheKey = () => 'stone' + (displaced ? 'D' : 'S') + (deco || '');
   return mat;
 }
 
@@ -380,6 +386,8 @@ scene.add(floor);
   m.receiveShadow = true;
   scene.add(m);
 }
+
+await breathe();
 
 /* ============================================================== THE CHAMBER */
 const wallMat  = stoneMaterial({ rough: 0.88, bump: 0.22, color: P.colors.wall, grit: 0.6, deco: 'wall' });
@@ -547,6 +555,8 @@ const shaft = (() => {
   return m;
 })();
 
+await breathe();
+
 /* ==================================================== MOTES AND THEIR LINKS */
 const MOTE_GLSL = /* glsl */`
 vec3 moteAt(vec3 base, vec2 sd, float t){
@@ -703,6 +713,8 @@ let motes, links, linkCount;
   linkCount = L;
 }
 
+await breathe();
+
 /* ============================================================ POST PROCESS */
 const composer = new EffectComposer(renderer);
 composer.addPass(new RenderPass(scene, camera));
@@ -853,9 +865,10 @@ resize();
 /* ==================================================================== LOOP */
 const clock = new THREE.Clock();
 let t = 0, frames = 0, acc = 0;
-let inView = true, frozen = false, rafId = 0;
+let inView = true, frozen = false, rafId = 0, booted = false;
 
-function running() { return inView && !document.hidden && !frozen; }
+// the loop waits for the boot below, so no frame forces a blocking compile
+function running() { return booted && inView && !document.hidden && !frozen; }
 function wake() { if (!rafId && running()) { clock.getDelta(); rafId = requestAnimationFrame(frame); } }
 
 document.addEventListener('visibilitychange', wake);
@@ -928,9 +941,20 @@ function frame() {
   }
 }
 
+await breathe();
+
 /* =================================================================== BOOT */
-renderer.compile(scene, camera);
+/* The stone shaders are big. Compiled in one blocking call they froze the page
+   for seconds on a first visit, before the browser had cached them; compiled
+   async (in parallel where the GPU allows), the page stays usable and the
+   still shows until the scene is ready. The scene draws into the composer's
+   buffer (no tone mapping, linear), so it compiles for that target, or the
+   first frame would compile every program again. */
+renderer.setRenderTarget(composer.readBuffer);
+const compiled = renderer.compileAsync(scene, camera);
+renderer.setRenderTarget(null);
 Promise.all([
+  compiled,
   document.fonts ? document.fonts.ready : Promise.resolve(),
   new Promise(r => setTimeout(r, 200))
 ]).then(() => {
@@ -940,6 +964,7 @@ Promise.all([
   camera.position.copy(rigA.pos); camera.lookAt(rigA.look);
   composer.render();
   section.classList.add('is-ready');
+  booted = true;
   wake();
 });
 
