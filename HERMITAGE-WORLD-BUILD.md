@@ -194,6 +194,15 @@ Verified on 2026-11-19 over http: all 25 pages at 1440 and 390 wide, no console 
 
 The homepage was slow only on a first visit: the temple's stone shaders (big MeshStandardMaterial programs with seven fbm calls each) took about 2 s apiece to compile on Windows (ANGLE/D3D11), seven of them in one blocking call, so the page froze for about 10 s until the browser had cached them. Now stones that differ only in uniforms share a program (four instead of seven), the scene compiles with `compileAsync` for the composer's buffer (in parallel, page usable, the still shows meanwhile), the loop waits for that boot, and the build yields between stages. Also: the still is `temple-still.webp` (63 KB, was a 117 KB jpg) with `fetchpriority="high"`, the threshold's door photo is lazy, and three.js gets a low-priority `modulepreload`. Measured cold in Chrome (1440 wide, fresh GPU shader cache): main thread's longest task 9.8 s → 0.4 s, temple ready 10 s → 3.5 s; with 4× CPU and a 1.6 Mbps / 150 ms network, temple ready 14 s → 6.5 s, total blocking 10.6 s → 2 s, 783 KB → 481 KB. Not done: the remaining startup cost is Trellis style and layout passes (100 ms each unthrottled) and `settle.js`.
 
+## Preview password (2026-11-25)
+
+Until launch, the Vercel site (https://hermitage-world-latest.vercel.app) sits behind one shared password. `app/proxy.ts` sends any visitor without the gate cookie to `/gate/` (`app/gate/route.ts`), a small Trellis page with one field; the right password sets a 30-day cookie holding its hash and goes on to the page asked for. Stripe's webhook (`/api/stripe/`) and the site's assets are never gated.
+
+- **Where the password is:** the `SITE_PASSWORD` environment variable in the Vercel project (Settings → Environment Variables, Production and Preview), stored readable so anyone on the team can look it up there. It is not written in this repository, which is public.
+- **Changing it:** edit the variable and redeploy; everyone has to enter the new one.
+- **At launch:** delete `SITE_PASSWORD` and redeploy. With no variable the gate is off (local development leaves it unset). The code can stay or go.
+- The GitHub Pages copy of the static site is not gated.
+
 ## Next steps
 
 1. Review with Garry and Samuel; collect the content above through Collab OS.
