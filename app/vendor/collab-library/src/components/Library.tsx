@@ -10,7 +10,7 @@
  */
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import type { AccessState, LibraryData, LibraryHost, Resource } from '../types.ts'
-import { ACCESS_LABEL, NO_FILTERS, accessOf, haystack, matches, rank, shelves, type Filters } from '../logic.ts'
+import { ACCESS_LABEL, NO_FILTERS, accessVia, haystack, matches, rank, shelves, type Filters } from '../logic.ts'
 import { Shape } from './Shape.tsx'
 import { Detail, countOf, href } from './Detail.tsx'
 
@@ -130,9 +130,13 @@ export function Library({ data, host: hostIn, bodies = {}, facetLabels = {}, pla
     [bySlug, show],
   )
 
+  // Each resource's access, taken from what holds it when it has no offer of its own.
+  const offers = useMemo(() => new Map(data.resources.map((r) => [r.id, accessVia(r, data)])), [data])
+  const accessOf = (r: Resource) => offers.get(r.id)?.access ?? 'soon'
+
   const found = useMemo(
-    () => rank(data.resources.filter((r) => matches(r, filters, hay.get(r.id) ?? '')), filters.q),
-    [data.resources, filters, hay],
+    () => rank(data.resources.filter((r) => matches(r, filters, hay.get(r.id) ?? '', offers.get(r.id)?.access)), filters.q),
+    [data.resources, filters, hay, offers],
   )
 
   const toggle = <K extends 'types' | 'topics' | 'access'>(key: K, value: Filters[K][number]) =>
@@ -270,6 +274,7 @@ export function Library({ data, host: hostIn, bodies = {}, facetLabels = {}, pla
         <ul className="list clib-catalog">
           {found.map((r) => {
             const a = accessOf(r)
+            const o = offers.get(r.id)?.via ?? r
             const type = data.types.find((t) => t.key === r.type)
             return (
               <li key={r.id} className="list-item">
@@ -279,7 +284,7 @@ export function Library({ data, host: hostIn, bodies = {}, facetLabels = {}, pla
                   {(r.subtitle || r.blurb) && <span className="list-sub t-sm u-clamp">{r.subtitle || r.blurb}</span>}
                 </div>
                 <span className="list-end">
-                  {a === 'for-sale' && r.price_cents != null && <span className="t-sm">{host.money(r.price_cents, r.currency ?? 'usd')}</span>}
+                  {a === 'for-sale' && o.price_cents != null && <span className="t-sm">{host.money(o.price_cents, o.currency ?? 'usd')}</span>}
                   {a !== 'for-sale' && a !== 'open' && <span className="tag cc-sm" data-access={a}><span className="tag-label">{ACCESS_LABEL[a]}</span></span>}
                 </span>
               </li>

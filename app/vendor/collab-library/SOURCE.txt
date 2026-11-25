@@ -1,2 +1,2 @@
-Vendored from Iris-Cocreative/collab-library at 31d81c2, 2026-11-24.
-Copied 2026-11-24 by app/scripts/vendor.mjs. Do not edit: change the source and copy again.
+Vendored from Iris-Cocreative/collab-library at c74c500, 2026-11-25.
+Copied 2026-11-25 by app/scripts/vendor.mjs. Do not edit: change the source and copy again.

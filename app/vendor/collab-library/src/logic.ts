@@ -16,6 +16,45 @@ export function accessOf(r: Pick<Resource, 'product_id' | 'product_slug' | 'pric
   return 'soon'
 }
 
+/** What holds this resource (part-of, then what holds that), nearest first. */
+export function holdersOf(r: Resource, data: Pick<LibraryData, 'relations' | 'resources'>): Resource[] {
+  const byId = new Map(data.resources.map((x) => [x.id, x]))
+  const out: Resource[] = []
+  let ring = [r.id]
+  while (ring.length) {
+    const next: string[] = []
+    for (const id of ring) {
+      for (const rel of data.relations) {
+        if (rel.kind !== 'part-of' || rel.from_id !== id) continue
+        const h = byId.get(rel.to_id)
+        if (h && h !== r && !out.includes(h)) { out.push(h); next.push(h.id) }
+      }
+    }
+    ring = next
+  }
+  return out
+}
+
+/**
+ * What the viewer can do with a resource, and the resource that offer comes
+ * through. One with no product of its own takes it from what holds it: a
+ * volume on an album you own is yours, and one on an album for sale is had
+ * by buying the album.
+ */
+export function accessVia(r: Resource, data: Pick<LibraryData, 'relations' | 'resources'>): { access: AccessState; via?: Resource } {
+  if (r.product_id) return { access: accessOf(r) }
+  const holders = holdersOf(r, data).filter((h) => h.product_id)
+  const owned = holders.find((h) => h.owned)
+  if (owned) return { access: 'yours', via: owned }
+  const own = accessOf(r)
+  if (own === 'open') return { access: own }
+  for (const h of holders) {
+    const a = accessOf(h)
+    if (a === 'free' || a === 'for-sale') return { access: a, via: h }
+  }
+  return { access: own }
+}
+
 export const ACCESS_LABEL: Record<AccessState, string> = {
   yours: 'Yours',
   free: 'Free',
@@ -54,10 +93,10 @@ export function haystack(r: Resource, data: Pick<LibraryData, 'topics' | 'types'
  * Every word of the query must appear somewhere (in any order); within a
  * facet any chosen value matches, and facets combine with AND.
  */
-export function matches(r: Resource, f: Filters, hay: string): boolean {
+export function matches(r: Resource, f: Filters, hay: string, access: AccessState = accessOf(r)): boolean {
   if (f.types.length && !f.types.includes(r.type)) return false
   if (f.topics.length && !f.topics.some((id) => r.topics.includes(id))) return false
-  if (f.access.length && !f.access.includes(accessOf(r))) return false
+  if (f.access.length && !f.access.includes(access)) return false
   const words = fold(f.q).split(/\s+/).filter(Boolean)
   return words.every((w) => hay.includes(w))
 }

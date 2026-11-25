@@ -8,7 +8,7 @@
  * open them in place; without the client they are ordinary links.
  */
 import type { LibraryData, LibraryHost, Resource } from '../types.ts'
-import { accessOf, creditLine, duration, relatedOf } from '../logic.ts'
+import { accessVia, creditLine, duration, relatedOf } from '../logic.ts'
 import { Shape } from './Shape.tsx'
 
 export function href(host: LibraryHost, slug: string) {
@@ -21,15 +21,20 @@ export function countOf(r: Resource, data: LibraryData) {
 }
 
 function Action({ r, data, host }: { r: Resource; data: LibraryData; host: LibraryHost }) {
-  const access = accessOf(r)
+  const { access, via } = accessVia(r, data)
+  const o = via ?? r // the resource the offer belongs to
   const type = data.types.find((t) => t.key === r.type)
   const outside = !!r.url && /^https?:\/\//.test(r.url)
+  const on = via && (
+    <p className="t-sm u-text-secondary">{access === 'yours' ? 'With ' : 'On '}<a href={href(host, via.slug)} data-clib-open={via.slug}>{via.title}</a></p>
+  )
   switch (access) {
     case 'yours':
       return (
         <div className="card clib-access" data-access={access}>
           <div className="stack">
             <p className="t-h6">It’s in your library</p>
+            {on}
             <div className="cluster">
               <a className="button cc-primary" href={r.url ?? host.ownedHref}><span className="button-label">{type?.action ?? 'Open'}</span></a>
             </div>
@@ -41,9 +46,10 @@ function Action({ r, data, host }: { r: Resource; data: LibraryData; host: Libra
         <div className="card clib-access" data-access={access}>
           <div className="stack">
             <p className="t-h6">Free</p>
+            {on}
             <p className="t-sm u-text-secondary">{host.signedIn ? 'Add it to your library to keep it.' : 'Sign in to add it to your library and keep it.'}</p>
             <div className="cluster">
-              <a className="button cc-primary" href={host.productHref(r.product_slug!)}><span className="button-label">Add to your library</span></a>
+              <a className="button cc-primary" href={host.productHref(o.product_slug!)}><span className="button-label">Add to your library</span></a>
             </div>
           </div>
         </div>
@@ -52,9 +58,10 @@ function Action({ r, data, host }: { r: Resource; data: LibraryData; host: Libra
       return (
         <div className="card clib-access" data-access={access}>
           <div className="stack">
-            <p className="t-h6">{host.money(r.price_cents ?? 0, r.currency ?? 'usd')}</p>
+            <p className="t-h6">{host.money(o.price_cents ?? 0, o.currency ?? 'usd')}</p>
+            {on}
             <div className="cluster">
-              <a className="button cc-primary" href={host.productHref(r.product_slug!)}><span className="button-label">Buy</span></a>
+              <a className="button cc-primary" href={host.productHref(o.product_slug!)}><span className="button-label">{via ? `Buy ${via.title}` : 'Buy'}</span></a>
             </div>
           </div>
         </div>
@@ -102,7 +109,7 @@ export function Detail({ r, data, host, bodyHtml = '', headingLevel = 2 }: {
     <article className="clib-detail">
       <div className="clib-detail-grid">
       <div className="clib-detail-hero">
-        <Shape r={r} type={type} topics={data.topics} access={accessOf(r)} count={countOf(r, data)} big />
+        <Shape r={r} type={type} topics={data.topics} access={accessVia(r, data).access} count={countOf(r, data)} big />
       </div>
       <div className="stack clib-detail-main">
         <div className="stack">
